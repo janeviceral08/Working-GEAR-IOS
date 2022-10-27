@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-buttons class="buttonHeaderClass" mode="md">
+    <ion-back-button class="button-light" slot="start" mode="md" (click)="goBack()"></ion-back-button>
+    <ion-title mode="md">EPayslip Password</ion-title>
+    <ion-button class="btnSubmit" slot="end" (click)="submit()">
+        <ion-icon name="send" mode="md"></ion-icon>
+    </ion-button>
+</ion-buttons>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines inset>
+          <ion-label class="EntityName" position="stacked">LOGIN PASSWORD</ion-label>
+          <ion-input [(ngModel)]="loginPass" id="rounded" rows="3" maxlength="500" type="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines inset>
+          <ion-label class="EntityName" position="stacked">NEW PAYSLIP PASSWORD</ion-label>
+          <ion-input [(ngModel)]="epayslipPass" id="rounded" rows="3" maxlength="500" type="password"></ion-input>
+          <div class="passLabel">(Password must be 8 to 20 characters long with number, lower case and upper case letters.</div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-item no-lines inset>
+          <ion-label class="EntityName" position="stacked">CONFIRM NEW EPAYSLIP PASSWORD</ion-label>
+          <ion-input [(ngModel)]="confirmPass" id="rounded" rows="3" maxlength="500" type="password"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

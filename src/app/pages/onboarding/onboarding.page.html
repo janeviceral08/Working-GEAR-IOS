@@ -1,0 +1,81 @@
+<ion-content center text-center fullscreen scroll-y="false" class="classBg">
+    <ion-button class="classSkip" fill="clear" (click)="skipPressed()" *ngIf="!disableBtn">
+        Skip
+    </ion-button>
+    <ion-button class="classNext" fill="clear" (click)="nextPressed()" *ngIf="!disableBtn">
+        Next
+    </ion-button>
+    <ion-slides padding pager="true" [options]="slidesOpts" (ionSlideWillChange)="doCheck()">
+        <ion-slide class="classOnboardWelcome">
+            <img src="/assets/img/onboard_welcome.png" alt="">
+            <h2>Welcome!</h2>
+            <p>Your Golden ABC Electronic Access and Resource Companion mobile app</p>
+        </ion-slide>
+        <ion-slide class="classOnboardPersonalBG">
+            <img src="/assets/img/onboard_personalbg.png" alt="">
+            <h2>Personal Information</h2>
+            <p>View your personal details with ease</p>
+        </ion-slide>
+        <ion-slide class="classOnboardLeaveCredits">
+            <img src="/assets/img/onboard_leavecredits.png" alt="">
+            <h2>Leave Credits</h2>
+            <p>Check your Leave Credits</p>
+        </ion-slide>
+        <ion-slide class="classOnboardLeaveAndAttendance">
+            <img src="/assets/img/onboard_leaveandattendance.png" alt="">
+            <h2>Leave and Attendance Advisory</h2>
+            <p>Monitor your leaves and attendance advisories in a minute</p>
+        </ion-slide>
+        <!-- <ion-slide class="classOnboardFileLeave">
+            <img src="/assets/img/onboard_fileleave.png" alt="">
+            <h2>File Leave and Attendance Advisory</h2>
+            <p>File all leaves & attendance advisories faster and more efficient</p>
+        </ion-slide> -->
+        <!-- <ion-slide class="classOnboardOvertime">
+            <img src="/assets/img/onboard_overtime.png" alt="">
+            <h2>Overtime</h2>
+            <p>File extended work hours with ease in real time</p>
+        </ion-slide> -->
+        <ion-slide class="classOnboardEPayslip">
+            <img src="/assets/img/onboard_epayslip.png" alt="">
+            <h2>E-Payslip</h2>
+            <p>View your e-payslip anywhere, anytime</p>
+        </ion-slide>
+        <ion-slide class="classOnboardDTR">
+            <img src="/assets/img/onboard_dtr.png" alt="">
+            <h2>Daily Time Record</h2>
+            <p>Rushing to get that 8-5 shift? Check your time in and out here</p>
+        </ion-slide>
+        <ion-slide class="classOnboardLoans">
+            <img src="/assets/img/onboard_loanspurchase.png" alt="">
+            <h2>Loans and Purchases</h2>
+            <p>Keep track of all your Loans and Purchases</p>
+        </ion-slide>
+        <ion-slide class="classOnboardEvent">
+            <img src="/assets/img/onboard_event.png" alt="">
+            <h2>Events</h2>
+            <p>Be in the loop and stay updated on all company activities</p>
+        </ion-slide>
+        <ion-slide class="classOnboardCalendar">
+            <img src="/assets/img/onboard_calendar.png" alt="">
+            <h2>Calendar</h2>
+            <p>A quick view of your day-to-day activities</p>
+            <ion-button *ngIf="!isManager" class="classStart" fill="solid" (click)="skipPressed()">
+                Get Started
+            </ion-button>
+        </ion-slide>
+        <ion-slide class="classOnboardSubordinates" *ngIf="isManager">
+            <img src="/assets/img/onboard_subordinates.png" alt="">
+            <h2>Subordinates</h2>
+            <p>View your team members’ names and profiles</p>
+        </ion-slide>
+        <ion-slide class="classOnboardApproval" *ngIf="isManager">
+            <img src="/assets/img/onboard_approval.png" alt="">
+            <h2>Approvals</h2>
+            <p>Get notifications & Approve your team members’ requests in real time</p>
+            <ion-button class="classStart" fill="solid" (click)="skipPressed()">
+                Get Started
+            </ion-button>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-buttons>
+    <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+    <ion-title mode="md">Antigen Test Questionnaire</ion-title>
+
+    <ion-button class="btnSubmit" slot="end" (click)="submit()">
+      <ion-icon name="send" mode="md" color="light"></ion-icon>
+  </ion-button>
+
+
+  </ion-buttons>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let question of questionAnswerList">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-wrap">
+          <h3>{{question.Description}}</h3>
+        </ion-label>
+      </ion-item>
+
+      <div class='margin-bot' *ngIf="question.AnswerType == 'RB'">
+        <ion-radio-group mode="md">
+          <div *ngFor="let answer of question.tblAntigenAnswer">
+            <ion-item class="radio-item" lines="none"
+              (ionSelect)="radioChange(question.QuestionID, answer.Description, answer.AnswerID)">
+              <ion-label>
+                <h3>{{answer.Description}}</h3>
+              </ion-label>
+              <ion-radio slot="start" mode="md"></ion-radio>
+            </ion-item>
+          </div>
+        </ion-radio-group>
+
+      </div>
+      <div *ngIf="question.AnswerType == 'TXT'">
+        <div *ngFor="let answer of question.tblAntigenAnswer">
+
+          <ion-textarea class="textRemarks roundedItems" [(ngModel)]="question.AnswerText"
+            (keyup)="reviewChange(question.QuestionID, answer.AnswerID)" rows="1" maxlength="500">
+          </ion-textarea>
+
+        </div>
+
+      </div>
+
+      <div *ngIf="question.AnswerType == 'DTP'">
+        <div *ngFor="let answer of question.tblAntigenAnswer">
+
+        <ion-datetime id="rounded" [(ngModel)]="question.AnswerText" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" (ionChange)="dateChange(question.QuestionID, answer.AnswerID)" min="2016" max="2099">
+          mm/dd/yyyy</ion-datetime>
+        </div>
+
+      </div>
+
+
+    </ion-card>
+  </div>
+
+</ion-content>

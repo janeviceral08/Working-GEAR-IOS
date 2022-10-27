@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button class=btnSearch slot="end" [routerLink]="['/','advisorysearch']">
+                <ion-icon color="light" slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start">Attendance Advisory</ion-title>
+</ion-header>
+<ion-content padding class="contentClass">
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-card>
+        <div *ngIf="noError; else error">
+            <div *ngIf="loadingDone; else shimmer">
+                <ion-list lines="full" class="list">
+                    <ion-item button lines="full" detail="false" *ngFor="let item of advisoryList;" [routerLink]=" ['/', 'advisorylist', item.SEQNO]">
+                        <img class="imgLeave" src={{getAdvisoryTypeSrc(item.SEQNO)}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{ item.DESCRIPTION }}</span>
+                                <span class="leaveBalance">Count : {{ item.COUNT }}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openAddAdvisory()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-item class="shimmeritem" *ngFor="let number of [0,1,2,3,4,5]">
+        <div id="box" class="shine"></div>
+
+        <div class="divShimmer">
+            <div id="lines1" class="shine"></div>
+            <div id="lines2" class="shine"></div>
+        </div>
+    </ion-item>
+</ng-template>
+
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

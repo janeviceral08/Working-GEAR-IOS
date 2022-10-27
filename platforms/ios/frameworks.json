@@ -1,0 +1,10 @@
+{
+    "Security.framework": 1,
+    "SystemConfiguration.framework": 1,
+    "ImageIO.framework": 1,
+    "CoreLocation.framework": 3,
+    "AVFoundation.framework": 1,
+    "AuthenticationServices.framework": 1,
+    "CFNetwork.framework": 1,
+    "WebKit.framework": 1
+}

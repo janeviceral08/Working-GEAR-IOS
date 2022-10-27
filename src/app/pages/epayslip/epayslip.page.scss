@@ -1,0 +1,113 @@
+ion-header {
+    background-image: url('../../../assets/img/banner_dark_green.png') !important;
+    background-size: cover;
+    background-position: center;
+    padding-bottom: 10px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --padding-start: 0px;
+}
+
+ion-icon {
+    font-size: 20px;
+}
+
+ion-title {
+    color: white;
+    margin-left: 10px;
+    //margin-top: 20px;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #0000005c;
+}
+
+ion-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.icnInfo {
+    position: absolute;
+    right: 7px;
+    height: 25px;
+    width: 18px;
+    padding-top: 3px;
+    font-weight: bold;
+    color: #676767;
+}
+
+.EntityName {
+    color: #676767;
+    font-size: 12px;
+    padding-inline-start: 5px;
+}
+
+.inputPassword {
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    font-size: 27px;
+}
+
+#rounded {
+    border: 1px solid gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 10px !important;
+}
+
+.submitClass {
+    --background: linear-gradient(to bottom, #D3A828, #E0861F);
+    height: 35px;
+    width: 100px;
+    font-size: 11px;
+    margin: 10px;
+    float: right;
+    font-family: "RobotoRegular";
+}
+
+.submitAgreeClass {
+    --background: linear-gradient(to bottom, #D3A828, #E0861F);
+    height: 40px;
+    width: 130px;
+    font-size: 11px;
+    margin: 20px 10px 10px;
+    float: right;
+    font-family: "RobotoRegular";
+}
+
+.forgotClass {
+    --background: darkgray;
+    height: 35px;
+    font-size: 11px;
+    float: right;
+    width: 30;
+    margin-top: 10px;
+}
+
+.chkAffirm {
+    --background-checked: #D3A828;
+    --border-color-checked: #D3A828;
+    --border-radius: 5px;
+    --border-color: gray;
+    height: 20px;
+    width: 20px;
+}
+
+.lblAffirm,
+.lblTakeNote {
+    padding-top: 10px;
+    margin-bottom: 0px;
+    line-height: 17px;
+    font-family: "RobotoMedium";
+    font-size: 12px;
+    color: #2a2a2a;
+    white-space: pre-line !important;
+}
+
+.forgotPass{
+    float: right;
+    margin-right: 20px;
+    font-size: 90%;
+}

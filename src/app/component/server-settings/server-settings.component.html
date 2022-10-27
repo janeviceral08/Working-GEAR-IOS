@@ -1,0 +1,46 @@
+<ion-content>
+  <ion-list>
+    <ion-item class="itemFilter" lines="full">
+      <ion-label class="labelFilter" slot="start">Server Settings</ion-label>
+      <ion-icon class="buttonClose" slot="end" fill="clear" (click)="myDismiss()" color="medium" name="close">
+      </ion-icon>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="labelEntityName" position="stacked">Server URL</ion-label>
+      <ion-item class="itemInput" lines="none">
+        <ion-input class="roundedItems" [(ngModel)]="UrlInput" [disabled]="devMode || domainMode"></ion-input>
+      </ion-item>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="labelEntityName" position="stacked">Password</ion-label>
+      <ion-item class="itemInput" lines="none">
+        <ion-input class="roundedItems" [(ngModel)]="PasswordInput" type="password" [disabled]="!devMode"></ion-input>
+      </ion-item>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox class="chkShowSub" [(ngModel)]="devMode" (ionChange)="devModeCheck()"></ion-checkbox>
+      <ion-label class="lblShowSub"> Dev Mode</ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox class="chkShowSub" [(ngModel)]="domainMode" (ionChange)="domainModeCheck()"></ion-checkbox>
+      <ion-label class="lblShowSub"> Domain Mode</ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-checkbox class="chkShowSub" [(ngModel)]="guestLogin" (ionChange)="domainModeCheck()"></ion-checkbox>
+      <ion-label class="lblShowSub"> Guest</ion-label>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <ion-button class="buttonFilter" (click)="save()">SAVE</ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+

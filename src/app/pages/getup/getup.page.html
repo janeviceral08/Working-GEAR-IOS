@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+      <ion-icon color="light" name="menu"></ion-icon>
+    </ion-button>
+    <ion-title mode="md">Get Up</ion-title>
+  </ion-buttons>
+</ion-header>
+<ion-content>
+  <div *ngIf="noError; else error">
+    <ion-card>
+      <ion-card-header class="cardHeader">
+        <img class="imgChildrensHour" src="/assets/img/childrens_hour.png" alt="">
+      </ion-card-header>
+      <ion-card-content class="cardContent" *ngIf="!donePledge">
+        <ion-item lines="none">
+          <ion-checkbox class="chkPledge" checked="{{isPledge}}" (ionChange)="clickIsPledge()"></ion-checkbox>
+          <ion-label class="lblPledge"> Yes, I pledge to support Children's Hour in its pursuit of
+            meaningful programs committed to the welfare and development of underprivileged Filipino
+            children.
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-radio-group mode="md" [(ngModel)]="rdoSelected">
+            <ion-item *ngFor="let hour of rate; let i = index;">
+              <ion-label class="lblDesc">{{hour.Description}}</ion-label>
+              <ion-radio slot="start" value="{{hour.seqno}}" [checked]="i==0" mode="md"
+                (ionSelect)="rateChange(hour.seqno)"></ion-radio>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-radio slot="start" value="Others" mode="md" (ionSelect)="rateChange('Others')"></ion-radio>
+              <ion-label class="lblOthers">Others: Please specify amount</ion-label>
+            </ion-item>
+          </ion-radio-group>
+        </ion-item>
+        <ion-item class="itemOthers" lines="none" disabled="{{showOthersInput}}">
+          <ion-input class="txtOthers rounded" type="number" [(ngModel)]="otherAmount">
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-checkbox class="chkAuthorize" checked="{{isAuthorize}}" (ionChange)="clickIsAuthorize()"></ion-checkbox>
+          <ion-label class="lblAuthorize"> I hereby authorize Golden ABC Inc. to deduct the said donation
+            from the DECEMBER 25 payroll.
+          </ion-label>
+        </ion-item>
+        <ion-button block outline class="btnAgree" size="large" (click)="clickAgree()" disabled="{{disableAgree}}"
+          expand="block">Agree
+        </ion-button>
+      </ion-card-content>
+      <ion-card-content class="cardContentThanks" *ngIf="donePledge">
+        <div>
+          <img class="imgGetUp" src="/assets/img/getup.png" alt=""></div>
+        <div class="lblThankYou">
+          <ion-label >THANK YOU FOR YOUR SUPPORT!</ion-label>
+        </div>
+        <div class="lblThanksMessage">
+          <ion-label >{{thanksMessage}}</ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+<ng-template #error>
+  <ion-card lines="none" class="errorbox2">
+    <ion-avatar class="center">
+      <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+    <span class="errorMessage">{{errorMessage}}</span>
+    <br />
+    <span class="errorMessage">
+      <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+      <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+        <ion-icon color="light" name="home"></ion-icon>
+      </ion-button>
+    </span>
+  </ion-card>
+</ng-template>

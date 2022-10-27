@@ -1,0 +1,233 @@
+ion-grid {
+    height: 100%;
+    width: 100%;
+    min-width: 320px;
+    z-index: 5;
+}
+
+ion-item {
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    --background: rgba(0, 0, 0, 0);
+    --border-color: darkgray;
+}
+
+ion-button {
+    font-weight: 300;
+    width: 100%;
+    margin-top: 30px !important;
+}
+
+ion-input {
+    width: 100%;
+    height: 40px;
+}
+
+ion-card {
+    margin: 10px 0;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+ion-card-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+ion-icon {
+    color: darkslategray;
+}
+
+.bgSizeCoverTop {
+    z-index: 0;
+    background-image: url(/assets/img/login_top_bg.png);
+    background-size: cover;
+    position: absolute;
+    width: 30vh;
+    height: 21vh;
+    left: 0;
+    top: -5px;
+    filter: drop-shadow(0.5px 0.5px 2px #808080);
+}
+
+.bgSizeCoverBottom {
+    z-index: 0;
+    background-image: url("/assets/img/login_bot_bg.png");
+    background-size: cover;
+    position: absolute;
+    width: 70vw;
+    height: 40vh;
+    right: 0;
+    bottom: -5px;
+    filter: drop-shadow(0.5px 0.5px 2px #808080);
+}
+
+.rowGear {
+    //height: calc(100% - 270px);
+    height: 50%;
+    min-height: 300px;
+    align-content: center;
+    align-items: center;
+    place-content: center;
+    place-items: center;
+}
+
+.colGEARIcon {
+    text-align: center;
+}
+
+.rowLogin {
+    height: 45%;
+    min-height: 280px;
+    //align-content: flex-end;
+    //margin-top: -40px;
+}
+
+.rowLoginButton {
+    height: 5%;
+}
+
+.rowVersion {
+    height: 0%;
+    margin-top: -30px;
+}
+
+.linkIcon {
+    color: rgb(48, 48, 48);
+    margin-right: 10px;
+    margin-top: 35px;
+    margin-left: 10px;
+    height: 20px;
+}
+
+.divimgGEARtext {
+    text-align: center;
+}
+
+.inputUsername {
+    --padding-start: 5px;
+    font-size: 18px;
+    font-family: "RobotoRegular";
+}
+
+.inputPassword {
+    --padding-start: 5px;
+    font-size: 18px;
+    font-family: "RobotoRegular";
+}
+
+.version {
+    font-size: 11px;
+    color: white;
+    text-align: right;
+}
+
+.rounded {
+    border: 1px solid #D3A828;
+    // border-top-left-radius: 5px;
+    // border-top-right-radius: 5px;
+    // border-bottom-left-radius: 5px;
+    // border-bottom-right-radius: 5px;
+    width: 100%;
+    --padding-start: 15px;
+}
+
+.txtGEAR {
+    font-size: 32px;
+}
+
+.divLogin {
+    // padding: 0 30px 10px 15px;
+    //background-color: rgba(255, 255, 255, 0.5);
+    // border-top-left-radius: 5px;
+    // border-top-right-radius: 5px;
+    // border-bottom-left-radius: 5px;
+    // border-bottom-right-radius: 5px;
+    padding: 15px 15px 0px;
+    margin: -60px 20px 0 20px;
+    height: 100%;
+    min-height: 270px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(10px);
+    .divUsernamePassword {
+        margin-top: 5%;
+    }
+}
+
+.missionClass {
+    padding-bottom: 10px;
+}
+
+.card-desc-cvr {
+    float: left;
+}
+
+.card-title {
+    color: #838383;
+    font-size: 13px;
+}
+
+.Login {
+    //--background: #D3A828;
+    // height: 35px !important;
+    // font-size: 16px;
+    // margin-top: 20px;
+    --background: linear-gradient(to bottom, #D3A828, #E0861F);
+    height: 50px !important;
+    width: 70%;
+    margin: auto;
+    margin-top: -95px !important;
+    --border-radius: 40px;
+    font-size: 14px;
+    font-family: "RobotoMedium";
+    --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.EntityName {
+    color: #E0861F;
+    padding-inline-start: 5px;
+    font-size: 12px;
+    font-family: "RobotoBold";
+}
+
+.crdTitle {
+    text-align: center;
+    font-size: 18px;
+}
+
+@media (max-width: 767px) {
+    ion-col {
+        border: none;
+    }
+    .imgGEARicon {
+        height: 200px;
+        margin-top: -20px;
+    }
+    .imgGEARtext {
+        height: 60px;
+    }
+}
+
+@media (min-width: 768px) {
+    .imgGEARicon {
+        height: 250px;
+        margin-top: -20px;
+    }
+    .imgGEARtext {
+        height: 80px;
+    }
+}
+
+.forgotpass {
+    margin-top: -50px;
+    float: right;
+    margin-right: 20px;
+    font-size: 90%;
+}

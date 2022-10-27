@@ -1,0 +1,640 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start"></ion-title>
+</ion-header>
+<ion-content>
+    <div *ngIf="showPage == 'Personal'">
+        <div *ngIf="noError ; else error">
+            <!--Personal Background-->
+            <!--Personal-->
+            <ion-card>
+                <ion-card-header (click)="togglePersonalSection()">
+                    <ion-icon class="icnAbout" name="person" mode="md"></ion-icon>
+                    <ion-label class="lblName">PERSONAL BACKGROUND</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedPersonal ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedPersonal">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">LAST NAME</span>
+                            <span class="EntryValue">{{ personalInfo.LNAME }}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">FIRST NAME</span>
+                            <span class="EntryValue">{{personalInfo.FNAME}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MIDDLE INITIAL</span>
+                            <span class="EntryValue">{{personalInfo.MIDDLENAME}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MIDDLE INITIAL BEFORE MARRIAGE</span>
+                            <span class="EntryValue">{{personalInfo.MAIDENNAME}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">SUFFIX</span>
+                            <span class="EntryValue">{{personalInfo.SUFFIX}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">TITLE</span>
+                            <span class="EntryValue">{{personalInfo.TITLE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NICKNAME</span>
+                            <span class="EntryValue">{{personalInfo.NICKNAME}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">BIRTHDAY</span>
+                            <span class="EntryValue">{{personalInfo.BIRTHDAY2}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">AGE</span>
+                            <span class="EntryValue">{{personalInfo.AGE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PLACE OF BIRTH</span>
+                            <span class="EntryValue">{{personalInfo.PLACEOFBIRTH}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COUNTRY OF BIRTH</span>
+                            <span class="EntryValue">{{personalInfo.COUNTRYOFBIRTH}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">GENDER</span>
+                            <span class="EntryValue">{{personalInfo.SEX}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">CIVIL STATUS</span>
+                            <span class="EntryValue">{{personalInfo.CIVILSTATUS}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">SINCE WHEN</span>
+                            <span class="EntryValue">{{personalInfo.DATEOFMARRIAGE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NATIONALITY</span>
+                            <span class="EntryValue">{{personalInfo.NATIONALITY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">RELIGION</span>
+                            <span class="EntryValue">{{personalInfo.RELIGION}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label text-wrap>
+                            <span class="EntryName">OTHERS</span>
+                            <span class="EntryValue">{{personalInfo.RELIGIONOTHERS}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+
+            <!--Contact-->
+            <ion-card>
+                <ion-card-header (click)="toggleContactSection()">
+                    <ion-icon class="icnAbout" name="call"></ion-icon>
+                    <ion-label class="lblName">CONTACT DETAILS</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedContact ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedContact">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">LANDLINE</span>
+                            <span class="EntryValue">{{personalInfo.TELNO1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MOBILE NUMBER</span>
+                            <span class="EntryValue">{{mobileInfo.PREFIX_DESC}}{{mobileInfo.NUMBER}} ({{mobileInfo.PROVIDER_DESC}})</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label text-wrap>
+                            <span class="EntryName">COMPANY EMAIL ADDRESS</span>
+                            <span class="EntryValue">{{personalInfo.EMAILADD}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+
+            <!--Address-->
+            <ion-card>
+                <ion-card-header (click)="toggleAddressSection()">
+                    <ion-icon class="icnAbout" name="home"></ion-icon>
+                    <ion-label class="lblName">PERMANENT ADDRESS</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedAddress ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedAddress">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NO. (INCLUDE BLDG./APT. NUMBER)</span>
+                            <span class="EntryValue">{{personalInfo.HOUSENO1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">STREET</span>
+                            <span class="EntryValue">{{personalInfo.STREET1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">BARANGAY</span>
+                            <span class="EntryValue">{{personalInfo.BARANGAY1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MUNICIPALITY</span>
+                            <span class="EntryValue">{{personalInfo.MUNICIPAL1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">CITY</span>
+                            <span class="EntryValue">{{personalInfo.CITY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">ZIP CODE</span>
+                            <span class="EntryValue">{{personalInfo.ZIP1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PROVINCE</span>
+                            <span class="EntryValue">{{personalInfo.PROVINCE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COUNTRY</span>
+                            <span class="EntryValue">{{personalInfo.COUNTRYCODE1}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label text-wrap>
+                            <span class="EntryName">TELEPHONE NUMBER(S)</span>
+                            <span class="EntryValue">{{personalInfo.TELNO1}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+    <div *ngIf="showPage == 'Family'">
+        <div *ngIf="noError; else error">
+            <!--Family-->
+            <ion-card *ngFor="let item of (familyInfo)">
+                <ion-card-header class="cardFamily" (click)="toggleFamilySection(item.ID)">
+                    <ion-item lines="none">
+                        <ion-avatar>
+                            <ion-icon class="icnFam" name="person"></ion-icon>
+                        </ion-avatar>
+                        <ion-label class="lblEntity">
+                            <ion-icon *ngIf="item.CLICKED == '1'" class="menuFamToggle" name="arrow-dropup">
+                            </ion-icon>
+                            <ion-icon *ngIf="item.CLICKED == '0'" class="menuFamToggle" name="arrow-dropdown">
+                            </ion-icon>
+                            <span class="lblFamName">{{item.FNAME}} {{item.LNAME}}</span>
+                            <br>
+                            <span class="lblFamRel">{{item.RELATIONSHIP}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-header>
+                <ion-card-content *ngIf="item.CLICKED == '1'">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">GENDER</span>
+                            <span class="EntryValue">{{item.GENDER}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">BIRTHDAY</span>
+                            <span class="EntryValue">{{item.BIRTHDAY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">AGE</span>
+                            <span class="EntryValue">{{item.AGE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">DEPENDENT</span>
+                            <span class="EntryValue">{{item.DEPENDENT}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">STATUS</span>
+                            <span class="EntryValue">{{item.STATUS}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">ADDRESS</span>
+                            <span class="EntryValue">{{item.HOMEADDRESS}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PLACE OF BIRTH</span>
+                            <span class="EntryValue">{{item.PLACEOFBIRTH}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COUNTRY OF BIRTH</span>
+                            <span class="EntryValue">{{item.COUNTRYOFBIRTH}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NATIONALITY</span>
+                            <span class="EntryValue">{{item.NATIONALITY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">CIVIL STATUS</span>
+                            <span class="EntryValue">{{item.CIVILSTATUSCODE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">LANDLINE</span>
+                            <span class="EntryValue">{{item.CONTACT_NO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MOBILE NUMBER</span>
+                            <span class="EntryValue">{{item.MOBILENO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">EMAIL ADDRESS</span>
+                            <span class="EntryValue">{{item.EMAIL}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">OCCUPATION</span>
+                            <span class="EntryValue">{{item.OCCUPATION}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">POSITION</span>
+                            <span class="EntryValue">{{item.POSITION}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COMPANY</span>
+                            <span class="EntryValue">{{item.COMPANY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">SCHOOL</span>
+                            <span class="EntryValue">{{item.SCHOOL}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">START DATE</span>
+                            <span class="EntryValue">{{item.DATEFROM}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label text-wrap>
+                            <span class="EntryName">END DATE</span>
+                            <span class="EntryValue">{{item.DATETO}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+            <!--Case of Emergency-->
+            <ion-card>
+                <ion-card-header (click)="toggleEmergencySection()">
+                    <ion-icon class="icnAbout" name="call"></ion-icon>
+                    <ion-label class="lblName">CONTACT PERSON</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedEmergency ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedEmergency">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NAME</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_NAME}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">RELATIONSHIP</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_RELATIONSHIP}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">ADDRESS</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_ADD}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">TELEPHONE NO.</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_TEL}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">CELLPHONE NO.</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_CELL}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item lines="none">
+                        <ion-label text-wrap>
+                            <span class="EntryName">EMAIL ADDRESS</span>
+                            <span class="EntryValue">{{familyContactInfo.CNTACT_EMAIL}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+    <div *ngIf="showPage == 'Education'">
+        <div *ngIf="noError; else error">
+            <!--Education-->
+            <ion-card *ngFor="let item of (educationInfo)">
+                <ion-card-header class="cardEducation" (click)="toggleEducationSection(item.IDNO)">
+                    <ion-item class="classEduc" lines="none">
+                        <ion-avatar>
+                            <ion-icon class="icnEduc" name="school"></ion-icon>
+                        </ion-avatar>
+                        <ion-label class="lblEducEntity">
+                            <span class="lblEducSchool">{{item.SCHOOL}}</span>
+                            <br>
+                            <ion-icon *ngIf="item.CLICKED == '1'" class="menuEducToggle" name="arrow-dropup">
+                            </ion-icon>
+                            <ion-icon *ngIf="item.CLICKED == '0'" class="menuEducToggle" name="arrow-dropdown">
+                            </ion-icon>
+                            <span class="lblEducYear">{{item.YEARSTARTED}} - {{item.YEARGRAD}}</span>
+                            <br>
+                            <span class="lblEducLevel">{{item.LEVEL}}</span>
+                            <br>
+                            <span class="lblEducCourse" *ngIf="item.LEVEL != 'Elementary' || item.LEVEL != 'High School'">{{item.COURSE}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-header>
+                <ion-card-content *ngIf="item.CLICKED == '1'">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">STATUS</span>
+                            <span class="EntryValue">{{item.STATUS}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">UNFINISH LEVEL</span>
+                            <span class="EntryValue">{{item.UNFINISHLEVEL}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">UNFINISH YEAR</span>
+                            <span class="EntryValue">{{item.UNFINISHYEAR}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">BARANGAY</span>
+                            <span class="EntryValue">{{item.BARANGAY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">MUNICIPALITY</span>
+                            <span class="EntryValue">{{item.MUNICIPALITY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">CITY</span>
+                            <span class="EntryValue">{{item.CITY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PROVINCE</span>
+                            <span class="EntryValue">{{item.PROVINCE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COUNTRY</span>
+                            <span class="EntryValue">{{item.COUNTRY}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+    <div *ngIf="showPage == 'IDBank'">
+        <div *ngIf="noError; else error">
+            <!--Government ID-->
+            <ion-card>
+                <ion-card-header (click)="toggleIDBankGovSection()">
+                    <ion-icon class="icnAbout" name="finger-print"></ion-icon>
+                    <ion-label class="lblName">GOVERNMENT I.D.</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedIDBankGov ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedIDBankGov">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">SSS NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.SSSNO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">TIN NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.TINNO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PAGIBIG NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.PAGIBIGNO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PHILHEALTH NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.PHILHEALTHNO}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+            <!--Bank Information-->
+            <ion-card>
+                <ion-card-header (click)="toggleIDBankBankSection()">
+                    <ion-icon class="icnAbout" name="card"></ion-icon>
+                    <ion-label class="lblName">BANK INFORMATION</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedIDBankBank ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedIDBankBank">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">ACCOUNT NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.BPINO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">NAME OF BANK</span>
+                            <span class="EntryValue">Bank Of The Philippine Island</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">BRANCH</span>
+                            <span class="EntryValue">Clover Leaf</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+            <!--Driver's License-->
+            <ion-card>
+                <ion-card-header (click)="toggleIDBankDriverSection()">
+                    <ion-icon class="icnAbout" name="car"></ion-icon>
+                    <ion-label class="lblName">DRIVER'S LICENSE</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedIDBankDriver ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedIDBankDriver">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">LICENSE TYPE</span>
+                            <span class="EntryValue">{{personalInfo.LICENSE}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">LICENSE NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.LICENSENO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">RESTRICTIONS</span>
+                            <span class="EntryValue">{{personalInfo.LICENSERESTRICTION}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">EXPIRY DATE</span>
+                            <span class="EntryValue">{{personalInfo.LICENSEEXPIRY}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+            <!--Passport Information-->
+            <ion-card>
+                <ion-card-header (click)="toggleIDBankPassportSection()">
+                    <ion-icon class="icnAbout" name="airplane"></ion-icon>
+                    <ion-label class="lblName">PASSPORT INFORMATION</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedIDBankPassport ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedIDBankPassport">
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">PASSPORT NUMBER</span>
+                            <span class="EntryValue">{{personalInfo.PASSPORTNO}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">COUNTRY OF ISSUE</span>
+                            <span class="EntryValue">{{personalInfo.PASSPORTCOUNTRY}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">DATE ISSUED</span>
+                            <span class="EntryValue">{{personalInfo.PASSPORTISSUED}}</span>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label text-wrap>
+                            <span class="EntryName">EXPIRY DATE</span>
+                            <span class="EntryValue">{{personalInfo.PASSPORTEXPIRY}}</span>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
+</ion-content>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">REFRESH</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

@@ -1,0 +1,154 @@
+ion-header {
+    position: unset;
+}
+
+ion-toolbar {
+    --border-width: 0px !important;
+}
+
+ion-item:last-child {
+    --border-width: 0px 0px 1px 0 !important;
+}
+
+.btnMenu {
+    padding: 0 0 0 5px;
+}
+
+.btnToday {
+    transition: visibility 0s, opacity 0.5s linear;
+    font-size: 13px;
+}
+
+.btnFilter {
+    margin-top: -5px;
+}
+
+//Calendar Area
+.lblMonth {
+    font-size: 30px;
+    height: 46px;
+}
+
+.lblYear {
+    font-size: 12px;
+    color: #666666;
+    padding-top: 14px;
+}
+
+.classToday {
+    margin: 0px;
+    text-align: right;
+}
+
+.itmSync {
+    text-align: center;
+}
+
+.lblSync {
+    font-size: 12px;
+    color: #666666;
+}
+
+//Event Items
+.itmTypeHoliday {
+    border-left: 15px solid #0288D1;
+}
+
+.itmTypeLeave {
+    border-left: 15px solid #558B2F;
+}
+
+.itmTypeLeaveForApproval {
+    border-left: 15px solid #F44336;
+}
+
+.itmTypeAdvisory {
+    border-left: 15px solid #FFB300;
+}
+
+.itmTypeLeaveSub {
+    border-left: 15px solid #004D40;
+}
+
+.itmTypeAdvisorySub {
+    border-left: 15px solid #9C27B0;
+}
+
+.itmTypeWfh {
+    border-left: 15px solid #5552B7;
+}
+
+
+.leaveimg {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.leaveDetails {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 50px;
+}
+
+.classForApprovalLabel {
+    font-size: 11px !important;
+}
+
+.leaveNameHoliday {
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.leaveName {
+    display: block;
+    margin-top: 5px;
+    font-size: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.leaveStatus {
+    font-size: 11px;
+    margin-bottom: 5px;
+    color: #808080;
+    vertical-align: top;
+}
+
+@media screen and (max-height: 649px) {
+    .cardClass {
+        overflow-y: auto;
+        max-height: 20%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+@media screen and (min-height: 650px) {
+    .cardClass {
+        overflow-y: auto;
+        max-height: 30%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}
+
+@media screen and (min-height: 750px) {
+    .cardClass {
+        overflow-y: auto;
+        max-height: 40%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+}

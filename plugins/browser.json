@@ -1,0 +1,88 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-filepicker": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-ftp": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-nativegeocoder": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-file-opener2": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-firebasex": {
+      "FIREBASE_ANALYTICS_COLLECTION_ENABLED": "true",
+      "FIREBASE_PERFORMANCE_COLLECTION_ENABLED": "true",
+      "FIREBASE_CRASHLYTICS_COLLECTION_ENABLED": "true",
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-clipboard": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-appcenter-analytics": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.gabc.itsd.gear"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    },
+    "cordova-plugin-appcenter-shared": {
+      "PACKAGE_NAME": "com.gabc.itsd.hris"
+    }
+  }
+}

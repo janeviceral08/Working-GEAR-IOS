@@ -1,0 +1,101 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon class=btnMenu color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start">Events</ion-title>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="loadingDone; else shimmer">
+        <div *ngIf="noError; else error">
+            <div *ngFor="let item of results">
+                <ion-card *ngIf="item.EventName == 'NATCON2020'" (click)="toggleCard()">
+                    <ion-card-header class="cardHeader">
+                        <img class="eventImage" src="../../../assets/img/event_natcon.jpg" />
+                    </ion-card-header>
+                    <ion-card-content class="cardContent">
+                        <ion-item lines="none">
+                            <ion-avatar class="divDate">
+                                <div class="DateMonth">
+                                    MAR
+                                </div>
+                                <div class="DateDate">
+                                    5
+                                </div>
+                            </ion-avatar>
+                            <ion-label text-wrap class="lblEvents">
+                                <div class="EventsTitle">CX F.A.S.T. FORWARD: National Sales Conference 2020
+                                </div>
+                                <div class="EventsLoc">GABC 1155 Quezon City
+                                </div>
+                            </ion-label>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card *ngIf="item.EventName == 'GREATAWARDS2020'">
+                    <ion-card-header class="cardHeader">
+                        <img class="eventImage" src="../../../assets/img/event_great_awards.jpg" />
+                    </ion-card-header>
+                    <ion-card-content class="cardContent">
+                        <ion-item lines="none">
+                            <ion-avatar class="divDate">
+                                <div class="DateMonth">
+                                    MAR
+                                </div>
+                                <div class="DateDate">
+                                    7
+                                </div>
+                            </ion-avatar>
+                            <ion-label text-wrap class="lblEvents">
+                                <div class="EventsTitle">17th Great Awards
+                                </div>
+                                <div class="EventsLoc">SMX Convention Center, Pasay Halls 1 & 2
+                                </div>
+                            </ion-label>
+                        </ion-item>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-card *ngFor="let number of [0,1,2]">
+        <ion-card-header>
+            <ion-avatar class="lines8">
+            </ion-avatar>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item class="shimmeritem" lines="none">
+                <ion-avatar class="divDate">
+                    <div class="DateMonth"></div>
+                    <div class="DateDate"></div>
+                </ion-avatar>
+                <ion-label>
+                    <div id="lines4" class="shine"></div><br>
+                    <div id="lines3" class="shine"></div><br>
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">REFRESH</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

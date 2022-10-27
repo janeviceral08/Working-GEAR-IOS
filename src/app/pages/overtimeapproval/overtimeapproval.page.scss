@@ -1,0 +1,294 @@
+ion-header {
+    background-image: url('../../../assets/img/banner_dark_green.png') !important;
+    background-size: cover;
+    background-position: top;
+    padding: 10px 0px;
+    // height: 100px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --padding-start: 0px;
+    margin-top: 20px;
+}
+
+ion-icon {
+    font-size: 20px;
+}
+
+ion-title {
+    color: white;
+    margin-left: 10px;
+    //margin-top: 20px;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #0000005c;
+    margin-bottom: 10px;
+}
+
+ion-card {
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+ion-card-header {
+    padding: 0px;
+}
+
+ion-card-content {
+    padding: 0px 10px 0px 0px;
+}
+
+ion-icon {
+    font-size: 24px !important;
+}
+
+ion-segment-button {
+    padding-left: 10px;
+    font-size: 12px;
+    color: white;
+    border: 0px;
+    border-radius: 0px;
+}
+
+ion-item {
+    --inner-padding-end: 0px !important;
+}
+
+ion-item:last-child {
+    --border-width: 0px 0px 1px 0 !important;
+}
+
+.segment-button-checked {
+    color: white;
+}
+
+.btnMenu {
+    padding: 0px 0 0 5px;
+}
+
+.btnFilter {
+    margin-right: -5px;
+}
+
+.labelNameHeader {
+    padding-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelName {
+    font-size: 14px;
+    color: black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 70%;
+}
+
+.labelDateFiled {
+    font-size: 12px;
+    float: right;
+    color: #808080;
+}
+
+.classOTFromDiv {
+    margin-top: -30px;
+}
+
+.labelOTDescDiv {
+    margin: 15px 0 15px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelStatusDesc {
+    font-size: 14px;
+    padding-left: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelRequestType {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-top: -3px;
+    margin-bottom: 10px;
+    display: block;
+    color: #808080;
+}
+
+.labelRequestTypeRed {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-top: -3px;
+    margin-bottom: 10px;
+    display: block;
+    color: #F44336;
+}
+
+.labelLeaveDay {
+    font-size: 11px;
+    margin-left: 30px;
+    color: #808080;
+}
+
+.divOTFrom {
+    margin-top: -30px;
+}
+
+.DateMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.DateDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.divOTDesc {
+    margin-left: 40px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: 70px;
+}
+
+.divOTTime {
+    font-size: 14px;
+}
+
+.divSubName {
+    font-size: 14px;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.divSubHours {
+    font-size: 11px;
+    float: right;
+    padding-right: 5px;
+    color: #808080;
+}
+
+.divStatus {
+    font-size: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.divRemarks {
+    color: #808080;
+    font-size: 11px;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.divOTHours,
+.divSubTime {
+    color: #808080;
+    font-size: 11px;
+}
+
+.selectItems {
+    color: black;
+    // margin-left: 5px;
+    // margin-right: 5px;
+    font-size: 14px;
+    height: 39px;
+}
+
+.buttonMoreOptionsDetails {
+    margin-top: -25px;
+    font-size: 30px;
+    float: right;
+}
+
+.buttonMoreOptionsDetails2 {
+    margin-top: -50px;
+    font-size: 30px;
+    float: right;
+}
+
+.colRemarks {
+    min-width: 40px !important;
+}
+
+.colTextAppliedHours {
+    max-width: 65px !important;
+}
+
+.cardFooter {
+    margin-right: 10px;
+}
+
+.colSubmit {
+    max-width: 30px !important;
+}
+
+.colSelect {
+    max-width: 120px !important;
+    min-width: 100px;
+}
+
+.roundedItems {
+    border: 1px solid #d1d1d1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+.btnSend {
+    --padding-start: 0px;
+    --padding-end: 0px;
+}
+
+@media (max-width: 350px) {
+    ion-segment {
+        width: auto !important;
+    }
+}
+
+@media (min-width: 351px) {
+    ion-segment {
+        width: fit-content !important;
+    }
+}
+
+@media (max-width: 530px) {
+    ion-header {
+        background-size: 185%;
+        background-position-x: 85%;
+        background-position-y: 100%;
+    }
+}

@@ -1,0 +1,168 @@
+<ion-header>
+    <ion-buttons class="buttonHeaderClass" mode="md">
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">{{title}}</ion-title>
+        <ion-button class="btnSubmit" slot="end" (click)="sendAdvisory()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content class="ContentClass">
+    <ion-list lines="none">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">SUBORDINATE</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="subId" (ionChange)="onSubordinateChange()">
+                            <div *ngFor="let item of (subordinates)">
+                                <ion-select-option value="{{ item.EMPLOYEEID }}">{{ item.EMPNAME }}</ion-select-option>
+                            </div>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <!-- <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">REQUEST TYPE</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="selectedReqType">
+                            <ion-select-option>Work From Home</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col> -->
+            </ion-row>
+            <ion-row>
+                <!-- <ion-col size="8">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">REQUEST DATE</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="selectedDate" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" min="2016" max="2099">
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col> -->
+                <ion-col size="4">
+                    <ion-item class="duration" [disabled]="isDurationDisabled">
+                        <ion-label class="EntityName" position="stacked">DURATION</ion-label>
+                        <ion-input id="rounded" type="num" [(ngModel)]="duration" (ionBlur)="onDurationChanged()">
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="8">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">DATE FROM</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="selectedDate" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099" (ionChange)="getAddLeaveEndDate()">
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">&nbsp;</ion-label>
+                        <ion-select [(ngModel)]="timeFrom" id="rounded" (ionChange)="getAddLeaveEndDate()">
+                            <ion-select-option value="AM">AM</ion-select-option>
+                            <ion-select-option value="PM">PM</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="8">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">DATE TO</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="dateTo" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" min="2016" max="2099" disabled>
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">&nbsp;</ion-label>
+                        <ion-select [(ngModel)]="timeTo" id="rounded" disabled>
+                            <ion-select-option value="AM">AM</ion-select-option>
+                            <ion-select-option value="PM">PM</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row>
+                <ion-col size="8">
+                    <ion-item id="leavetype">
+                        <ion-label class="EntityName" position="stacked">REQUEST TIME</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="selectedReqTime">
+                            <ion-select-option *ngFor="let type of requestTimeList; let i = index" value={{type.SEQNO}} selected="i=0">
+                                {{type.DESCRIPTION}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item *ngIf="selectedReqTime == 'TME0002'" class="duration">
+                        <ion-label class="EntityName" position="stacked">&nbsp;</ion-label>
+                        <ion-input id="rounded" type="number" [(ngModel)]="duration"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row> -->
+            <!-- <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">REASON</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="selectedReason">
+                            <div *ngFor="let item of requestReasonList">
+                                <ion-select-option value="{{ item.SEQNO }}">{{ item.DESCRIPTION }}</ion-select-option>
+                            </div>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row> -->
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">TASKS</ion-label>
+                        <ion-textarea id="rounded" rows="3" maxlength="500" [(ngModel)]="remarks"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-left:20px">
+                <ion-col size="12">
+                    <ion-label class="label">WFH Credits</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-left:20px">
+                <ion-col size="4">
+                    <ion-label class="label">Balance : {{wfhBalance}}</ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-label class="label">Credits : {{wfhCredits}}</ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-label class="label">Posted : {{wfhPosted}}</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-left:20px">
+                <ion-col size="4">
+                    <ion-label class="label">For Approval : {{wfhApproval}}</ion-label>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-label class="label">Approved : {{wfhApproved}}</ion-label>
+                </ion-col>
+                <ion-col size="4">
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="5">
+                    <ion-item>
+                        <ion-button class="AttachButton" shape="round" (click)="attachFile()">
+                            Attach File
+                            <ion-icon slot="start" name="attach"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="7">
+                    <ion-item class="FileName">
+                        <ion-label>{{ fileName }}
+                        </ion-label>
+                        <ion-icon class="FileNameClose" slot="end" name="close-circle" *ngIf="hasAttachment" (click)="removeAttachment()"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,91 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-button icon-only menuToggle fill="clear" (click)="showServerSettingsModal()">
+            <ion-icon color="dark" name="menu"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="8">
+          <img src="/assets/img/banner_heathtrack.png" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+
+    <ion-label text-wrap>
+      <span class="EntryName">ANTIGEN TEST</span>
+    </ion-label>
+    <hr class="solid">
+
+    <ion-row class="top-row">
+      <ion-col *ngIf="isAntigenResult;" class="top-col" [routerLink]="['/','antigentestresult']">
+        <img src="/assets/img/ic_label_antigen_result.png">
+
+      </ion-col>
+
+      <ion-col *ngIf="isAntigenQaApproval;" class="top-col" [routerLink]="['/','antigentestqaapproval']">
+        <img src="/assets/img/ic_label_qa_approval.png">
+
+      </ion-col>
+      
+      <ion-col   *ngIf="!isAntigenResult;" class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col   *ngIf="!isAntigenQaApproval;" class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-label text-wrap>
+      <span class="EntryName">VACCINE</span>
+    </ion-label>
+    <hr class="solid">
+
+    <ion-row class="top-row">
+      <ion-col class="top-col" [routerLink]="['/','vaccineadd']">
+        <img src="/assets/img/ic_label_vaccine_result.png">
+
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col">
+        <div></div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

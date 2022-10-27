@@ -1,0 +1,40 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="7">
+      <ion-item lines="none">
+        <ion-label class="labelEntityName" position="stacked">STATUS</ion-label>
+        <ion-select class="selectItems roundedItems" [(ngModel)]="status">
+          <ion-select-option *ngFor="let status of statusList; let i = index" value={{status}} selected="{{i==0}}">
+            {{status}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col size="5">
+      <ion-item lines="none" *ngIf="status == 'Approve' && param == 'otapproval'">
+        <ion-label class="labelEntityName" position="stacked">APPROVED HOURS</ion-label>
+        <ion-input class="input roundedItems" id="rounded" type="num" [(ngModel)]="appliedhours">
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item lines="none" class="areaRemarks">
+        <ion-label class="labelEntityName" position="stacked">REMARKS</ion-label>
+        <ion-textarea class="textArea roundedItems" rows="1" maxlength="500" [(ngModel)]="remarks"></ion-textarea>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-button class="closeClass" slot="end" fill="clear" (click)="myDismiss()">
+          CANCEL
+        </ion-button>
+        <ion-button class="submitClass" slot="end" fill="solid" (click)="submitLeave()">
+          SUBMIT
+        </ion-button>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-grid>

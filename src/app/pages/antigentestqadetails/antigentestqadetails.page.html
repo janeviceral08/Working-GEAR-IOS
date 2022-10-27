@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-buttons>
+    <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+    <ion-title mode="md">Antigen Test Details</ion-title>
+  </ion-buttons>
+</ion-header>
+
+<ion-content padding>
+  <ion-item class="classMainDetails" lines="full">
+    <ion-avatar class="divLeaveFrom">
+      <div class="LeaveFromMonth">
+        {{month}}
+      </div>
+      <div class="LeaveFromDate">
+        {{day}}
+      </div>
+    </ion-avatar>
+    <ion-label text-wrap>
+      <div class="divLeaveDesc">
+        <div class="StatusDesc">
+          <span>{{name}}</span>
+        </div>
+        <div class="StatusDescHours">
+          <span>{{recordId}}</span>
+        </div>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <div *ngFor="let question of antigenTestQaList">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-wrap">
+          <h3>{{ question.QuestionDescription }}</h3> <br>
+          <p>ANSWER:</p><br>
+          <h3>{{ question.AnswerDescription }}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+
+</ion-content>

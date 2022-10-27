@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="backButton()">
+        <ion-icon color="light" name="ios-arrow-round-back"></ion-icon>    
+        </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Vaccination History</ion-title>
+</ion-header>
+
+<ion-content padding class="classContent" hide-header header="header">
+  <div *ngIf="loadingDone; else shimmer">
+    <div *ngIf="noError; else error">
+
+      <ion-card class=divCardSegment mode="md">
+        <ion-list mode="md">
+          <div *ngFor="let vaccine of vaccinationList">
+
+            <ion-item class="itmClass" button lines="none" detail="false">
+              <ion-avatar class="divDate">
+                <div class="DateMonth">
+                  {{getDateMonth(vaccine.VaccineDate,1)}}
+
+                </div>
+                <div class="DateDate">
+                  {{getDateDate(vaccine.VaccineDate)}}
+
+                </div>
+              </ion-avatar>
+              <ion-label class="lblWFH" text-wrap>
+                <div class="divWFHDesc">
+
+                  <div class="divWFHStatus">
+                    <span class="RequestType">{{vaccine.VaccineBrandName}}</span>
+                  </div>
+                  <div class="divWFHTimeIn">
+                    <span> </span>
+                  </div>
+                  <div class="divWFHTimeIn">
+                    <span>Vaccination Date : {{vaccine.VaccineDate}}</span>
+                  </div>
+                  <div class="divWFHTimeOut">
+                    <span>Next Vaccination : {{vaccine.NextVaccineDate}}</span>
+                  </div>
+                </div>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-card>
+
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <div id="lines7" class="shine"></div>
+  <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+    <ion-avatar class="divDate">
+      <div class="DateMonth"></div>
+      <div class="DateDate"></div>
+    </ion-avatar>
+    <ion-label>
+      <div id="lines4" class="shine"></div><br>
+      <div id="lines3" class="shine"></div><br>
+      <div id="lines3" class="shine"></div>
+    </ion-label>
+  </ion-item>
+</ng-template>
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png">
+      </ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]="['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

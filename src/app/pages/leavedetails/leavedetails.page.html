@@ -1,0 +1,137 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <!-- <ion-button slot="start" (click)="back()" class="toolbarButtons">
+      <ion-icon class="btnMenu" color="light" name="arrow-back"></ion-icon>
+    </ion-button> -->
+        <ion-title mode="md">Leave Details</ion-title>
+        <ion-button class="button-light actionButton" title="SUBMIT" slot="end" *ngIf="leaveStatus == 'PLANNED'" (click)="showSubmitDialog()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="EDIT" slot="end" *ngIf="(leaveStatus == 'PLANNED' || leaveStatus == 'FOR APPROVAL') && !isForApproval" (click)="openEditLeave()">
+            <ion-icon name="create" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="DELETE" slot="end" *ngIf="(leaveStatus == 'PLANNED' || leaveStatus == 'FOR APPROVAL') && !isForApproval" (click)="showDeleteDialog()">
+            <ion-icon name="trash" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="CANCEL" slot="end" *ngIf="leaveStatus == 'APPROVED' && !isForApproval" (click)="showCancelDialog()">
+            <ion-icon name="close-circle" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <ion-item class="classMainDetails" lines="full">
+        <ion-avatar class="divLeaveFrom">
+            <div class="LeaveFromMonth">
+                {{leaveFromMonth}}
+            </div>
+            <div class="LeaveFromDate">
+                {{leaveFromDate}}
+            </div>
+        </ion-avatar>
+        <ion-label text-wrap>
+            <div class="divLeaveDesc">
+                <div class="StatusDesc">
+                    <span *ngIf="type == 'userleave'">{{ toTitleCase(leaveDesc) }}</span>
+                    <span *ngIf="isForApproval">{{empName}}</span>
+                </div>
+                <span *ngIf="type == 'userleave'" class="RequestType" [ngClass]="{'classForApprovalLabel': leaveStatusDesc == 'FOR APPROVAL', 
+                  'classApprovedLabel': leaveStatusDesc == 'APPROVED',
+                  'classOnHoldLabel': leaveStatusDesc == 'ON HOLD',
+                  'classPlannedLabel': leaveStatusDesc == 'PLANNED',
+                  'classCancelledLabel': leaveStatusDesc == 'CANCELLED',
+                  'classDisapprovedLabel': leaveStatusDesc == 'DISAPPROVED',
+                  'classPostedLabel': leaveStatusDesc == 'POSTED'}">
+          {{ toTitleCase(leaveStatusDesc) }}</span>
+                <span *ngIf="isForApproval" class="RequestType">{{leaveDesc}}</span>
+                <br>
+                <span class="LeaveDay" *ngIf="leaveDay > 1 ">{{ leaveDay }} days duration</span>
+                <span class="LeaveDay" *ngIf="leaveDay <= 1 ">{{ leaveDay }} day duration</span>
+            </div>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LEAVE DATE</span>
+            <span class="EntryValue">{{ leaveFrom }} {{leaveFromTime}} - {{leaveTo}} {{leaveToTime}}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REQUEST TYPE</span>
+            <span [ngClass]="{'EntryValue': requestTypeDesc == 'WITH PAY', 'EntryValueRed' : requestTypeDesc != 'WITH PAY'}">{{ requestTypeDesc }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LEAVE TIME FROM</span>
+            <span class="EntryValue">{{ leaveFromTime }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LEAVE TIME TO</span>
+            <span class="EntryValue">{{ leaveToTime }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DATE FILED</span>
+            <span class="EntryValue">{{ dateFile }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DEPARTMENT</span>
+            <span class="EntryValue">{{ deptDesc }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REMARKS</span>
+            <span class="EntryValue" *ngIf="leaveRemark != null || leaveRemark != ''">{{ leaveRemark }}</span>
+            <span class="EntryValue" *ngIf="leaveRemark == null || leaveRemark == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">CREATED BY</span>
+            <span class="EntryValue">{{ createdBy }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">CREATED DATE</span>
+            <span class="EntryValue" *ngIf="dateCreated != null || dateCreated != ''">{{ dateCreated }}</span>
+            <span class="EntryValue" *ngIf="dateCreated == null || dateCreated == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PROCESSED BY</span>
+            <span class="EntryValue" *ngIf="approver != null || approver != ''">{{ approver }}</span>
+            <span class="EntryValue" *ngIf="approver == null || approver == ''">&nbsp;</span>
+            <ng-template #other_content>&nbsp;</ng-template>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PROCESSED DATE</span>
+            <span class="EntryValue" *ngIf="approvedDate != null || approvedDate != ''">{{ approvedDate }}</span>
+            <span class="EntryValue" *ngIf="approvedDate == null || approvedDate == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PROCESSED REMARKS</span>
+            <span class="EntryValue" *ngIf="approverREMARKS != null || approverREMARKS != ''">{{ approverREMARKS }}</span>
+            <span class="EntryValue" *ngIf="approverREMARKS == null || approverREMARKS == ''">&nbsp;</span>
+            <ng-template #other_content>&nbsp;</ng-template>
+        </ion-label>
+    </ion-item>
+    <ion-fab *ngIf="isForApproval && !isSubLeave" vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openModal()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

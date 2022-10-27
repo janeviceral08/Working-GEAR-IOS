@@ -1,0 +1,240 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-button icon-only menuToggle fill="clear" (click)="toggleMenu()">
+            <ion-icon color="dark" name="menu"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="8">
+          <img src="/assets/img/banner_heathtrack.png" alt="">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="loadingDone; else shimmerAnnouncement">
+    <div *ngIf="firstVaccine;">
+      <ion-card>
+        <img src="/assets/img/bg_vaccine_gold.png">
+
+        <div class="card-title_1">I GOT MY</div>
+        <div class="card-title_2">FIRST DOSE</div>
+        <div class="card-subtitle"> <b>{{vaccineDate}}</b></div>
+
+        <ion-button class="card-button" expand="block" shape="round" color="primary"
+          [routerLink]="['/','vaccinehistory']"> Details</ion-button>
+
+        <img class="card-vaccinated" src="/assets/img/icon_vaccinated_image.png">
+
+      </ion-card>
+    </div>
+
+    <div *ngIf="fullVaccine;">
+      <ion-card>
+        <img src="/assets/img/bg_vaccine_banner.png">
+
+        <div class="card-title_1">I'M FULLY</div>
+        <div class="card-title_2">VACCINATED</div>
+        <div class="card-subtitle"> <b>{{vaccineDate}}</b></div>
+
+        <ion-button class="card-button" expand="block" shape="round" color="primary"
+          [routerLink]="['/','vaccinehistory']"> Details</ion-button>
+
+        <img class="card-vaccinated" src="/assets/img/icon_vaccinated_image.png">
+
+      </ion-card>
+    </div>
+
+
+    <div *ngIf="!vaccinated">
+      <ion-card>
+        <img src="/assets/img/bg_banner_no_vaccine.png">
+
+        <div class="card-title_1">{{ vaccineTitle }}</div>
+        <div class="card-title_2">{{ vaccineBody }}</div>
+
+        <img class="card-vaccinated" src="/assets/img/image_no_vaccine.png">
+
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="antigenNegative;">
+    <ion-card>
+      <img src="/assets/img/bg_antigen_badge.png">
+
+      <ion-avatar class="divDate">
+        <div class="DateMonth">
+          {{getDateMonth(testDate,1)}}
+
+        </div>
+        <div class="DateDate">
+          {{getDateDate(testDate)}}
+
+        </div>
+      </ion-avatar>
+
+      <div class="card-antigen-title">ANTIGEN TEST</div>
+      <div class="card-antigen-result"> <b>NEGATIVE</b></div>
+      <div class="card-antigen-next">Next Test: {{ nextAntigenTest }}</div>
+
+    </ion-card>
+  </div>
+
+  <div *ngIf="antigenPositive;">
+    <ion-card>
+      <img src="/assets/img/bg_antigen_positive.png">
+      <img class="card-antigen-warning" src="/assets/img/image_need_test.png">
+
+      <div class="card-antigen-title">ANTIGEN TEST</div>
+      <div class="card-antigen-result"> <b>POSITIVE</b></div>
+      <div class="card-antigen-next">Last Test: {{ latestAntigenTest }}</div>
+
+    </ion-card>
+  </div>
+
+  <div *ngIf="antigenNeedTest;">
+    <ion-card>
+      <img src="/assets/img/bg_antigen_need_test.png">
+      <img class="card-antigen-warning" src="/assets/img/image_need_test.png">
+
+      <div class="card-antigen-title">{{ needTestTitle }}</div>
+      <div class="card-antigen-result"> <b>{{ needTestBody }}</b></div>
+      <div class="card-antigen-next">Last Test: {{ latestAntigenTest }}</div>
+
+    </ion-card>
+  </div>
+
+
+  <ion-grid>
+    <ion-row class="top-row">
+      <ion-col class="top-col" [routerLink]="['/','antigentesthistory']" col-auto>
+        <img src="/assets/img/ic_label_antigen_history.png">
+
+      </ion-col>
+      <ion-col class="top-col" [routerLink]="['/','vaccinehistory']" col-auto>
+        <img src="/assets/img/ic_label_vaccine_history.png">
+
+
+      </ion-col>
+      <ion-col class="top-col" [routerLink]="['/','antigentestqa']" col-auto>
+
+        <img src="/assets/img/ic_label_antigen_qa.png">
+      </ion-col>
+      <!-- <ion-col class="top-col">
+        <div></div>
+      </ion-col> -->
+
+      <ion-col class="top-col" col-auto>
+        <div></div>
+      </ion-col>
+
+      <ion-col class="top-col" col-auto>
+        <div></div>
+      </ion-col>
+
+    </ion-row>
+
+    <div *ngIf="accessAdmin;">
+      <ion-row class="top-row admin-label-row">
+        <ion-col class="top-col divider-label " size="2">
+          <img src="/assets/img/icon_admin.png">
+
+        </ion-col>
+        <ion-col size="10">
+          <div class="label-admin">
+            ADMIN'S MODULE
+          </div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-label text-wrap>
+        <span class="EntryName">ANTIGEN TEST</span>
+      </ion-label>
+      <hr class="solid">
+
+      <ion-row class="top-row">
+        <ion-col  *ngIf="accessAntigenResult;" class="top-col" [routerLink]="['/','antigentestresult']" col-auto>
+          <img src="/assets/img/ic_label_antigen_result.png">
+
+        </ion-col>
+
+        <ion-col  *ngIf="accessAntigenQa;" class="top-col" [routerLink]="['/','antigentestqaapproval']" col-auto>
+          <img src="/assets/img/ic_label_qa_approval.png">
+
+        </ion-col>
+
+        <ion-col   *ngIf="!accessAntigenResult;" class="top-col">
+          <div></div>
+        </ion-col>
+  
+        <ion-col   *ngIf="!accessAntigenQa;" class="top-col">
+          <div></div>
+        </ion-col>
+  
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+      </ion-row>
+
+      <ion-label text-wrap>
+        <span class="EntryName">VACCINE</span>
+      </ion-label>
+      <hr class="solid">
+
+      <ion-row class="top-row">
+        <ion-col  *ngIf="accessVaccineResult;" class="top-col" [routerLink]="['/','vaccineadd']" col-auto>
+          <img src="/assets/img/ic_label_vaccine_result.png">
+
+
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+        <ion-col class="top-col" col-auto>
+          <div></div>
+        </ion-col>
+
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>
+
+<ng-template #shimmerAnnouncement>
+  <div class="divEvent shine">
+  </div>
+</ng-template>

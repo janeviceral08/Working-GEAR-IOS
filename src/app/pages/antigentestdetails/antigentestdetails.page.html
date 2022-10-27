@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-buttons>
+    <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+    <ion-title mode="md">Antigen Test Details</ion-title>
+  </ion-buttons>
+</ion-header>
+
+<ion-content padding>
+  <ion-item class="classMainDetails" lines="full">
+    <ion-avatar class="divLeaveFrom">
+      <div class="LeaveFromMonth">
+        {{getDateMonth(testDate,1)}}
+      </div>
+      <div class="LeaveFromDate">
+        {{getDateDate(testDate)}}
+      </div>
+    </ion-avatar>
+    <ion-label text-wrap>
+      <div class="divLeaveDesc">
+        <div class="StatusDesc">
+          <span>{{ result }}</span>
+        </div>
+        <div class="StatusDescHours">
+          <span>{{ name }}</span>
+        </div>
+      </div>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">TEST RESULT</span>
+      <span class="EntryValue">{{ result }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">TEST DATE</span>
+      <span class="EntryValue">{{ testDate }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">TEST TIME</span>
+      <span class="EntryValue">{{ testTime }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">NEXT TEST DATE</span>
+      <span class="EntryValue">{{ nextTestDate }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">TEST BY</span>
+      <span class="EntryValue">{{ testBy }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">TEST KIT</span>
+      <span class="EntryValue">{{ testKit }}</span>
+    </ion-label>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-label text-wrap>
+      <span class="EntryName">ANTIGEN SWAB TIME</span>
+      <span class="EntryValue">{{ interviewTime }}</span>
+    </ion-label>
+  </ion-item>
+</ion-content>

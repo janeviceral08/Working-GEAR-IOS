@@ -1,0 +1,107 @@
+:root {
+    --ion-safe-area-top: 20px;
+    --ion-safe-area-bottom: 22px;
+}
+
+.swiper-slide {
+    display: block;
+}
+
+ion-slide {
+    margin: 10px 0px;
+}
+
+ion-slides.slides {
+    height: 100%;
+}
+
+ion-slide>h2 {
+    color: white;
+    font-size: 22px;
+    margin: 10px 15px 0;
+}
+
+ion-slide>p {
+    color: white;
+    font-size: 14px;
+    margin: 10px 15px 0;
+}
+
+ion-slide>img {
+    max-height: 80%;
+    max-width: 80%;
+}
+
+.classBg {
+    --background: url("/assets/img/onboard00.png") no-repeat center center / cover;
+}
+
+.classOnboardWelcome {
+    padding-top: 25%;
+}
+
+.classOnboardLeaveCredits {
+    padding-top: 40%;
+}
+
+.classOnboardLeaveAndAttendance {
+    padding-top: 30%;
+}
+
+.classOnboardFileLeave {
+    padding-top: 20%;
+}
+
+.classOnboardDTR {
+    padding-top: 30%;
+}
+
+.classOnboardCalendar {
+    padding-top: 20%;
+}
+
+.classOnboardOvertime {
+    padding-top: 30%;
+}
+
+.classOnboardEPayslip {
+    padding-top: 45%;
+}
+
+.classOnboardLoans {
+    padding-top: 40%;
+}
+
+.classOnboardEvent {
+    padding-top: 40%;
+}
+
+.classOnboardSubordinates {
+    padding-top: 45%;
+}
+
+.classOnboardPersonalBG {
+    padding-top: 25%;
+}
+
+.classOnboardApproval {
+    padding-top: 30%;
+}
+
+.classSkip {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.classNext {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.classStart {
+    padding-top: 10px
+}

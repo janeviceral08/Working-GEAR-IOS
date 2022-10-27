@@ -1,0 +1,137 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <!-- <ion-button slot="start" (click)="back()" class="toolbarButtons">
+      <ion-icon class="btnMenu" color="light" name="arrow-back"></ion-icon>
+    </ion-button> -->
+        <ion-title mode="md">Advisory Details</ion-title>
+        <ion-button class="button-light actionButton" title="SUBMIT" slot="end" *ngIf="leaveStatus == 'PLANNED'" (click)="showSubmitDialog()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="EDIT" slot="end" *ngIf="advisoryStatus == 'FOR APPROVAL' && isUserAdvisory" (click)="openEditAdvisory()">
+            <ion-icon name="create" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="DELETE" slot="end" *ngIf="advisoryStatus == 'FOR APPROVAL' && isUserAdvisory" (click)="showDeleteDialog()">
+            <ion-icon name="trash" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="CANCEL" slot="end" *ngIf="advisoryStatus == 'APPROVED' && isUserAdvisory" (click)="showCancelDialog()">
+            <ion-icon name="close-circle" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="EDIT" slot="end" *ngIf="isSubAdvisory && advisoryStatus == '1'" (click)="openEditAdvisory()">
+            <ion-icon name="create" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="CANCEL" slot="end" *ngIf="isSubAdvisory && advisoryStatus == '1'" (click)="showCancelDialog()">
+            <ion-icon name="close-circle" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <div *ngFor="let item of (results)">
+        <div *ngIf="id == item.ID " >
+            {{ setItem(item) }}
+            <ion-item class="classMainDetails" lines="full">
+                <ion-avatar class="divLeaveFrom">
+                    <div class="LeaveFromMonth">
+                        {{getDateMonth(item.REQUESTDATE,1, item)}}
+                    </div>
+                    <div class="LeaveFromDate">
+                        {{getDateDate(item.REQUESTDATE)}}
+                    </div>
+                </ion-avatar>
+                <ion-label text-wrap>
+                    <div class="divLeaveDesc">
+                        <div class="StatusDesc">
+                            <span *ngIf="isUserAdvisory">{{ toTitleCase(item.REQUESTTYPEDESC) }}</span>
+                            <span *ngIf="isForApproval">{{ item.EMPL_NAME }}</span>
+                        </div>
+                        <!-- <div class="StatusDesc" *ngIf="(type == 'userleave' && item.LEAVEDESC.toString().length < 16) || (type == 'forapproval' && item.EMPL_NAME.toString().length < 16)">
+              <span *ngIf="type == 'userleave'">{{ toTitleCase(item.LEAVEDESC) }}</span>
+              <span *ngIf="type == 'forapproval'">{{ item.EMPL_NAME }}</span>
+            </div>
+            <div class="StatusDescAnimated" *ngIf="(type == 'userleave' && item.LEAVEDESC.toString().length >= 16) || (type == 'forapproval' && item.EMPL_NAME.toString().length >= 16)">
+              <span *ngIf="type == 'userleave'">{{ toTitleCase(item.LEAVEDESC) }}</span>
+              <span *ngIf="type == 'forapproval'">{{ item.EMPL_NAME.length }}</span>
+            </div> -->
+                        <span *ngIf="isUserAdvisory" class="RequestType" [ngClass]="{'classForApprovalLabel': item.STATUS == 'FOR APPROVAL', 
+            'classApprovedLabel': item.STATUS == 'APPROVED',
+            'classOnHoldLabel': item.STATUS == 'ON HOLD',
+            'classPlannedLabel': item.STATUS == 'PLANNED',
+            'classCancelledLabel': item.STATUS == 'CANCELLED',
+            'classDisapprovedLabel': item.STATUS == 'DISAPPROVED',
+            'classPostedLabel': item.STATUS == 'POSTED'}">{{ toTitleCase(item.STATUS) }}</span>
+                        <span *ngIf="isForApproval" class="RequestType">{{ item.REQUESTTYPEDESC }}</span>
+                        <br>
+                        <span class="LeaveDay">{{ item.REQUESTTIME }}</span>
+                    </div>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">REQUEST DATE</span>
+                    <span class="EntryValue">{{ item.REQUESTDATE }}</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">DATE OF DUTY</span>
+                    <span class="EntryValue" *ngIf="item.DATEOFDUTY != null || item.DATEOFDUTY != ''">{{ item.DATEOFDUTY }}</span>
+                    <span class="EntryValue" *ngIf="item.DATEOFDUTY == null || item.DATEOFDUTY == ''">&nbsp;</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">OB START TIME</span>
+                    <span class="EntryValue" *ngIf="item.STARTTIME != null || item.STARTTIME != ''">{{ item.STARTTIME }}</span>
+                    <span class="EntryValue" *ngIf="item.STARTTIME == null || item.STARTTIME == ''">&nbsp;</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">REASON</span>
+                    <span class="EntryValue">{{ item.REASONDESC }}</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">DEPARTMENT</span>
+                    <span class="EntryValue">{{ item.DEPARTMENTDESC }}</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">REMARKS</span>
+                    <span class="EntryValue" *ngIf="item.LEAVEREMARK != null || item.LEAVEREMARK != ''">{{ item.REMARKS }}</span>
+                    <span class="EntryValue" *ngIf="item.REMARKS == null || item.REMARKS == ''">&nbsp;</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">PROCESSED BY</span>
+                    <span class="EntryValue" *ngIf="item.APPROVER != null || item.APPROVER != ''">{{ item.APPROVER }}</span>
+                    <span class="EntryValue" *ngIf="item.APPROVER == null || item.APPROVER == ''">&nbsp;</span>
+
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">PROCESSED DATE</span>
+                    <span class="EntryValue" *ngIf="item.APPROVEDDATE != null || item.APPROVEDDATE != ''">{{ item.APPROVEDDATE }}</span>
+                    <span class="EntryValue" *ngIf="item.APPROVEDDATE == null || item.APPROVEDDATE == ''">&nbsp;</span>
+                </ion-label>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label text-wrap>
+                    <span class="EntryName">PROCESSED REMARKS</span>
+                    <span class="EntryValue" *ngIf="item.APPROVERREMARKS != null || item.APPROVERREMARKS != ''">{{ item.APPROVERREMARKS }}</span>
+                    <span class="EntryValue" *ngIf="item.APPROVERREMARKS == null || item.APPROVERREMARKS == ''">&nbsp;</span>
+                    <ng-template #other_content>&nbsp;</ng-template>
+                </ion-label>
+            </ion-item>
+        </div>
+    </div>
+    <ion-fab *ngIf="isForApproval && !isSubAdvisory" vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openModal()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

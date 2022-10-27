@@ -1,0 +1,110 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button class=btnSearch slot="end" [routerLink]="['/','leavesearch']">
+                <ion-icon color="light" slot="icon-only" name="search" icon-sm></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start">Leave Credits</ion-title>
+</ion-header>
+<ion-content padding class="contentClass">
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <ion-card>
+        <div *ngIf="noError; else error">
+            <div *ngIf="loadingDone; else shimmer">
+                <ion-list class="listLeaves" lines="full" class="list">
+                    <ion-item button detail *ngFor="let item of (results );" [routerLink]=" ['/', 'leavelist', item.LEAVE_DESC, item.LEAVECODE]">
+                        <img class="imgLeave" src={{getLeaveTypeSrc(item.LEAVECODE)}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{ item.LEAVE_DESC }}</span>
+                            </div>
+                            <ion-grid class="leaveCreditsInfo">
+                                <ion-row>
+                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                        Balance :
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        {{item.BALANCE}}
+                                    </ion-col>
+                                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                                        For Approval :
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        {{item.APPROVAL}}
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                        Credit :
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        {{item.CREDITS}}
+                                    </ion-col>
+                                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                                        Approved :
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        {{item.APPROVED}}
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                        Posted :
+                                    </ion-col>
+                                    <ion-col size="2">
+                                        {{item.AVAILED}}
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-label>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openAddLeave()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-list>
+        <ion-item class="shimmeritem" *ngFor="let number of [0,1,2,3,4,5]">
+            <div id="box" class="shine"></div>
+            <div class="divShimmer">
+                <div id="lines1" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

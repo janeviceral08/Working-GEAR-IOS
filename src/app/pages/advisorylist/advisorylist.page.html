@@ -1,0 +1,105 @@
+<ion-header #header>
+    <ion-buttons slot="start">
+        <ion-back-button class="button-light" mode="md"></ion-back-button>
+    </ion-buttons>
+</ion-header>
+<ion-fab horizontal="end">
+    <ion-fab-button (click)="openAdvisoryAdd()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+<ion-card class=divCardHeader>
+    <ion-item lines="full">
+        <ion-thumbnail class="imgType" slot="start">
+            <img src="{{ idSrc }}" alt="">
+        </ion-thumbnail>
+        <ion-label text-wrap>
+            <span class="leaveDesc">{{ idDesc }}</span>
+        </ion-label>
+    </ion-item>
+</ion-card>
+<ion-content padding class="classContent" hide-header header="header">
+    <ion-card class=divCardSegment mode="md">
+        <div *ngIf="noError; else error || advisoryTypeList.length <= 0; else error">
+            <ion-segment class="sgmtAdvisoryType" mode="md" scrollable [(ngModel)]="advisoryType">
+                <div *ngFor="let leave of advisoryTypeList">
+                    <div *ngIf="leave == 'FOR APPROVAL'; else otherLeave">
+                        <ion-segment-button mode="md" value={{leave}} checked>
+                            {{leave}}
+                        </ion-segment-button>
+                    </div>
+                    <ng-template #otherLeave>
+                        <ion-segment-button mode="md" value={{leave}}>
+                            {{leave}}
+                        </ion-segment-button>
+                    </ng-template>
+                </div>
+            </ion-segment>
+            <div [ngSwitch]="advisoryType">
+                <div *ngIf="loadingDone; else shimmer">
+                    <div *ngFor="let advisoryList of advisoryTypeList">
+                        <ion-list mode="md" *ngSwitchCase="advisoryList">
+                            <div *ngFor="let item of (results)" [routerLink]=" ['/', 'advisorydetails', item.ID, 'useradvisory', item.STATUS,'','advisorylist']">
+                                <div *ngIf="id == item.REQUESTTYPECODE && advisoryList == item.STATUS">
+                                    <ion-item button lines="full" detail="false">
+                                        <ion-avatar class="divLeaveFrom">
+                                            <div class="LeaveFromMonth">
+                                                {{getDateMonth(item.REQUESTDATE,1)}}
+                                            </div>
+                                            <div class="LeaveFromDate">
+                                                {{getDateDate(item.REQUESTDATE)}}
+                                            </div>
+                                        </ion-avatar>
+                                        <ion-label text-wrap>
+                                            <div class="divLeaveDesc">
+                                                <ion-item button class="buttonMoreOptions" lines="none" detail="false" (click)="$event.stopPropagation();MoreOptions($event, item);" *ngIf="advisoryList == 'FOR APPROVAL' || advisoryList == 'APPROVED' || advisoryList == 'PLANNED'">
+                                                    &#8942;</ion-item>
+                                                <ion-item button class="buttonMoreOptionsDetails" lines="none" detail="true" *ngIf="advisoryList != 'FOR APPROVAL' && advisoryList != 'APPROVED' && advisoryList != 'PLANNED'">
+                                                </ion-item>
+                                                <span class="StatusDesc">{{ item.REASONDESC }}</span>
+                                                <br>
+                                                <span class="RequestType">{{ item.REMARKS }}</span>
+                                                <br>
+                                                <span class="LeaveDay">{{ item.REQUESTTIME }} </span>
+                                            </div>
+                                        </ion-label>
+                                    </ion-item>
+                                </div>
+                            </div>
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <div id="lines7" class="shine"></div>
+    <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+        <ion-avatar class="divLeaveFrom">
+            <div class="LeaveFromMonth"></div>
+            <div class="LeaveFromDate"></div>
+        </ion-avatar>
+        <ion-label>
+            <div id="lines3" class="shine"></div><br>
+            <div id="lines3" class="shine"></div><br>
+            <div id="lines4" class="shine"></div>
+        </ion-label>
+    </ion-item>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

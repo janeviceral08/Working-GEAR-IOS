@@ -1,0 +1,383 @@
+<ion-header #header>
+    <ion-buttons slot="start">
+        <ion-back-button class="button-light" mode="md"></ion-back-button>
+    </ion-buttons>
+</ion-header>
+<ion-fab horizontal="end">
+    <ion-fab-button (click)="moreOptions()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+<ion-card class=divCardHeader>
+    <ion-item lines="full">
+        <ion-avatar>
+            <ion-icon class="divPhoto" name="person" mode="md"></ion-icon>
+        </ion-avatar>
+        <ion-label text-wrap>
+            <span class="leaveDesc">{{ idDesc }}</span>
+            <ion-grid class="leaveCreditsNameInfo" (click)="setViewProfile()">
+                <ion-row class="leaveCreditsName">
+                    {{name}}
+                </ion-row>
+                <ion-row>
+                </ion-row>
+                <ion-row class="subViewInfo">
+                    View Personal Info
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+</ion-card>
+<ion-content padding>
+    <ion-card class=divCardSegment mode="md">
+        <div *ngIf="loadingDone; else shimmer">
+            <div *ngIf="noError; else error">
+                <ion-segment class="sgmtLeaveType" mode="md" scrollable [(ngModel)]="listType">
+                    <div *ngFor="let list of segments">
+                        <ion-segment-button mode="md" value={{list}}>
+                            {{list}}
+                        </ion-segment-button>
+                    </div>
+                </ion-segment>
+
+                <div [ngSwitch]="listType">
+                    <div *ngFor="let list of segments">
+                        <ion-list mode="md" *ngSwitchCase="list">
+                            <div *ngIf="list == 'Leave Credits'">
+                                <div *ngIf="leaveCredits.length > 0; else empty">
+                                    <ion-item button detail="false" *ngFor="let item of (leaveCredits);">
+                                        <img class="imgLeave" src={{getLeaveTypeSrc(item.LEAVECODE)}} alt="">
+                                        <ion-label text-wrap>
+                                            <div class="leaveDetails">
+                                                <span class="leaveName">{{ item.LEAVE_DESC }}</span>
+                                            </div>
+                                            <ion-grid class="leaveCreditsInfo">
+                                                <ion-row>
+                                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                                        Balance :
+                                                    </ion-col>
+                                                    <ion-col size="2">
+                                                        {{item.BALANCE}}
+                                                    </ion-col>
+                                                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                                                        For Approval :
+                                                    </ion-col>
+                                                    <ion-col size="2">
+                                                        {{item.APPROVAL}}
+                                                    </ion-col>
+                                                </ion-row>
+                                                <ion-row>
+                                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                                        Credit :
+                                                    </ion-col>
+                                                    <ion-col size="2">
+                                                        {{item.CREDITS}}
+                                                    </ion-col>
+                                                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                                                        Approved :
+                                                    </ion-col>
+                                                    <ion-col size="2">
+                                                        {{item.APPROVED}}
+                                                    </ion-col>
+                                                </ion-row>
+                                                <ion-row>
+                                                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                                                        Posted :
+                                                    </ion-col>
+                                                    <ion-col size="2">
+                                                        {{item.AVAILED}}
+                                                    </ion-col>
+                                                </ion-row>
+                                            </ion-grid>
+                                        </ion-label>
+                                    </ion-item>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'Leaves'">
+                                <div *ngIf="leaveList.length > 0; else empty">
+                                    <div *ngFor="let item of (leaveList)">
+                                        <ion-item button lines="full" detail="false"
+                                            (click)="setLeaveDetails(item,'subleave')">
+                                            <ion-avatar class="divLeaveFrom">
+                                                <div class="LeaveFromMonth">
+                                                    {{getDateMonth(item.LEAVEFROM,1)}}
+                                                </div>
+                                                <div class="LeaveFromDate">
+                                                    {{getDateDate(item.LEAVEFROM)}}
+                                                </div>
+                                            </ion-avatar>
+                                            <ion-label text-wrap>
+                                                <div class="divLeaveDesc">
+                                                    <div class="divStat">
+                                                        <div class="StatusDesc">{{ item.LEAVEDESC }}</div>
+                                                        <div class="DateFile">{{ getLongDate(item.DATEFILE) }}</div>
+                                                    </div>
+                                                    <span [ngClass]="{'classForApprovalLabel': item.LEAVESTATUSDESC == 'FOR APPROVAL', 
+                          'classApprovedLabel': item.LEAVESTATUSDESC == 'APPROVED',
+                          'classOnHoldLabel': item.LEAVESTATUSDESC == 'ON HOLD',
+                          'classPlannedLabel': item.LEAVESTATUSDESC == 'PLANNED',
+                          'classCancelledLabel': item.LEAVESTATUSDESC == 'CANCELLED',
+                          'classDisapprovedLabel': item.LEAVESTATUSDESC == 'DISAPPROVED',
+                          'classPostedLabel': item.LEAVESTATUSDESC == 'POSTED'}" class="RequestType">
+                                                        {{ item.LEAVESTATUSDESC }}
+                                                    </span>
+                                                    <ion-item button class="buttonMoreOptions" lines="none"
+                                                        detail="false"
+                                                        (click)="$event.stopPropagation();MoreOptions($event, item);"
+                                                        *ngIf="leaveList == 'FOR APPROVAL' || leaveList == 'APPROVED' || leaveList == 'PLANNED'">
+                                                        &#8942;
+                                                    </ion-item>
+                                                    <ion-item button class="buttonMoreOptionsDetails" lines="none"
+                                                        detail="true"
+                                                        *ngIf="leaveList != 'FOR APPROVAL' && leaveList != 'APPROVED' && leaveList != 'PLANNED'">
+                                                    </ion-item>
+                                                    <br>
+                                                    <span class="LeaveDay"
+                                                        *ngIf="item.LEAVEDAY > 1 ">{{ item.LEAVEDAY }} days
+                                                        duration</span>
+                                                    <span class="LeaveDay"
+                                                        *ngIf="item.LEAVEDAY <= 1 ">{{ item.LEAVEDAY }} day
+                                                        duration</span>
+                                                </div>
+                                            </ion-label>
+                                        </ion-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'Attendance Advisory'">
+                                <div *ngIf="advisoryList.length > 0; else empty">
+                                    <div *ngFor="let item of (advisoryList)">
+                                        <ion-item button lines="full" detail="false"
+                                            (click)="setAdvisoryDetail(item, 'subadvisory')">
+                                            <ion-avatar class="divLeaveFrom">
+                                                <div class="LeaveFromMonth">
+                                                    {{getDateMonth(item.REQUESTDATE,1)}}
+                                                </div>
+                                                <div class="LeaveFromDate">
+                                                    {{getDateDate(item.REQUESTDATE)}}
+                                                </div>
+                                            </ion-avatar>
+                                            <ion-label text-wrap>
+                                                <div class="divLeaveDesc">
+                                                    <div class="divStat">
+                                                        <span class="StatusDesc">{{ item.REQUESTTYPEDESC }}</span>
+                                                    </div>
+                                                    <span class="RequestType" [ngClass]="{'classForApprovalLabel': item.STATUS == 'FOR APPROVAL', 
+                          'classApprovedLabel': item.STATUS == 'APPROVED',
+                          'classOnHoldLabel': item.STATUS == 'ON HOLD',
+                          'classPlannedLabel': item.STATUS == 'PLANNED',
+                          'classCancelledLabel': item.STATUS == 'CANCELLED',
+                          'classDisapprovedLabel': item.STATUS == 'DISAPPROVED',
+                          'classPostedLabel': item.STATUS == 'POSTED'}">{{ item.STATUS }}
+                                                    </span>
+                                                    <ion-item button class="buttonMoreOptions" lines="none"
+                                                        detail="false"
+                                                        (click)="$event.stopPropagation();MoreOptions($event, item);"
+                                                        *ngIf="advisoryList == 'FOR APPROVAL' || advisoryList == 'APPROVED' || advisoryList == 'PLANNED'">
+                                                        &#8942;
+                                                    </ion-item>
+                                                    <ion-item button class="buttonMoreOptionsDetails" lines="none"
+                                                        detail="true"
+                                                        *ngIf="advisoryList != 'FOR APPROVAL' && advisoryList != 'APPROVED' && advisoryList != 'PLANNED'">
+                                                    </ion-item>
+                                                    <br>
+                                                    <span class="LeaveDay">{{ item.REQUESTTIME }} </span>
+                                                </div>
+                                            </ion-label>
+                                        </ion-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'Overtime'">
+                                <div *ngIf="OvertimeList.length > 0; else empty">
+                                    <div *ngFor="let ot of OvertimeList">
+                                        <ion-item button detail="false" lines="full" (click)="setOvertimeDetails(ot)">
+                                            <ion-avatar class="divDate">
+                                                <div class="DateMonth">
+                                                    {{getDateMonth(ot.OvertimeDateFrom,1)}}
+                                                </div>
+                                                <div class="DateDate">
+                                                    {{getDateDate(ot.OvertimeDateFrom)}}
+                                                </div>
+                                            </ion-avatar>
+                                            <ion-label text-wrap>
+                                                <div class="divLeaveDesc">
+                                                    <div class="divStat">
+                                                        <span class="StatusDesc">{{ot.STARTTIME}} -
+                                                            {{ot.ENDTIME}}</span>
+                                                    </div>
+                                                    <span class="RequestType" [ngClass]="{'classForApprovalLabel': ot.STATUSDESC == 'FOR APPROVAL', 
+                          'classApprovedLabel': ot.STATUSDESC == 'APPROVED',
+                          'classOnHoldLabel': ot.STATUSDESC == 'ON HOLD',
+                          'classPlannedLabel': ot.STATUSDESC == 'PLANNED',
+                          'classCancelledLabel': ot.STATUSDESC == 'CANCELLED',
+                          'classDisapprovedLabel': ot.STATUSDESC == 'DISAPPROVED',
+                          'classPostedLabel': ot.STATUSDESC == 'POSTED'}">{{ ot.STATUSDESC }}
+                                                    </span>
+                                                    <div *ngIf="ot.PAIDHOURS != null">
+                                                        <div class="LeaveDay" *ngIf="ot.PAIDHOURS > 1 ">
+                                                            {{ ot.PAIDHOURS }} hours</div>
+                                                        <div class="LeaveDay" *ngIf="ot.PAIDHOURS <= 1 ">
+                                                            {{ ot.PAIDHOURS }} hour</div>
+                                                    </div>
+                                                    <div *ngIf="ot.PAIDHOURS == null">
+                                                        <div class="LeaveDay" *ngIf="ot.APPLIEDOTHOURS > 1 ">
+                                                            {{ ot.APPLIEDOTHOURS }} hours</div>
+                                                        <div class="LeaveDay" *ngIf="ot.APPLIEDOTHOURS <= 1 ">
+                                                            {{ ot.APPLIEDOTHOURS }} hour</div>
+                                                    </div>
+                                                    <ion-item button class="buttonMoreOptionsDetails2" lines="none">
+                                                    </ion-item>
+                                                </div>
+                                            </ion-label>
+                                        </ion-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'Work From Home'">
+                                <div *ngIf="WorkFromHome.length > 0; else empty">
+                                    <div *ngFor="let wfh of WorkFromHome">
+                                    <ion-item class="itmClass" button lines="none" detail="false">
+                                        <ion-avatar class="divWfhDate" (click)="setWfhDetails(wfh)">
+                                            <div class="DateMonth">
+                                                {{getDateMonth(wfh.AttendanceRequestDate,1)}}
+                                            </div>
+                                            <div class="DateDate">
+                                                {{getDateDate(wfh.AttendanceRequestDate)}}
+                                            </div>
+                                        </ion-avatar>
+                                        <ion-label class="lblWFH" text-wrap>
+                                            <div class="divWFHDesc">
+                                                <div class="divWFHStatus" (click)="setWfhDetails(wfh)">
+                                                    <span class="RequestWfhType"
+                                                        [ngClass]="{'classForApprovalLabel': wfh.AttendanceStatus == 'FOR APPROVAL', 
+                                                              'classApprovedLabel': wfh.AttendanceStatus == 'APPROVED',
+                                                              'classOnHoldLabel': wfh.AttendanceStatus == 'ON HOLD',
+                                                              'classPlannedLabel': wfh.AttendanceStatus == 'PLANNED',
+                                                              'classCancelledLabel': wfh.AttendanceStatus== 'CANCELLED',
+                                                              'classDisapprovedLabel': wfh.AttendanceStatus == 'DISAPPROVED',
+                                                              'classPostedLabel': wfh.AttendanceStatus == 'POSTED'}">{{ toTitleCase(wfh.AttendanceStatus) }}</span>
+                                                </div>
+                                                <div class="divWFHTimeIn" (click)="setWfhDetails(wfh)">
+                                                    <span> {{ wfh.NOOFDAYS }} days</span>
+                                                </div>
+                                                <div class="divWFHTimeIn" (click)="setWfhDetails(wfh)">
+                                                    <span>Time In :{{wfh.DateTimeIn}}</span>
+                                                </div>
+                                                <div class="divWFHTimeOut" (click)="setWfhDetails(wfh)">
+                                                    <span>Time Out :{{wfh.DateTimeOut}}</span>
+                                                </div>
+                                            </div>
+                                        </ion-label>
+                                    </ion-item>
+                                </div>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'DTR'">
+                                <div *ngIf="DTRList.length > 0; else empty">
+                                    <div *ngFor="let dtr of DTRList">
+                                        <ion-item button detail="false" lines="full" (click)="setDTRDetails(dtr)">
+                                            <ion-avatar class="divDate">
+                                                <div class="DateMonth">
+                                                    {{getDateMonth(dtr.DTR_date,1)}}
+                                                </div>
+                                                <div class="DateDate">
+                                                    {{getDateDate(dtr.DTR_date)}}
+                                                </div>
+                                            </ion-avatar>
+                                            <ion-label text-wrap>
+                                                <div class="divDTRDesc">
+                                                    <span *ngIf="dtr.Leave_rem != ''"
+                                                        class="divLeave">{{dtr.Leave_rem}}</span>
+                                                    <div class="divDTRTime">
+                                                        <span *ngIf="dtr.Am_In != ''">{{dtr.Am_In}}</span>
+                                                        <span *ngIf="dtr.Am_In == ''">-</span>
+                                                        <span *ngIf="dtr.Am_Out != ''"> - {{dtr.Am_Out}}</span>
+                                                    </div>
+                                                    <div class="divDTRDay">
+                                                        <span>{{dtr.Att_Code}}</span>
+                                                    </div>
+                                                    <div class="divDTRHours">
+                                                        <span>Shift: {{dtr.ShiftSchedule}}</span>
+                                                    </div>
+                                                    <ion-item button class="buttonMoreOptionsDetails2" lines="none">
+                                                    </ion-item>
+                                                </div>
+                                            </ion-label>
+                                        </ion-item>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="list == 'OB'">
+                                <div *ngIf="OBList.length > 0; else empty">
+                                    <div *ngFor="let ob of OBList">
+                                        <ion-item class="itmClass" button lines="full" detail="false">
+                                            <ion-avatar class="divDate">
+                                                <div class="DateMonth">
+                                                    {{getDateMonth(ob.Log_Date,1)}}
+                                                </div>
+                                                <div class="DateDate">
+                                                    {{getDateDate(ob.Log_Date)}}
+                                                </div>
+                                            </ion-avatar>
+                                            <ion-label text-wrap>
+                                                <div class="divDTRDesc">
+                                                    <div class="divOBTime">
+                                                        <span *ngIf="ob.Log_Time != ''">{{ob.Log_Time}}</span>
+                                                        <span *ngIf="ob.Log_Time == ''">-</span>
+                                                        <span *ngIf="ob.Log_Time_In != ''"> - {{ob.Log_Time_In}}</span>
+                                                    </div>
+                                                    <div class="divOBRemarks">
+                                                        <span *ngIf="ob.Remarks != ''">{{ob.Log_Remark}}</span>
+                                                    </div>
+                                                </div>
+                                            </ion-label>
+                                        </ion-item>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-list>
+        <ion-item class="shimmeritem" *ngFor="let number of [0,1,2,3,4,5]">
+            <div id="box" class="shine"></div>
+            <div class="divShimmer">
+                <div id="lines1" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+                <div id="lines2" class="shine"></div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+                <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+            </span>
+        </div>
+    </ion-item>
+</ng-template>
+<ng-template #empty>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">EMPTY</span>
+            <span class="errorMessage">
+                <!-- <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button> -->
+            </span>
+        </div>
+    </ion-item>
+</ng-template>

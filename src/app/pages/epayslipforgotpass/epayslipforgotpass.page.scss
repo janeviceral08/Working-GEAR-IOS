@@ -1,0 +1,52 @@
+ion-header {
+    background-color: #558B2F;
+    padding-bottom: 15px;
+    padding-top: 30px;
+}
+
+ion-back-button {
+    color: white;
+    margin-left: -10px;
+}
+
+ion-title {
+    color: white;
+    font-size: 20px;
+    padding-left: 0px;
+}
+
+.btnSubmit {
+    color: white;
+    padding-right: 5px;
+}
+
+.checkBtn {
+    --background: #D3A828;
+    height: 35px;
+    width: 100px;
+    font-size: 11px;
+    margin-left: 0px;
+    margin-top: 26px;
+}
+
+ion-item {
+    --show-full-highlight: 0;
+}
+
+#rounded {
+    border: 1px solid gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+ion-input {
+    height: 40px !important;
+}
+
+.passLabel {
+    font-size: 11px;
+    font-style: italic;
+}

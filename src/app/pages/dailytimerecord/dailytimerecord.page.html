@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+        <ion-icon color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class=btnFilter slot="end" color="light" (click)="openModal()">
+        <ion-icon slot="start" name="search" mode="md"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Daily Time Record</ion-title>
+</ion-header>
+<ion-content padding class="classContent" hide-header header="header">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card class=divCardSegment mode="md">
+    <div *ngIf="loadingDone; else shimmer">
+      <div *ngIf="noError; else error">
+        <ion-segment class="sgmtDTRType" mode="md" scrollable [(ngModel)]="DTRType">
+          <div *ngFor="let type of DTRTypeList">
+            <div *ngIf="type == 'DTR'; else otherType">
+              <ion-segment-button mode="md" value={{type}} checked>
+                {{type}}
+              </ion-segment-button>
+            </div>
+            <ng-template #otherType>
+              <ion-segment-button mode="md" value={{type}}>
+                {{type}}
+              </ion-segment-button>
+            </ng-template>
+          </div>
+        </ion-segment>
+        <div [ngSwitch]="DTRType">
+          <div *ngFor="let type of DTRTypeList">
+            <ion-list mode="md" *ngSwitchCase="type">
+              <div *ngIf="type == 'DTR'">
+                <div *ngIf="!dtrIsEmpty; else error">
+                  <div *ngFor="let dtr of DTRList">
+                    <ion-item class="itmClass" button lines="full" detail="false" (click)="setDTRDetails(dtr)">
+                      <ion-avatar class="divDate">
+                        <div class="DateMonth">
+                          {{getDateMonth(dtr.DTR_date,1)}}
+                        </div>
+                        <div class="DateDate">
+                          {{getDateDate(dtr.DTR_date)}}
+                        </div>
+                      </ion-avatar>
+                      <ion-label class="lblDTR" text-wrap>
+                        <div class="divDTRDesc">
+                          <span *ngIf="dtr.Leave_rem != ''" class="divLeave">
+                            <img *ngIf="dtr.Leave_rem == 'BL'" src="assets/icon/ic_bl.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'EL'" src="assets/icon/ic_el.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'IL'" src="assets/icon/ic_il.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'MCW'" src="assets/icon/ic_mcw.png" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'ML'" src="assets/icon/ic_ml.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'PL'" src="assets/icon/ic_pl.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'SL'" src="assets/icon/ic_sl.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'VL'" src="assets/icon/ic_vl.png" alt="" class="imgLeaveIcon">
+                            <img *ngIf="dtr.Leave_rem == 'XS'" src="assets/icon/ic_xs.png" alt="" class="imgLeaveIcon">
+                            <!-- {{dtr.Leave_rem}} -->
+                          </span>
+                          <span *ngIf="dtr.AttAdv_rem != ''" class="divLeave">
+                            <img *ngIf="dtr.AttAdv_rem == 'AUTHORIZED UNDER TIME '" src="assets/icon/ic_au.png" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.AttAdv_rem == 'AUTHORIZED LATE '" src="assets/icon/ic_el.al" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.AttAdv_rem == 'OFFSET '" src="assets/icon/ic_os.png" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.AttAdv_rem == 'CTO '" src="assets/icon/ic_cto.png" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.AttAdv_rem == 'OFFICIAL BUSINESS '" src="assets/icon/ic_ob.png" alt=""
+                              class="imgLeaveIcon">
+                            <img *ngIf="dtr.AttAdv_rem == 'AUTHORIZED SHIFT '" src="assets/icon/ic_as.png" alt=""
+                              class="imgLeaveIcon">
+                            <!-- {{dtr.AttAdv_rem}} -->
+                          </span>
+                          <div class="divDTRTime">
+                            <span *ngIf="dtr.Am_In != ''">{{dtr.Am_In}}</span>
+                            <span *ngIf="dtr.Am_In == ''">-</span>
+                            <span *ngIf="dtr.Am_Out != ''"> - {{dtr.Am_Out}}</span>
+                          </div>
+                          <div class="divDTRDay">
+                            <span>{{dtr.Att_Code}}</span>
+                          </div>
+                          <div class="divDTRHours">
+                            <span>Shift: {{dtr.ShiftSchedule}}</span>
+                          </div>
+                        </div>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="type == 'OFFICIAL BUSINESS'">
+                <div *ngIf="!obIsEmpty; else error">
+                  <div *ngFor="let ob of OBList">
+                    <ion-item class="itmClass" button lines="full" detail="false">
+                      <ion-avatar class="divDate">
+                        <div class="DateMonth">
+                          {{getDateMonth(ob.Log_Date,1)}}
+                        </div>
+                        <div class="DateDate">
+                          {{getDateDate(ob.Log_Date)}}
+                        </div>
+                      </ion-avatar>
+                      <ion-label text-wrap>
+                        <div class="divDTRDesc">
+                          <div class="divOBTime">
+                            <span *ngIf="ob.Log_Time != ''">{{ob.Log_Time}}</span>
+                            <span *ngIf="ob.Log_Time == ''">-</span>
+                            <span *ngIf="ob.Log_Time_In != ''"> - {{ob.Log_Time_In}}</span>
+                          </div>
+                          <div class="divOBRemarks">
+                            <span *ngIf="ob.Remarks != ''">{{ob.Log_Remark}}</span>
+                          </div>
+                        </div>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </div>
+              </div>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <div id="lines7" class="shine"></div>
+  <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+    <ion-avatar class="divDate">
+      <div class="DateMonth"></div>
+      <div class="DateDate"></div>
+    </ion-avatar>
+    <ion-label>
+      <div id="lines4" class="shine"></div><br>
+      <div id="lines3" class="shine"></div><br>
+      <div id="lines3" class="shine"></div>
+    </ion-label>
+  </ion-item>
+</ng-template>
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

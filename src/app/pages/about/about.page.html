@@ -1,0 +1,119 @@
+<ion-header>
+</ion-header>
+<ion-content>
+    <div class="bgTop">
+    </div>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <img class="imgGEARicon" src="/assets/img/icon.png" alt="">
+    <img class="imgGEARtext" src="/assets/img/gear_name.png" alt="">
+    <ion-label class="lblVersion">
+        {{CurrentVersion}}
+    </ion-label>
+    <ion-card class="cardAboutSmall">
+        <ion-card-header class="divAboutHeader" (click)="toggleAboutSection()">
+            <ion-icon class="icnAbout" name="information-circle"></ion-icon>
+            <ion-label class="lblTitleCard">
+                {{lblAboutStatus}}</ion-label>
+            <ion-icon class="menuAboutToggle" *ngIf="noError" name="{{clickedAbout ? 'arrow-dropup': 'arrow-dropdown'}}">
+            </ion-icon>
+        </ion-card-header>
+        <ion-progress-bar type="indeterminate" *ngIf="lblAboutStatus == 'LOADING ABOUT...'">
+        </ion-progress-bar>
+        <ion-card-content class='cardOnDesc' *ngIf="clickedAbout">
+            <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEAR – GOLDEN ABC Electronic Access and Resource is a tool for all GABC employees that provides a more interactive and efficient way of accessing employee benefits and services. In addition, this is focused
+                on providing better service to the employees in line with the organization’s digital transformation efforts.</p>
+            <br>
+            <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEAR currently allows all GABC employees to view and file their leaves and attendance advisories and view their daily time record via their mobile phones. In addition, all GEAR users will now be able to
+                view their epayslips, loans and employee purchases.
+            </p>
+            <br>
+            <p class="lblDetails lblViewOnboarding" (click)="toggleViewOnboarding()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; View Onboarding
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="cardWhatsNextSmall">
+        <ion-card-header class="divWhatsNextHeader" (click)="toggleWhatsNextSection()">
+            <ion-icon class="icnWhatsNext" name="megaphone"></ion-icon>
+            <ion-label class="lblTitleCard">
+                {{lblWhatsNextStatus}}</ion-label>
+            <ion-icon class="menuWhatsNextToggle" *ngIf="noError" name="{{clickedWhatsNext ? 'arrow-dropup': 'arrow-dropdown'}}">
+            </ion-icon>
+        </ion-card-header>
+        <ion-progress-bar type="indeterminate" *ngIf="lblWhatsNextStatus == 'LOADING WHATS NEXT...'">
+        </ion-progress-bar>
+        <ion-card-content class='cardOnDesc' *ngIf="clickedWhatsNext">
+            <div>
+                <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEAR will continuously be updated to completely mirror its web version through several phases.
+                </p>
+                <br>
+                <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GEAR is now on its second phase with its new additional features. The commitment to continuously enhance its features is in full swing in the next phases. Exciting changes ahead for GEAR and GABC.</p>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="cardPrivacyPolicy">
+        <ion-card-header class="divPrivacyPolicy" (click)="togglePrivacyPolicy()">
+            <ion-icon class="icnPrivacyPolicy" name="list-box"></ion-icon>
+            <ion-label class="lblTitleCard">
+                {{lblPrivacyPolicyStatus}}</ion-label>
+            <ion-icon class="menuPrivacyPolicy" *ngIf="noError" name="{{clickedPrivacyPolicy ? 'arrow-dropup': 'arrow-dropdown'}}">
+            </ion-icon>
+        </ion-card-header>
+        <ion-progress-bar type="indeterminate" *ngIf="lblPrivacyPolicy == 'LOADING PRIVACY STATEMENT...'">
+        </ion-progress-bar>
+        <ion-card-content class='cardOnDesc' *ngIf="clickedPrivacyPolicy">
+            <div>
+                <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This mobile app may be accessed and used only for official business purposes by authorized Con-way personnel. Unauthorized access or use of this mobile app may subject violators to disciplinary, and/or
+                    civil action or criminal prosecution.
+                </p>
+                <br>
+                <p class="lblDetails">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Any information on this mobile app may be intercepted, recorded, read, copied, and disclosed by and to authorized personnel for official purposes, including criminal investigations.</p>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="cardFeedbackSmall">
+        <ion-card-header class="divFeedbackHeader" (click)="toggleFeedbackSection()">
+            <ion-icon class="icnFeedback" name="chatbubbles"></ion-icon>
+            <ion-label class="lblTitleCard">
+                {{lblFeedbackStatus}}</ion-label>
+            <ion-icon class="menuFeedbackToggle" *ngIf="noError" name="{{clickedFeedback ? 'arrow-dropup': 'arrow-dropdown'}}">
+            </ion-icon>
+        </ion-card-header>
+        <ion-progress-bar type="indeterminate" *ngIf="lblFeedbackStatus == 'LOADING FEEDBACK...'">
+        </ion-progress-bar>
+        <ion-card-content class='cardOnDesc' *ngIf="clickedFeedback">
+            <ion-list>
+                <ion-item lines="none">
+                    <ion-textarea class="txtFeedback" id="rounded" rows="1" maxlength="200" (ionChange)="feedbackLength()" [(ngModel)]="feedbackText"></ion-textarea>
+                </ion-item>
+                <ion-item lines="none">
+                    <!-- <ion-label class="lblfeedbackLength">{{currentFeedbackLength}}/200</ion-label> -->
+                    <ion-label></ion-label>
+                    <ion-button class="btnSubmit" size="small" (click)="feedbackSubmit()">SUBMIT</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <div *ngIf="noError; else error">
+    </div>
+</ion-content>
+<ng-template #error>
+    <ion-card lines="none" class="errorbox2">
+        <ion-avatar class="center">
+            <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+        <span class="errorMessage">{{errorMessage}}</span>
+        <br />
+        <span class="errorMessage">
+      <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+      <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+        <ion-icon color="light" name="home"></ion-icon>
+      </ion-button>
+    </span>
+    </ion-card>
+</ng-template>

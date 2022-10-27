@@ -1,0 +1,96 @@
+ion-list {
+    margin-top: 30px;
+}
+
+ion-item {
+    margin: 0 0 0 15px;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+}
+
+ion-footer {
+    text-align: center;
+}
+
+ion-checkbox {
+    width: 15px;
+    height: 15px;
+    --background-checked: #D3A828;
+    --border-color-checked: #D3A828;
+    --border-radius: 5px;
+    --border-color: gray;
+}
+
+//Filter Area
+.itemFilter {
+    margin: 10px;
+}
+
+.labelFilter {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttonClose {
+    font-size: 30px;
+    color: #7A7A7A
+}
+
+//Filter Items
+.labelEntityName {
+    font-size: 12px;
+    padding-left:5px;
+}
+
+.buttonFilter {
+    width: 95%;
+    height: 35px;
+}
+
+.legendColorHolidays {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #0288D1 20%, transparent 25%);
+}
+
+.legendColorLeaves {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #558B2F 20%, transparent 25%);
+}
+
+.legendColorAttendanceAdvisories {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #FFB300 20%, transparent 25%);
+}
+
+.legendColorLeavesForApproval {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #F44336 20%, transparent 25%);
+}
+
+.legendColorAdvisoryForApproval {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #F44336 20%, transparent 25%);
+}
+
+.legendColorSubordinateLeave {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #004D40 20%, transparent 25%);
+}
+
+.legendColorSubordinateAdvisory {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #9C27B0 20%, transparent 25%);
+}
+
+.legendColorWfh {
+    height:50px;
+    width:50px;
+    background: radial-gradient(closest-side at 50% 50%, #5552B7 20%, transparent 25%);
+}

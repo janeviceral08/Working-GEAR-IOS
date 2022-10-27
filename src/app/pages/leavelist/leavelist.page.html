@@ -1,0 +1,146 @@
+<ion-header #header>
+    <ion-buttons slot="start">
+        <ion-back-button class="button-light" mode="md"></ion-back-button>
+    </ion-buttons>
+</ion-header>
+<ion-fab horizontal="end">
+    <ion-fab-button (click)="openLeaveAdd()">
+        <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+<ion-card class=divCardHeader>
+    <ion-item lines="full">
+        <ion-thumbnail class="imgType" slot="start">
+            <img src="{{ idSrc }}" alt="">
+        </ion-thumbnail>
+        <ion-label text-wrap>
+            <span class="leaveDesc">{{ idDesc }}</span>
+            <ion-grid class="leaveCreditsInfo">
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Balance :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{balance}}
+                    </ion-col>
+                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                        For Approval :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{forApproval}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Credit :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{credits}}
+                    </ion-col>
+                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                        Approved :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{approved}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Posted :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{posted}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+</ion-card>
+<ion-content padding class="classContent" hide-header header="header">
+    <ion-card class=divCardSegment mode="md">
+        <div *ngIf="noError; else error || leaveTypeList.length <= 0; else error">
+            <ion-segment class="sgmtLeaveType" mode="md" scrollable [(ngModel)]="leaveType">
+                <div *ngFor="let leave of leaveTypeList">
+                    <div *ngIf="leave == 'FOR APPROVAL'; else otherLeave">
+                        <ion-segment-button mode="md" value={{leave}} checked>
+                            {{leave}}
+                        </ion-segment-button>
+                    </div>
+                    <ng-template #otherLeave>
+                        <ion-segment-button mode="md" value={{leave}}>
+                            {{leave}}
+                        </ion-segment-button>
+                    </ng-template>
+                </div>
+            </ion-segment>
+            <div [ngSwitch]="leaveType">
+                <div *ngIf="loadingDone; else shimmer">
+                    <div *ngFor="let leaveList of leaveTypeList">
+                        <ion-list mode="md" *ngSwitchCase="leaveList">
+                            <div *ngFor="let item of (results)">
+                                <div *ngIf="code == item.LEAVETYPE && leaveList == item.LEAVESTATUSDESC">
+                                    <ion-item button lines="full" detail="false" (click)="setLeaveDetails(item,'userleave')">
+                                        <ion-avatar class="divLeaveFrom">
+                                            <div class="LeaveFromMonth">
+                                                {{getDateMonth(item.LEAVEFROM,1)}}
+                                            </div>
+                                            <div class="LeaveFromDate">
+                                                {{getDateDate(item.LEAVEFROM)}}
+                                            </div>
+                                        </ion-avatar>
+                                        <ion-label text-wrap>
+                                            <div class="divLeaveDesc">
+                                                <div class="divStat">
+                                                    <div class="StatusDesc">{{ item.LEAVEREASONDESC }}</div>
+                                                    <div class="DateFile">{{ getLongDate(item.DATEFILE) }}</div>
+                                                </div>
+                                                <div [ngClass]="{'RequestType': item.REQUESTTYPEDESC == 'WITH PAY', 'RequestTypeRed' : item.REQUESTTYPEDESC != 'WITH PAY'}" class="">{{ item.REQUESTTYPEDESC }}</div>
+                                                <ion-item button class="buttonMoreOptions" lines="none" detail="false" (click)="$event.stopPropagation();MoreOptions($event, item);" *ngIf="leaveList == 'FOR APPROVAL' || leaveList == 'APPROVED' || leaveList == 'PLANNED'">
+                                                    &#8942;</ion-item>
+                                                <ion-item button class="buttonMoreOptionsDetails" lines="none" detail="true" *ngIf="leaveList != 'FOR APPROVAL' && leaveList != 'APPROVED' && leaveList != 'PLANNED'">
+                                                </ion-item>
+                                                <br>
+                                                <span class="LeaveDay" *ngIf="item.LEAVEDAY > 1 ">{{ item.LEAVEDAY }} days duration</span>
+                                                <span class="LeaveDay" *ngIf="item.LEAVEDAY <= 1 ">{{ item.LEAVEDAY }} day duration</span>
+                                            </div>
+                                        </ion-label>
+                                    </ion-item>
+                                </div>
+                            </div>
+                        </ion-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-card>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <div id="lines7" class="shine"></div>
+    <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+        <ion-avatar class="divLeaveFrom">
+            <div class="LeaveFromMonth"></div>
+            <div class="LeaveFromDate"></div>
+        </ion-avatar>
+        <ion-label>
+            <div id="lines4" class="shine"></div><br>
+            <div id="lines3" class="shine"></div><br>
+            <div id="lines3" class="shine"></div>
+        </ion-label>
+    </ion-item>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

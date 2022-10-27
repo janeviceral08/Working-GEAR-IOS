@@ -1,0 +1,196 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+        <ion-icon class=btnMenu color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class=btnFilter slot="end" color="light" (click)="openModal()">
+        <ion-icon slot="start" name="search" mode="md"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Overtime Approval</ion-title>
+  <!-- <ion-segment class="" mode="md" scrollable [(ngModel)]="OTType">
+    <ion-segment-button checked mode="md" value="ForApprovals">
+      For Approvals
+    </ion-segment-button>
+    <ion-segment-button mode="md" value="SubordinatesOvertime">
+      Subordinate's Overtime
+    </ion-segment-button>
+  </ion-segment> -->
+</ion-header>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div [ngSwitch]="OTType">
+    <div *ngFor="let ot of OTTypeList">
+      <div *ngSwitchCase="ot">
+        <div *ngIf="ot == 'ForApprovals'">
+          <div *ngIf="loadingDone; else shimmer">
+            <div *ngIf="noError; else error">
+              <ion-card *ngFor="let item of (results)">
+                <ion-card-header class="cardHeader">
+                  <ion-item lines="full" class="lblHeader">
+                    <ion-label>
+                      <div class="labelNameHeader" text-wrap>
+                        <div class="labelName">{{item.EMPL_NAME}}</div>
+                        <div class="labelDateFiled">{{getLongDate(item.CREATEDDATE)}}</div>
+                      </div>
+                    </ion-label>
+                  </ion-item>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-item lines="full" button detail="true" (click)="setOTDetails(item,'forapproval')">
+                    <ion-avatar class="divOTFrom">
+                      <div class="DateMonth">
+                        {{getDateMonth(item.STARTDATE,1)}}
+                      </div>
+                      <div class="DateDate">
+                        {{getDateDate(item.STARTDATE)}}
+                      </div>
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                      <div class="divOTDesc">
+                        <div class="divOTTime">{{ item.STARTTIME }} - {{item.ENDTIME}}</div>
+                        <div class="divRemarks" *ngIf="item.REMARKS != ''">{{ item.REMARKS }}</div>
+                        <div class="divRemarks" *ngIf="item.REMARKS == ''">-</div>
+                        <div class="divOTHours" *ngIf="item.APPLIEDOTHOURS > 1 ">{{ item.APPLIEDOTHOURS }} Hours</div>
+                        <div class="divOTHours" *ngIf="item.APPLIEDOTHOURS <= 1 ">{{ item.APPLIEDOTHOURS }} Hour</div>
+                      </div>
+                    </ion-label>
+                  </ion-item>
+                </ion-card-content>
+                <ion-row class="cardFooter">
+                  <ion-col class="colSelect">
+                    <ion-select id="select{{item.ID}}" class="selectItems roundedItems" interface="popover"
+                      (ionChange)="onSelectChange(item)">
+                      <ion-select-option *ngFor="let ot of otStatusApprovalList; let idx = index" value={{ot}}
+                        selected="{{idx==0}}">{{ot}}</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                  <ion-col class="colTextAppliedHours" id="colApplied{{item.ID}}">
+                    <ion-input class="roundedItems" id="applied{{item.ID}}" type="num" placeholder="Hours">
+                    </ion-input>
+                  </ion-col>
+                  <ion-col class="colRemarks">
+                    <ion-textarea id="input{{item.ID}}" class="textRemarks roundedItems" rows="1" placeholder="Remarks"
+                      maxlength="500">
+                    </ion-textarea>
+                  </ion-col>
+                  <ion-col class="colSubmit">
+                    <ion-button class="button-light btnSend" fill="clear" size="small" (click)="submitOTApproval(item)">
+                      <ion-icon name="send" mode="md"></ion-icon>
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                </ion-row>
+              </ion-card>
+            </div>
+          </div>
+        </div>
+        <!-- <div *ngIf="ot == 'SubordinatesOvertime'">
+          <div *ngIf="loadingDoneSub; else shimmer">
+            <div *ngIf="noErrorSub; else error">
+              <ion-card>
+                <ion-item *ngFor="let ot of resultsSub" button lines="full" detail="false"
+                  (click)="setSubOTDetails(ot)">
+                  <ion-avatar class="divOTFrom">
+                    <div class="DateMonth">
+                      {{getDateMonth(ot.OvertimeDateFrom,1)}}
+                    </div>
+                    <div class="DateDate">
+                      {{getDateDate(ot.OvertimeDateFrom)}}
+                    </div>
+                  </ion-avatar>
+                  <ion-label text-wrap>
+                    <div class="divOTDesc">
+                      <div *ngIf="ot.PAIDHOURS != null">
+                        <span class="divSubHours" *ngIf="ot.PAIDHOURS > 1 ">{{ ot.PAIDHOURS }} hours</span>
+                        <span class="divSubHours" *ngIf="ot.PAIDHOURS <= 1 ">{{ ot.PAIDHOURS }} hour</span>
+                      </div>
+                      <div *ngIf="ot.PAIDHOURS == null">
+                        <span class="divSubHours" *ngIf="ot.APPLIEDOTHOURS > 1 ">{{ ot.APPLIEDOTHOURS }} hours</span>
+                        <span class="divSubHours" *ngIf="ot.APPLIEDOTHOURS <= 1 ">{{ ot.APPLIEDOTHOURS }} hour</span>
+                      </div>
+                      <div class="divSubName">{{ ot.FirstName}} {{ ot.LastName}}</div>
+                      <div class="divStatus" [ngClass]="{'classForApprovalLabel': ot.STATUSDESC == 'FOR APPROVAL', 
+                        'classApprovedLabel': ot.STATUSDESC == 'APPROVED',
+                        'classOnHoldLabel': ot.STATUSDESC == 'ON HOLD',
+                        'classPlannedLabel': ot.STATUSDESC == 'PLANNED',
+                        'classCancelledLabel': ot.STATUSDESC == 'CANCELLED',
+                        'classDisapprovedLabel': ot.STATUSDESC == 'DISAPPROVED',
+                        'classPostedLabel': ot.STATUSDESC == 'POSTED'}">{{ ot.STATUSDESC }}
+                      </div>
+                      <div class="divSubTime">{{ ot.STARTTIME }} - {{ot.ENDTIME}}</div>
+                      <ion-item button class="buttonMoreOptionsDetails2" lines="none" detail="false"
+                      (click)="$event.stopPropagation();MoreOptions($event, item);">
+                          &#8942;</ion-item>
+                    </div>
+                  </ion-label>
+                </ion-item>
+              </ion-card>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <ion-card *ngFor="let number of [0,1,2,3,4,5]">
+    <ion-card-header class="cardHeader">
+      <ion-item button lines="full">
+        <ion-label class="labelNameHeader" text-wrap>
+          <div id="lines1" class="shine"></div>
+        </ion-label>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item button lines="full" detail="true">
+        <ion-avatar class="classLeaveFromDiv">
+          <div class="avatarLeaveFromMonth"></div>
+          <div class="avatarLeaveFromDate"></div>
+        </ion-avatar>
+        <ion-label>
+          <div id="lines3" class="shine"></div><br>
+          <div id="lines3" class="shine"></div><br>
+          <div id="lines4" class="shine"></div>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+    <ion-row class="cardFooter">
+      <ion-col class="colSelect">
+        <div id="lines5" class="shine"></div>
+      </ion-col>
+      <ion-col class="colRemarks">
+        <div id="lines6" class="shine"></div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ng-template>
+
+
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">REFRESH</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

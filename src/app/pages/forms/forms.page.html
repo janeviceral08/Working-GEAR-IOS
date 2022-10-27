@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class="btnMenu" ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+        <ion-icon color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Forms</ion-title>
+</ion-header>
+<ion-content class="classContent" hide-header header="header">
+  <ion-card>
+    <ion-list class="list">
+      <ion-item >
+        <!-- <img class="imgEmployee " src="assets/icon/ic_purchase_emp.png" alt=" "> -->
+        <ion-icon class="imgEmployee " name="folder"></ion-icon>
+        <ion-label class="EmpDetails " text-wrap>
+          <div class="EmpName ">
+            Employee Asset Form
+          </div>
+        </ion-label>
+        <ion-icon class="imgEmployee colorGold"  name="download"  (click)="downloadAssetForm()"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,435 @@
+ion-header {
+    background-image: url('../../../assets/img/banner_large_dark_green.png') !important;
+    background-size: cover;
+    background-position: center;
+    height: 100px;
+    z-index: -1;
+}
+
+ion-content {
+    --background: #F3F3F3;
+}
+
+ion-back-button {
+    color: white;
+    padding-top: 30px;
+}
+
+ion-fab-button {
+    --background: #D3A828;
+    font-size: 35px;
+    margin-top: 70px;
+}
+
+ion-item {
+    --inner-padding-end: 0px !important;
+}
+
+ion-item:last-child {
+    --border-width: 0px 0px 1px 0 !important;
+}
+
+ion-thumbnail {
+    height: 90px;
+    width: 90px;
+    margin: 10px;
+    margin-left: 15x;
+}
+
+ion-col {
+    padding: 0px;
+}
+
+.sc-ion-buttons-md-h {
+    float: left;
+}
+
+//Card Header
+.divCardHeader {
+    margin-top: 0px;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 1px;
+}
+
+.imgType {
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.leaveDesc {
+    color: #2a2a2a;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-right: 70px;
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.leaveCreditsInfo {
+    font-size: 11px;
+    margin-left: 10px;
+    margin-top: -1px;
+    display: block;
+    color: #484848;
+}
+
+.leaveCreditsNameInfo {
+    margin-left: 30px;
+    margin-top: -1px;
+    display: block;
+    color: #484848;
+}
+
+.leaveCreditsName {
+    font-size: 13px;
+    font-family: "RobotoMedium";
+}
+
+.subViewInfo {
+    color: #388AFF;
+}
+
+.leaveCreditsProfile {
+    font-size: 12px;
+}
+
+.leaveCreditsInfoNameFirstRow {
+    max-width: 55px;
+}
+
+.leaveCreditsInfoNameSecondRow {
+    max-width: 75px;
+}
+
+.sgmtLeaveType {
+    min-width: 70px;
+    background: white;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #cecccc;
+}
+
+//Item Details
+.classContent {
+    --background: #F5F5F5;
+    --padding-top: 10px !important;
+}
+
+.divCardSegment {
+    margin-left: -5px;
+    margin-right: -5px;
+    margin-top: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.divLeaveFrom {
+    margin-top: -30px;
+}
+
+.LeaveFromMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.LeaveFromDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.divLeaveDesc {
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.divStat {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: -8px;
+}
+
+.StatusDesc {
+    color: #2a2a2a;
+    font-size: 14px;
+    padding-left: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.DateFile {
+    font-size: 12px;
+    float: right;
+    color: #808080;
+    padding-right: 5px;
+}
+
+.RequestType {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: inline-block;
+    // color: #808080;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.RequestWfhType {
+    font-size: 11px;
+    // padding-left: 30px;
+    // margin-bottom: 10px;
+    // margin-top: 5px;
+    display: inline-block;
+    // color: #808080;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.RequestTypeRed {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: inline-block;
+    color: #F44336;
+    max-width: 85%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.buttonMoreOptions {
+    font-size: 30px;
+    float: right;
+    color: #808080;
+    padding: 5px 5px 0 0;
+}
+
+.buttonMoreOptionsDetails {
+    font-size: 30px;
+    float: right;
+    padding-right: 5px;
+}
+
+.buttonMoreOptionsDetails2 {
+    margin-top: -53px;
+    font-size: 30px;
+    float: right;
+    padding-right: 5px;
+}
+
+.LeaveDay {
+    font-size: 11px;
+    margin-left: 30px;
+    color: #808080;
+}
+
+.list {
+    margin-bottom: -8px !important;
+}
+
+.list-md {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.header-items {
+    display: flex;
+    align-items: center;
+}
+
+.divPhoto {
+    padding-left: 20px;
+    height: 40px;
+    width: 40px;
+    color: #656464;
+}
+
+.imgLeave {
+    width: 50px;
+    height: 50px;
+    margin: 10px 20px;
+    margin-left: 5px;
+}
+
+.leaveDetails {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: "RobotoRegular";
+}
+
+ion-fab-button {
+    --background: #D3A828;
+    font-size: 35px;
+    margin-top: 70px;
+}
+
+.leaveCreditsInfo {
+    font-size: 11px;
+    margin-top: -1px;
+    display: block;
+    color: #808080;
+    padding: 0px;
+}
+
+.leaveCreditsInfoNameFirstRow {
+    max-width: 56px;
+    color: #808080;
+}
+
+.leaveCreditsInfoNameSecondRow {
+    max-width: 80px;
+    color: #808080;
+}
+
+.divDTRDesc {
+    margin-left: 40px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: 70px;
+}
+
+.divDate {
+    margin-top: -30px;
+}
+
+.divWfhDate {
+    margin-top: -18px;
+}
+
+.DateMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.DateDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.divLeave {
+    font-size: 11px;
+    float: right;
+}
+
+.divDTRTime {
+    font-size: 14px;
+}
+
+.divDTRDay {
+    color: #808080;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.divDTRHours {
+    color: #808080;
+    font-size: 11px;
+}
+
+.divOBTime {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.divOBRemarks {
+    color: #808080;
+    font-size: 11px;
+    white-space: normal;
+}
+
+.divWFHStatus {
+    font-size: 14px;
+    font-family: "RobotoRegular";
+}
+
+.divWFHTimeIn {
+    color: #808080;
+    font-size: 11px;
+}
+
+.divWFHDesc {
+    margin-left: 40px;
+    padding-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    min-height: 70px;
+}
+
+.divDTRStat {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: -8px;
+}
+
+.divWFHTimeOut {
+    color: #808080;
+    font-size: 11px;
+}
+
+.lblWFH {
+    margin-right: 5px;
+}
+
+.divWFH {
+    width: 0;
+    height: 0;
+    font-size: 11px;
+    float: right;
+    text-align: center;
+}
+
+

@@ -1,0 +1,80 @@
+ion-header {
+    background-image: url('../../../assets/img/homepageHeader.png') !important;
+    background-size: cover;
+    background-position: center center;
+    height: 150px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --min-height: 32px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+}
+
+.labelName {
+    color: white;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #0000005c;
+    font-family: "RobotoRegular";
+}
+
+.version {
+    font-size: 13px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: grey;
+}
+
+.labelDepartment {
+    color: white;
+    // display: flex;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    // overflow-x: scroll;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 85%;
+    font-size: 14px;
+    text-shadow: 1px 1px 1px #0000005c;
+}
+
+.appTitle {
+    color: #706969;
+    font-size: 14px;
+    padding: 16px 0 10px 16px;
+    font-family: "RobotoMedium";
+}
+
+.linkName {
+    color: #2A2A2A;
+    font-size: 13px;
+    font-family: "RobotoRegular";
+}
+
+.linkIcon {
+    color: #706969;
+}
+
+.linkIcon2 {
+    stroke: none;
+    stroke-width: 0;
+    fill: #706969 !important;
+    height: 25px;
+}
+
+.appDivider {
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #707070;
+}

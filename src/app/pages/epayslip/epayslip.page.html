@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+        <ion-icon class=btnMenu color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">E-Payslip</ion-title>
+</ion-header>
+<ion-content>
+  <ion-card *ngIf="!isCorrectPassword">
+    <ion-item lines="none">
+      <ion-label class="EntityName" position="stacked">E-Payslip Password:
+      </ion-label>
+      <ion-icon class="icnInfo" name="alert" (click)="forgotPassword()"></ion-icon>
+      <ion-input class="inputPassword" id="rounded" type="password" [(ngModel)]="password" (keyup.enter)="submitPassword()">
+      </ion-input>
+    </ion-item>
+    <ion-button class="submitClass" slot="end" fill="solid" (click)="submitPassword()">
+      SUBMIT
+    </ion-button>
+  </ion-card>
+
+  <div *ngIf="!isCorrectPassword" class="forgotPass" (click)="openForgotPass()">Forgot Password?</div>
+
+  <ion-card *ngIf="isCorrectPassword">
+    <ion-item lines="none">
+      <ion-label class="EntityName" position="stacked">PAYROLL PERIOD</ion-label>
+      <ion-select id="rounded" [(ngModel)]="payrollPeriod" [selectedText]="payrollPeriod" (ionChange)="onPayrollChange()">
+        <div *ngFor="let item of (payroll); let i = index">
+          <ion-select-option value="{{ item.DESCRIPTION }}" selected="{{i===0}}">{{ item.DESCRIPTION }}</ion-select-option>
+        </div>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label class="lblTakeNote"> {{takenote}}
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox class="chkAffirm" checked="{{isAffirm}}" (ionChange)="clickIsAffirm()" ></ion-checkbox>
+      <ion-label class="lblAffirm"> {{affirm}}
+      </ion-label>
+    </ion-item>
+    <ion-button class="submitAgreeClass" slot="end" fill="solid" (click)="submitAgree()" disabled="{{disableAgree}}">
+      {{agreeText}}
+    </ion-button>
+  </ion-card>
+
+</ion-content>

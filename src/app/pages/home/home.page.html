@@ -1,0 +1,383 @@
+<ion-header>
+</ion-header>
+<ion-content>
+    <div class="bgTop">
+    </div>
+    <!-- <div class="bgBottom"></div> -->
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-item class="divHello" lines="none">
+        <ion-label class="lblHello">
+            <h2 class="lblWelcome">{{welcome}}</h2>
+            <h2 class="lblName" (click)="togglePersonalInfo()">{{toTitleCase(nickname)}}</h2>
+            <h2 class="lblToday" (click)="toggleCalendar()">
+                <ion-icon class="icnToday" name="calendar" mode="md" slot="start"></ion-icon>{{day}}
+            </h2>
+        </ion-label>
+        <div *ngIf="loadingTimeIn; else shimmerTimeIn">
+            <ion-card class="{{classTimeIn}}" *ngIf="lblClockedInStatus != 'NO CLOCKED IN'" [routerDirection]="forward" [routerLink]="['/main/dailytimerecord']">
+                <div class="divTimeIn">
+                    <ion-label class="lblTimeIn">
+                        <ion-icon class="icnClockedIn" name="time" mode="md" slot="start"></ion-icon>
+                        {{clockedIn}}
+                    </ion-label>
+                    <ion-label class="lblTimeInLbl">
+                        TIME-IN
+                    </ion-label>
+                </div>
+            </ion-card>
+        </div>
+    </ion-item>
+
+    <div *ngIf="loadingAlert; else shimmerAlert">
+        <div *ngIf="lblAlertsStatus != 'NO ALERTS'">
+            <div class="divTitleItem">
+                <ion-label class="lblTitleItem">
+                    ALERTS
+                </ion-label>
+            </div>
+            <ion-segment class="sgmtAlerts" mode="md" scrollable [(ngModel)]="alerts">
+                <div *ngFor="let item of alerts">
+                    <div *ngIf="item.POSITION == '4' || item.POSITION == '5' || item.POSITION == '6' || item.POSITION == '7' || item.POSITION == '8' || item.POSITION == '9'
+                    || item.POSITION == '17' || item.POSITION == '16' ">
+                        <ion-card class="cardAlerts {{item.Class}}" [routerDirection]="forward" [routerLink]=" [item.RouterLink]">
+                            <div class="divAlertIcon">
+                                <img class="imgAlertIcon" src="{{item.Icon}}" alt="">
+                            </div>
+                            <ion-label>
+                                <h2 class="lblAlertCount">{{item.COUNT}}</h2>
+                                <h2 class="lblAlertName">{{item.Name}}</h2>
+                            </ion-label>
+                        </ion-card>
+                    </div>
+                </div>
+            </ion-segment>
+        </div>
+    </div>
+
+    <div *ngIf="isManager == 1">
+        <div *ngIf="loadingSubordinate; else shimmerSubordinate">
+            <div *ngIf="!subIsEmpty">
+                <div class="divTitleItem">
+                    <ion-label class="lblTitleItem">
+                        ON LEAVE
+                    </ion-label>
+                </div>
+                <ion-card class="cardSubordinate">
+                    <ion-list class="listSubordinate">
+                        <ion-item class="itemSubordinate" *ngFor="let item of subOnLeave" lines="full">
+                            <ion-icon class="icnSubordinate" name="contact" mode="md"></ion-icon>
+                            <ion-label class="lblSubordinate">
+                                <h2 class="lblSubordinateName">{{toTitleCase(item.FNAME)}} {{toTitleCase(item.LNAME)}}
+                                </h2>
+                                <h2 class="lblSubordinatePosition">{{toTitleCase(item.POSITION)}}</h2>
+                            </ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-card>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="loadingEvent; else shimmerEvent">
+        <div *ngIf="lblEventsStatus != 'NO EVENT'">
+            <div class="divTitleItem">
+                <ion-label class="lblTitleItem">
+                    UPCOMING EVENTS
+                </ion-label>
+            </div>
+            <ion-slides [options]="slideOptsEvents" pager="true">
+                <ion-slide *ngFor="let item of events" class="slideAnnounce">
+
+                    <ion-card *ngIf="item.EventName == 'GREATAWARDS2020'">
+                        <ion-card-header class="cardHeader">
+                            <img class="eventImage" src="../../../assets/img/event_great_awards.jpg" />
+                        </ion-card-header>
+                        <ion-card-content class="cardContent">
+                            <ion-item lines="none">
+                                <ion-avatar class="divDate">
+                                    <div class="DateMonth">
+                                        MAR
+                                    </div>
+                                    <div class="DateDate">
+                                        7
+                                    </div>
+                                </ion-avatar>
+                                <ion-label text-wrap class="lblEvents">
+                                    <div class="EventsTitle">17th Great Awards
+                                    </div>
+                                    <div class="EventsLoc">SMX Convention Center, Pasay Halls 1 & 2
+                                    </div>
+                                </ion-label>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+
+                    <ion-card *ngIf="item.EventName == 'NATCON2020'" (click)="toggleCard()">
+                        <ion-card-header class="cardHeader">
+                            <img class="eventImage" src="../../../assets/img/event_natcon.jpg" />
+                        </ion-card-header>
+                        <ion-card-content class="cardContent">
+                            <ion-item lines="none">
+                                <ion-avatar class="divDate">
+                                    <div class="DateMonth">
+                                        MAR
+                                    </div>
+                                    <div class="DateDate">
+                                        5
+                                    </div>
+                                </ion-avatar>
+                                <ion-label text-wrap class="lblEvents">
+                                    <div class="EventsTitle">CX F.A.S.T. FORWARD: National Sales Conference 2020
+                                    </div>
+                                    <div class="EventsLoc">GABC 1155 Quezon City
+                                    </div>
+                                </ion-label>
+                            </ion-item>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+
+    <div *ngIf="loadingAnnouncement; else shimmerAnnouncement">
+        <div *ngIf="lblAnnouncementsStatus != 'NO ANNOUNCEMENTS'">
+            <div class="divTitleItem">
+                <ion-label class="lblTitleItem">
+                    ANNOUNCEMENTS
+                </ion-label>
+            </div>
+            <ion-slides pager="true" [options]="slideOptsMany">
+                <ion-slide class="slideAnnounce" *ngFor="let item of announcement">
+                    <ion-card class="cardAnnounce">
+                        <ion-card-header class="cardAnnounceHeader cardAnnounceHeader{{item.Number}}">
+                            <div class="lblAnnouncementTitle">
+                                {{ trimText(item.Title) }}</div>
+                        </ion-card-header>
+                        <ion-card-content class="contentAnnounce">
+                            <div class="lblAnnouncementDetails">{{ trimText(item.Details) }}</div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-slide>
+            </ion-slides>
+        </div>
+    </div>
+
+    <div>
+        <div class="divTitleItem divGABCItem">
+            <ion-label class="lblTitleItem">
+                GABC
+            </ion-label>
+        </div>
+        <ion-slides pager="true" [options]="slideOptsMany">
+            <ion-slide>
+                <ion-card class="cardGABC">
+                    <img src="/assets/img/gabc_creed.png" alt="">
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card class="cardGABC">
+                    <img src="/assets/img/gabc_fast.png" alt="">
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card class="cardGABC">
+                    <img *ngIf="!clickedGabcCreed" src="/assets/img/creed_preview.png" alt="" (click)="toggleGabcCreed()">
+                    <img *ngIf="clickedGabcCreed" src="/assets/img/creed_big.png" alt="" (click)="toggleGabcCreed()">
+                </ion-card>
+            </ion-slide>
+            <ion-slide>
+                <ion-card class="cardGABC">
+                    <img *ngIf="!clickedGabcMission" src="/assets/img/missionvision_preview.png" alt="" (click)="toggleGabcMission()">
+                    <img *ngIf="clickedGabcMission" src="/assets/img/missionvision_preview.png" alt="" (click)="toggleGabcMission()">
+                </ion-card>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <!-- <ion-card class="cardClockedInSmall" *ngIf="lblClockedInStatus != 'NO CLOCKED IN'" [routerDirection]="forward"
+    [routerLink]="['/main/dailytimerecord']">
+    <ion-card-header class="divClockedInHeader" (click)="toggleClockedInSection()">
+      <ion-icon class="icnClockedIn" name="timer"></ion-icon>
+      <ion-label class="lblClockedInStatus">
+        {{lblClockedInStatus}}</ion-label>
+      <ion-label class="lblClockedIn">
+        {{clockedIn}}</ion-label>
+    </ion-card-header>
+    <ion-progress-bar type="indeterminate" *ngIf="lblClockedInStatus == 'LOADING CLOCK IN...'">
+    </ion-progress-bar>
+  </ion-card>
+  <ion-card class="cardSubordinateSmall" *ngIf="isManager == 1 && !subIsEmpty" (click)="toggleSubordinateSection()">
+    <ion-card-header class="divSubordinateHeader">
+      <ion-icon class="icnSubordinate" name="people"></ion-icon>
+      <ion-label class="lblSubordinate">
+        {{lblSubordinatesStatus}}</ion-label>
+      <ion-icon class="menuSubordinateToggle" *ngIf="noError"
+        name="{{clickedSubordinate ? 'arrow-dropup': 'arrow-dropdown'}}">
+      </ion-icon>
+    </ion-card-header>
+    <ion-progress-bar type="indeterminate" *ngIf="lblSubordinatesStatus == 'LOADING SUBORDINATES...'">
+    </ion-progress-bar>
+    <ion-card-content class="cardSubordinateContent" [ngClass]="{'cardOff': !clickedSubordinate}"
+      *ngIf="noError && lblSubordinatesStatus != 'LOADING SUBORDINATES...'">
+      <ion-item class="cardSubordinate" *ngFor="let item of subOnLeave">
+        <ion-icon class="divPhoto" name="person" mode="md"></ion-icon>
+        {{item.FNAME}} {{item.LNAME}}
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="cardAlertsSmall" *ngIf="lblAlertsStatus != 'NO ALERTS'" (click)="toggleAlertsSection()">
+    <ion-card-header class="divAlertsHeader">
+      <ion-icon class="icnAlerts" name="notifications-outline"></ion-icon>
+      <ion-label class="lblAnnounce">
+        {{lblAlertsStatus}}</ion-label>
+      <ion-icon class="menuAlertsToggle" *ngIf="noError && lblAlertsStatus != 'NO ALERTS'"
+        name="{{clickedAlerts ? 'arrow-dropup': 'arrow-dropdown'}}"></ion-icon>
+    </ion-card-header>
+    <ion-progress-bar type="indeterminate" *ngIf="lblAlertsStatus == 'LOADING ALERTS...'"></ion-progress-bar>
+    <ion-card-content class="cardAlertsContent" [ngClass]="{'cardOff': !clickedAlerts}"
+      *ngIf="noError && lblAlertsStatus != 'NO ALERTS' && lblAlertsStatus != 'LOADING ALERTS...'">
+      <div *ngFor="let item of alerts">
+        <ion-item class="cardAlerts" *ngIf="item.Name" [routerDirection]="forward" [routerLink]=" [item.RouterLink]">
+          <div class="divAlertsItem">
+            <ion-icon class="icnAlerts" name={{item.Icon}} mode={{item.Mode}}>
+            </ion-icon>
+            <ion-badge class="bdgAlerts" color="accent">{{ item.COUNT }}</ion-badge>
+          </div>
+          <ion-label class="lblAlerts">
+            {{item.Name}}</ion-label>
+        </ion-item>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="cardAnnouncementSmall">
+    <ion-card-header class="divAnnouncementHeader" (click)="toggleAnnounceSection()">
+      <ion-icon class="icnAnnounce" name="chatboxes"></ion-icon>
+      <ion-label class="lblAnnounce">
+        {{lblAnnouncementsStatus}}</ion-label>
+      <ion-icon class="menuAnnouncementToggle" *ngIf="noError && lblAnnouncementsStatus != 'NO ANNOUNCEMENTS'"
+        name="{{clickedAnnounce ? 'arrow-dropup': 'arrow-dropdown'}}">
+      </ion-icon>
+    </ion-card-header>
+    <ion-progress-bar type="indeterminate" *ngIf="lblAnnouncementsStatus == 'LOADING ANNOUNCEMENTS...'">
+    </ion-progress-bar>
+    <ion-card-content
+      *ngIf="noError && lblAnnouncementsStatus != 'NO ANNOUNCEMENTS' && lblAnnouncementsStatus != 'LOADING ANNOUNCEMENTS...' && clickedAnnounce">
+      <div *ngFor="let item of announcement;">
+        <ion-card class="cardAnnouncement"
+          *ngIf="trimText(item.Title) != 'Our Purpose' && trimText(item.Title) != 'The GABC Creed'">
+          <ion-card-content class="contentAnnounce">
+            <h1 class="lblTitle">{{ trimText(item.Title) }}</h1>
+            <p class="lblDetails">{{ trimText(item.Details) }}</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-card (click)="viewPhoto(purpose_big)">
+    <img src="/assets/img/purpose_preview.png" alt="">
+  </ion-card>
+  <ion-card (click)="viewPhoto(creed_big)">
+    <img src="/assets/img/creed_preview.png" alt="">
+  </ion-card>
+  <ion-card (click)="viewPhoto(missionvision_big)">
+    <img src="/assets/img/missionvision_preview.png" alt="">
+  </ion-card>
+  <div *ngIf="noError; else error">
+  </div> -->
+    <div class="bgBottom"></div>
+</ion-content>
+
+
+<ng-template #shimmerTimeIn>
+    <ion-card class="btnTimeInLoading" *ngIf="lblClockedInStatus != 'NO CLOCKED IN'">
+        <div class="divLoadingTimeIn shineClear">
+            <ion-spinner name="crescent" class="spinnerTimeIn"></ion-spinner>
+            <h2 class="lblLoadingTimeIn">LOADING TIME-IN</h2>
+        </div>
+    </ion-card>
+</ng-template>
+
+<ng-template #shimmerAlert>
+    <div class="divTitleItem">
+        <ion-label class="lblTitleItem">
+            ALERTS
+        </ion-label>
+    </div>
+    <!-- <ion-card class="cardProgressbar">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </ion-card> -->
+    <ion-segment class="sgmtAlerts shimmeritem" mode="md" scrollable>
+        <div *ngFor="let number of [0,1,2,3,4,5]">
+            <ion-card class="cardAlerts shineClear">
+            </ion-card>
+        </div>
+    </ion-segment>
+</ng-template>
+
+<ng-template #shimmerSubordinate>
+    <div class="divTitleItem">
+        <ion-label class="lblTitleItem">
+            ON LEAVE
+        </ion-label>
+    </div>
+    <!-- <ion-card class="cardProgressbar">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </ion-card> -->
+
+    <ion-card class="cardSubordinateLoading shineClear">
+        <!-- <ion-list class="listSubordinate shineClear">
+            <ion-item class="itemSubordinateLoading shineClear" *ngFor="let number of [0,1]" lines="full">
+            </ion-item>
+        </ion-list> -->
+    </ion-card>
+</ng-template>
+
+<ng-template #shimmerEvent>
+    <div class="divTitleItem">
+        <ion-label class="lblTitleItem">
+            UPCOMING EVENTS
+        </ion-label>
+    </div>
+    <!-- <ion-card class="cardProgressbar">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </ion-card> -->
+    <div class="divEvent divShimmer shineClear">
+
+    </div>
+</ng-template>
+
+<ng-template #shimmerAnnouncement>
+    <div class="divTitleItem">
+        <ion-label class="lblTitleItem">
+            ANNOUNCEMENTS
+        </ion-label>
+    </div>
+    <!-- <ion-card class="cardProgressbar">
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  </ion-card> -->
+    <div class="divEvent divShimmer shineClear">
+
+    </div>
+</ng-template>
+
+<ng-template #error>
+    <ion-card lines="none" class="errorbox2">
+        <ion-avatar class="center">
+            <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+        <span class="errorMessage">{{errorMessage}}</span>
+        <br />
+        <span class="errorMessage">
+            <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+            <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+                <ion-icon color="light" name="home"></ion-icon>
+            </ion-button>
+        </span>
+    </ion-card>
+</ng-template>

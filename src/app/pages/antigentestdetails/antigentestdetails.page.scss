@@ -1,0 +1,117 @@
+ion-header {
+    background-color: #558B2F;
+    padding-bottom: 15px;
+}
+
+ion-title {
+    color: white;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-left: 0px;
+}
+
+ion-back-button {
+    color: white;
+    padding-top: 30px;
+    margin-left: -10px;
+}
+
+.classMainDetails {
+    --padding-bottom: 12px;
+}
+
+.divLeaveFrom {
+    margin-top: -60px;
+    width: 85px;
+}
+
+.LeaveFromMonth {
+    font-size: 13px;
+    padding-top: 5px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    margin-top: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px;
+}
+
+.LeaveFromDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.divLeaveDesc {
+    overflow: hidden;
+}
+
+.StatusDescAnimated {
+    white-space: nowrap;
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: rightToLeft 15s linear infinite;
+    -webkit-animation: rightToLeft 15s linear infinite;
+    animation: rightToLeft 15s linear infinite;
+    color: #2a2a2a;
+    font-size: 18px;
+    font-family: "RobotoMedium";
+}
+
+.StatusDesc {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #2a2a2a;
+    font-size: 17px;
+    font-family: "RobotoMedium";
+}
+
+.StatusDescHours {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #2a2a2a;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+
+ion-item {
+    --padding-start: 0px !important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+ion-label {
+    margin: 0px;
+}
+
+.EntryName {
+    color: #676767;
+    font-size: 10px;
+    display: block;
+}
+
+.EntryValue {
+    color: #2a2a2a;
+    font-size: 14px;
+    font-family: "RobotoRegular";
+}
+
+.EntryValueRed {
+    color: #F44336;
+    font-size: 14px;
+    font-family: "RobotoRegular";
+}

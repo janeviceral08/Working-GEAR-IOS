@@ -1,0 +1,265 @@
+// http://ionicframework.com/docs/theming/
+@import '~@ionic/angular/css/core.css';
+@import '~@ionic/angular/css/normalize.css';
+@import '~@ionic/angular/css/structure.css';
+@import '~@ionic/angular/css/typography.css';
+@import '~@ionic/angular/css/padding.css';
+@import '~@ionic/angular/css/float-elements.css';
+@import '~@ionic/angular/css/text-alignment.css';
+@import '~@ionic/angular/css/text-transformation.css';
+@import '~@ionic/angular/css/flex-utils.css';
+@media (max-width: 767px) {
+    ion-modal.show-page {
+        background-color: #0000006e;
+        text-align: -webkit-center;
+    }
+    .modalFilterCalendar {
+        .modal-wrapper {
+            border-radius: 5px;
+            margin-left: 30%;
+        }
+    }
+    .modalFilterMenu {
+        .modal-wrapper {
+            border-radius: 5px;
+            margin-left: 30%;
+        }
+    }
+    .modalGuestHealthTrack {
+        .modal-wrapper {
+            border-radius: 5px;
+            margin-right: 30%;
+        }
+    }
+}
+
+.modalSubmitApproval {
+    .modal-wrapper {
+        position: absolute;
+        border-radius: 5px;
+        height: 180px;
+        top: calc(100% - 180px);
+    }
+}
+
+.modalServerSettings {
+    .modal-wrapper {
+        border-radius: 5px;
+        width: 100%;
+        height: 65%;
+        display: block;
+        margin-left: 5%;
+        margin-right: 5%;
+
+    }
+}
+
+
+.modalForgotPassSettings {
+    .modal-wrapper {
+        border-radius: 5px;
+        width: 100%;
+        height: 65%;
+        display: block;
+        margin-left: 5%;
+        margin-right: 5%;
+
+    }
+}
+
+
+
+
+.toolbarButtons {
+    font-size: 20px;
+}
+
+.contentAnnounce {
+    color: #2a2a2a;
+    white-space: pre-line !important;
+}
+
+ion-item:last-child {
+    --border-width: 0 0 0 0 !important;
+}
+
+ion-progress-bar {
+    --progress-background: linear-gradient(90deg, #F58E2C, #F58E2D, #F58E2E, #F58E2f, #F58E2B, #F58E2B, #F58E2B, #F58E2B, #F58E2B, #F58E2B, #EF4656, #EF4657, #EF4658, #145570, #2fbfcd);
+}
+
+//Shimmer
+body {
+    padding: 100px;
+}
+
+.shine {
+    background: #f6f7f8;
+    background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+    background-repeat: no-repeat;
+    background-size: 800px 204px;
+    //  display: inline-block;
+    position: relative;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear;
+}
+
+.shineClear {
+    background: rgba(255, 255, 255, 0);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-repeat: no-repeat;
+    background-size: 800px 204px;
+    //  display: inline-block;
+    position: relative;
+    -webkit-animation-duration: 0.7s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: placeholderShimmer;
+    -webkit-animation-timing-function: linear;
+}
+
+.center {
+    margin: auto;
+}
+
+.errorMessage {
+    display: block;
+    color: #dbdbdb;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.errorbox {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.errorbox2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    --background: rgba(255, 255, 255, 0);
+}
+
+.errorButton {
+    width: 80px;
+    height: 40px;
+    display: inline-block;
+    margin: auto;
+    --background: linear-gradient(to bottom, #D3A828, #E0861F);
+}
+
+#box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 40px;
+}
+
+#box2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 65px;
+    width: 65px;
+    color: white;
+}
+
+.divShimmer {
+    //  display: inline-flex;
+    flex-direction: column;
+    //  margin-left: 25px;
+    //  margin-top: 15px;
+    vertical-align: top;
+}
+
+#lines1 {
+    height: 20px;
+    width: 200px;
+    margin-left: 20px
+}
+
+#lines2 {
+    height: 10px;
+    margin-top: 7px;
+    width: 150px;
+    margin-left: 20px
+}
+
+#lines3 {
+    margin-top: -10px;
+    height: 10px;
+    width: 100px;
+    margin-left: 40px
+}
+
+#lines4 {
+    height: 15px;
+    width: 250px;
+    margin-left: 40px
+}
+
+#lines5 {
+    height: 25px;
+    width: 70px;
+    margin-left: 5px
+}
+
+#lines6 {
+    height: 25px;
+    width: 150px;
+}
+
+#lines7 {
+    height: 50px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #cecccc;
+}
+
+#lines8 {
+    height: 100px;
+}
+
+@-webkit-keyframes placeholderShimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+.classForApprovalLabel {
+    color: #009688;
+}
+
+.classApprovedLabel {
+    color: #558B2F;
+}
+
+.classOnHoldLabel {
+    color: #FFB300;
+}
+
+.classPlannedLabel {
+    color: #0288D1;
+}
+
+.classCancelledLabel {
+    color: #757575;
+}
+
+.classDisapprovedLabel {
+    color: #F44336;
+}
+
+.classPostedLabel {
+    color: #0097A7;
+}

@@ -1,0 +1,87 @@
+ion-header {
+    background-image: url('../../../assets/img/banner_dark_green.png') !important;
+    background-size: cover;
+    background-position: bottom;
+    padding: 10px 0px;
+    // height: 100px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --padding-start: 0px;
+    // margin-top: 20px;
+}
+
+ion-icon {
+    font-size: 20px;
+}
+
+ion-title {
+    color: white;
+    margin-left: 10px;
+    //margin-top: 20px;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #0000005c;
+}
+
+ion-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.eventImage {
+    height: 200px;
+    object-fit: cover;
+}
+
+.cardHeader {
+    padding: 0px;
+}
+
+.cardContent {
+    padding: 10px 0px 5px 0px;
+}
+
+.divDate {
+    height: 70px;
+}
+
+.DateMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.DateDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.EventsTitle {
+    font-size: 15px;
+    color: black;
+    font-family: "RobotoBold";
+}
+
+.EventsLoc {
+    font-size: 13px;
+    color: #5C5C5C;
+    font-family: "RobotoRegular";
+}
+
+.lblEvents {
+    margin: 0px 0px 0px 40px;
+}

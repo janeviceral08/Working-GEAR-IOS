@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start">Purchases</ion-title>
+</ion-header>
+<ion-content class="classContent" hide-header header="header">
+    <ion-card>
+        <div *ngIf="noError; else error">
+            <ion-list class="list">
+                <div *ngIf="loadingDoneEmp; else shimmer">
+                    <ion-item lines="full">
+                        <img class="imgEmployee " src="assets/icon/ic_purchase_emp.png" alt=" ">
+                        <ion-label class="EmpDetails " text-wrap>
+                            <div class="EmpName ">
+                                Employee Purchases
+                            </div>
+                            <ion-grid class="EmpInfo ">
+                                <ion-row class="rowEmpDetails">
+                                    <!-- <ion-col>
+                                            CAP:
+                                        </ion-col> -->
+                                    <ion-col>
+                                        USED:
+                                    </ion-col>
+                                    <ion-col>
+                                        BALANCE:
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row class="rowEmpAmount">
+                                    <!-- <ion-col>
+                                            {{resultsEmployee[0].DiscountCap}}
+                                        </ion-col> -->
+                                    <ion-col>
+                                        {{resultsEmployee[0].Used}}
+                                    </ion-col>
+                                    <ion-col>
+                                        {{resultsEmployee[0].Balance}}
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-label>
+                    </ion-item>
+                </div>
+                <div *ngIf="loadingDoneOnline; else shimmer">
+                    <ion-item lines="full" button detail (click)="setPurchaseDetails(resultsOnline, 'Online')">
+                        <img class="imgEmployee " src="assets/icon/ic_purchase_online.png" alt=" ">
+                        <ion-label class="EmpDetails " text-wrap>
+                            <div class="EmpName ">
+                                Online Purchases
+                            </div>
+                            <ion-grid class="EmpInfo ">
+                                <ion-row class="rowEmpDetails">
+                                    <ion-col>
+                                        TOTAL AMOUNT:
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row class="rowEmpAmount">
+                                    <ion-col *ngIf="resultsOnline[['Table2']].length > 0">
+                                        {{resultsOnline['Table2'][0].TotalAmount}}
+                                    </ion-col>
+                                    <ion-col *ngIf="resultsOnline['Table2'].length == 0">
+                                        0
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-label>
+                    </ion-item>
+                </div>
+                <div *ngIf="loadingDoneCanteen; else shimmer">
+                    <ion-item lines="full" button detail (click)="setPurchaseDetails(resultsCanteen,'Canteen')">
+                        <img class="imgEmployee " src="assets/icon/ic_purchase_canteen.png" alt=" ">
+                        <ion-label class="EmpDetails " text-wrap>
+                            <div class="EmpName ">
+                                Canteen Credits
+                            </div>
+                            <ion-grid class="EmpInfo ">
+                                <ion-row class="rowEmpDetails">
+                                    <ion-col>
+                                        GRAND TOTAL:
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row class="rowEmpAmount">
+                                    <ion-col *ngIf="resultsCanteen['Table2'][0].Column1 != null">
+                                        {{resultsCanteen['Table2'][0].Column1}}
+                                    </ion-col>
+                                    <ion-col *ngIf="resultsCanteen['Table2'][0].Column1 == null">
+                                        0
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-label>
+                    </ion-item>
+                </div>
+            </ion-list>
+        </div>
+    </ion-card>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <ion-list>
+        <ion-item class="shimmeritem" *ngFor="let number of [0]">
+            <div id="box" class="shine"></div>
+            <div class="divShimmer">
+                <div id="lines1" class="shine"></div>
+                <div id="lines1" class="shine"></div>
+                <div id="lines1" class="shine"></div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+                <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+                <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+                    <ion-icon color="light" name="home"></ion-icon>
+                </ion-button>
+            </span>
+        </div>
+    </ion-item>
+</ng-template>

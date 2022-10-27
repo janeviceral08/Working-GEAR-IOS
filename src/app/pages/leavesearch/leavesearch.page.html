@@ -1,0 +1,87 @@
+<ion-header>
+</ion-header>
+<div>
+  <ion-button class="backClass" color="light" slot="start" (click)="backPressed()">
+    <ion-icon name="arrow-back"></ion-icon>
+  </ion-button>
+  <ion-button class="filterClass" color="light" slot="end" (click)="openModal()">
+    <ion-icon class="icnFilter" slot="start" name="funnel" mode="md"></ion-icon>Filter List
+  </ion-button>
+</div>
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <div *ngIf="noError; else error">
+      <div *ngIf="loadingDone; else shimmer">
+        <ion-list>
+          <div *ngFor="let item of (results)">
+            <ion-item button lines="full" detail="false" (click)="setLeaveDetails(item,'userleave')">
+              <ion-avatar class="divLeaveFrom">
+                <div class="LeaveFromMonth">
+                  {{getDateMonth(item.LEAVEFROM,1)}}
+                </div>
+                <div class="LeaveFromDate">
+                  {{getDateDate(item.LEAVEFROM)}}
+                </div>
+              </ion-avatar>
+              <ion-label text-wrap>
+                <div class="divLeaveDesc">
+                  <div class="classStat">
+                    <div class="StatusDesc">{{ item.LEAVEDESC }}</div>
+                    <div class="DateFile">{{ getLongDate(item.DATEFILE) }}</div>
+                  </div>
+                  <span [ngClass]="{'classForApprovalLabel': item.LEAVESTATUSDESC == 'FOR APPROVAL', 
+                  'classApprovedLabel': item.LEAVESTATUSDESC == 'APPROVED',
+                  'classOnHoldLabel': item.LEAVESTATUSDESC == 'ON HOLD',
+                  'classPlannedLabel': item.LEAVESTATUSDESC == 'PLANNED',
+                  'classCancelledLabel': item.LEAVESTATUSDESC == 'CANCELLED',
+                  'classDisapprovedLabel': item.LEAVESTATUSDESC == 'DISAPPROVED',
+                  'classPostedLabel': item.LEAVESTATUSDESC == 'POSTED'}" class="RequestType">
+                    {{ item.LEAVESTATUSDESC }}</span>
+                  <ion-item button class="MoreOptions" lines="none" detail="false"
+                    (click)="$event.stopPropagation();MoreOptions($event, item);"
+                    *ngIf="item.LEAVESTATUSDESC == 'FOR APPROVAL' || item.LEAVESTATUSDESC == 'APPROVED' || item.LEAVESTATUSDESC == 'PLANNED'">
+                    &#8942;
+                  </ion-item>
+                  <br>
+                  <span class="LeaveDay" *ngIf="item.LEAVEDAY > 1 ">{{ item.LEAVEDAY }} days duration</span>
+                  <span class="LeaveDay" *ngIf="item.LEAVEDAY <= 1 ">{{ item.LEAVEDAY }} day duration</span>
+                </div>
+              </ion-label>
+            </ion-item>
+          </div>
+        </ion-list>
+      </div>
+    </div>
+  </ion-card>
+</ion-content>
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <ion-item class="shimmeritem" *ngFor="let number of [0,1,2,3,4,5]">
+    <div id="box" class="shine"></div>
+    <div class="divShimmer">
+      <div id="lines1" class="shine"></div>
+      <div id="lines2" class="shine"></div>
+    </div>
+  </ion-item>
+</ng-template>
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

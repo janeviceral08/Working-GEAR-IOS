@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17.62" height="20.62" viewBox="0 0 17.62 20.62">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #706969;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Group_169" data-name="Group 169" transform="translate(-110 -350)">
+    <path id="ic_book_24px" class="cls-1" d="M18,2H6A2.006,2.006,0,0,0,4,4V20a2.006,2.006,0,0,0,2,2H18a2.006,2.006,0,0,0,2-2V4A2.006,2.006,0,0,0,18,2ZM6,4h5v8L8.5,10.5,6,12Z" transform="translate(106 348)"/>
+    <circle id="Ellipse_61" data-name="Ellipse 61" class="cls-2" cx="5" cy="5" r="5" transform="translate(117.62 360.62)"/>
+    <path id="ic_check_circle_24px" class="cls-1" d="M6,2a4,4,0,1,0,4,4A4,4,0,0,0,6,2ZM5.2,8l-2-2,.564-.564L5.2,6.868,8.236,3.832,8.8,4.4Z" transform="translate(116.618 359.618)"/>
+  </g>
+</svg>

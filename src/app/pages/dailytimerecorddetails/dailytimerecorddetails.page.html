@@ -1,0 +1,179 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">Daily Time Record Details</ion-title>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <ion-item class="classMainDetails" lines="full">
+        <ion-avatar class="divLeaveFrom">
+            <div class="LeaveFromMonth">
+                {{getDateMonth(dateIn,1)}}
+            </div>
+            <div class="LeaveFromDate">
+                {{getDateDate(dateIn)}}
+            </div>
+        </ion-avatar>
+        <ion-label text-wrap>
+            <div class="divLeaveDesc">
+                <div class="StatusDesc">
+                    <span>{{day}}</span>
+                </div>
+                <div class="StatusDescHours">
+                    <span *ngIf="hours != ''">{{hours}} hour(s)</span>
+                    <span *ngIf="hours == ''">0 Hour</span>
+                </div>
+            </div>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DATE IN</span>
+            <span class="EntryValue">{{ dateIn }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">TIME IN</span>
+            <span class="EntryValue">{{ timeIn }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DATE OUT</span>
+            <span class="EntryValue">{{ dateOut }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">TIME OUT</span>
+            <span class="EntryValue">{{ timeOut }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">LB IN</span>
+            <span class="EntryValue">{{ lbIn }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">LB OUT</span>
+            <span class="EntryValue">{{ lbOut }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">CB IN</span>
+            <span class="EntryValue">{{ cbIn }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">CB OUT</span>
+            <span class="EntryValue">{{ cbOut }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">SHIFT SCHEDULE</span>
+            <span class="EntryValue">{{ shiftSchedule }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">ATTENDANCE CODE</span>
+            <span class="EntryValue">{{ attendanceCode }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">ABSENT</span>
+            <span class="EntryValue">{{ absentFlag }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">SPECIAL HOLIDAY</span>
+            <span class="EntryValue">{{ specialHoliday }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">OTH</span>
+            <span class="EntryValue">{{ oth }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">NTH</span>
+            <span class="EntryValue">{{ nth }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">ONTH</span>
+            <span class="EntryValue">{{ onth }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">ATD</span>
+            <span class="EntryValue">{{ atd }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">LTM</span>
+            <span class="EntryValue">{{ ltm }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">UTH</span>
+            <span class="EntryValue">{{ utm }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">BLTM</span>
+            <span class="EntryValue">{{ bltm }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LEAVE TYPE</span>
+            <span class="EntryValue">{{ leaveType }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">ADVISORY TYPE</span>
+            <span class="EntryValue">{{ advisoryType }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">OT TIME</span>
+            <span class="EntryValue">{{ otTime }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">APPROVED OT HOURS</span>
+            <span class="EntryValue">{{ approvedOT }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">APPLIED OT HOURS</span>
+            <span class="EntryValue">{{ appliedOT }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full" *ngIf="empSection != 'OFFC'">
+        <ion-label text-wrap>
+            <span class="EntryName">REMARK</span>
+            <span class="EntryValue">{{ remark }}</span>
+        </ion-label>
+    </ion-item>
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">Loan Details</ion-title>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <ion-item class="classMainDetails" lines="full">
+        <img class="imgLoan " src="{{getLoansSrc(loanName)}}" alt=" ">
+        <ion-label class="loanDetails " text-wrap>
+            <div class="loanName ">
+                {{ loanName }}
+            </div>
+            <ion-grid class="loanInfo ">
+                <ion-row class="rowLoanDetails">
+                    <ion-col>
+                        LOAN AMOUNT:
+                    </ion-col>
+                    <ion-col>
+                        LOAN BALANCE:
+                    </ion-col>
+                </ion-row>
+                <ion-row class="rowLoanAmount">
+                    <ion-col>
+                        {{loanAmount}}
+                    </ion-col>
+                    <ion-col>
+                        {{loanBalance}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LOAN DATE</span>
+            <span class="EntryValue">{{ loanDate }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LOAN INTEREST</span>
+            <span class="EntryValue">{{ loanInterest }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">LOAN TOTAL PAYMENT</span>
+            <span class="EntryValue">{{ loanTotalPayment }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PAYMENT START</span>
+            <span class="EntryValue">{{ paymentStart }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">AMORTIZATION</span>
+            <span class="EntryValue">{{ payment }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">TOTAL PAYMENT COUNT</span>
+            <span class="EntryValue">{{ paymentCount }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-card>
+        <ion-item *ngFor="let item of (results );">
+            <img class="imgPhp " src="assets/icon/ic_currency_php.png" alt=" ">
+            <ion-label text-wrap>
+                <span class="lblPayPeriod">{{ item.PayPeriod }}</span>
+                <div class="lblDeductedAmount">{{ item.DeductedAmount }}</div>
+                <div class="lblPayCount">Payment number: {{ item.PaymentNo }}</div>
+            </ion-label>
+        </ion-item>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,919 @@
+ion-content {
+    //--background: #558B2F;
+    --background: linear-gradient(to right bottom, #558B2F, #558B2F);
+}
+
+ion-toolbar {
+    --background: transparent;
+    --min-height: 35px;
+    --padding: 0px;
+    margin-top: 30px;
+    top: 0%;
+}
+
+ion-slide>:first-child {
+    width: 100%;
+    margin-top: 10px;
+}
+
+ion-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal>.swiper-pagination-bullets {
+    bottom: 0px !important;
+    left: 0;
+    width: 100%;
+}
+
+.divHello {
+    --background: rgba(255, 255, 255, 0);
+    width: 100%;
+    color: white;
+}
+
+.lblWelcome {
+    font-size: 21px;
+    margin-bottom: 0px;
+}
+
+.lblName {
+    font-size: 30px;
+    font-family: "RobotoRegular";
+}
+
+.icnToday {
+    height: 20px;
+    width: 20px;
+    margin-left: -25px;
+    position: absolute;
+}
+
+.lblToday {
+    font-size: 17px;
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.btnTimeIn {
+    width: 110px;
+    height: 45px;
+    color: white;
+    margin: 55px 10px 0px 0px;
+    --box-shadow: 1px 1px 10px gray;
+    border-radius: 35px;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+}
+
+.btnTimeIn8 {
+    background-image: linear-gradient(to left, #999900, #B3B300);
+    //background-image: radial-gradient(circle closest-side at 22%, rgba(220, 220, 0, 0.5), rgba(255, 255, 255, 0.1));
+}
+
+.btnTimeIn9 {
+    background-image: linear-gradient(to left, #1777B3, #1E96E1);
+    //background-image: radial-gradient(circle closest-side at 22%, #1E96E1, rgba(255, 255, 255, 0.1))
+}
+
+.btnTimeIn10 {
+    background-image: linear-gradient(to left, #B34D8A, #CC589D);
+    //background-image: radial-gradient(circle closest-side at 22%, rgba(232, 1, 102, 0.5), rgba(255, 255, 255, 0.1))
+}
+
+.btnTimeInLate {
+    background-image: linear-gradient(to left, #B34D4D, #D25A5A);
+    //background-image: radial-gradient(circle closest-side at 22%, #FF0000, rgba(255, 255, 255, 0.1))
+}
+
+.btnTimeInDefault {
+    background-image: linear-gradient(to left, #808080, #999999);
+}
+
+.btnTimeInLoading {
+    width: 110px;
+    height: 45px;
+    color: white;
+    margin: 55px 10px 0px 0px;
+    --box-shadow: 1px 1px 10px gray;
+    border-radius: 35px;
+    background-image: linear-gradient(to left, #808080, #999999);
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
+}
+
+.divTimeIn {
+    margin-left: 25px;
+}
+
+.icnClockedIn {
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    left: 7px;
+    top: 5px;
+}
+
+.lblTimeIn {
+    font-size: 15px;
+    text-align: right;
+    font-family: "RobotoRegular";
+    margin: 7px 13px 0px 0px;
+}
+
+.lblTimeInLbl {
+    font-size: 11px;
+    text-align: right;
+    margin: 0px 24px 0px 0px;
+}
+
+.divLoadingTimeIn {
+    display: flex;
+}
+
+.spinnerTimeIn {
+    margin-top: 0px;
+    margin-left: 7px;
+    color: white;
+    width: 45px;
+    height: 45px;
+}
+
+.lblLoadingTimeIn {
+    font-size: 11px;
+    color: white;
+    margin: 12px 0 0 9px;
+}
+
+.divTitleItem {
+    margin: 10px 0px 0px 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.divGABCItem {
+    margin-top: 0px;
+}
+
+.lblTitleItem {
+    font-size: 14px;
+    font-family: "RobotoRegular";
+    color: white;
+}
+
+.sgmtAlerts {
+    margin-left: 10px;
+}
+
+.cardAlerts {
+    height: 120px;
+    width: 105px;
+    margin: 10px 5px 10px 5px;
+    color: white;
+}
+
+.alertLeave {
+    //background-color: #9C27B0;
+    background-image: linear-gradient(to right bottom, #4568dc, #9C27B0);
+}
+
+.alertAdvisory {
+    //background-color: #145570;
+    background-image: linear-gradient(to right bottom, #AD5048, #91443D);
+}
+
+.alertOvertime {
+    //background-color: #EF4656;
+    background-image: linear-gradient(to right bottom, #EF4656, #D94734);
+}
+
+.alertWFH {
+    // background-color: #25BFCD;
+    background-image: linear-gradient(to right bottom, #F44336, #F44336);
+}
+
+.alertWFHApproval {
+    background-image: linear-gradient(to right bottom, #D3A828, #D3A828);
+}
+
+.alertLeaveApproval {
+    //background-color: #E77C2A;
+    background-image: linear-gradient(to right bottom, #E77C2A, #F53E20);
+}
+
+.alertAdvisoryApproval {
+    //background-color: #009688;
+    background-image: linear-gradient(to right bottom, #009688, #007A6E);
+}
+
+.alertOvertimeApproval {
+    // background-color: #25BFCD;
+    background-image: linear-gradient(to right bottom, #25BFCD, #1FA2AD);
+}
+
+.divAlertIcon {
+    text-align: -webkit-center;
+    margin-top: 10px;
+}
+
+.imgAlertIcon {
+    height: 50px;
+    width: 50px;
+}
+
+.lblAlertCount {
+    margin-top: 10px;
+    font-size: 22px;
+    font-family: "RobotoRegular";
+}
+
+.lblAlertName {
+    font-size: 11px;
+    font-family: "RobotoRegular";
+}
+
+.cardSubordinate {
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.cardSubordinateLoading {
+    margin-top: 10px;
+    height: 120px;
+    --background: rgba(255, 255, 255, 0);
+}
+
+.listSubordinate {
+    border-radius: 10px !important;
+}
+
+.itemSubordinate {
+    --padding-start: 10px;
+}
+
+.itemSubordinateLoading {
+    --padding-start: 10px;
+    --background: rgba(255, 255, 255, 0);
+}
+
+.icnSubordinate {
+    width: 40px;
+    height: 40px;
+    color: #61636B;
+}
+
+.lblSubordinate {
+    margin-left: 10px;
+    font-family: "RobotoRegular";
+}
+
+.lblSubordinateName {
+    font-size: 16px;
+}
+
+.lblSubordinatePosition {
+    font-size: 13px;
+    color: #61636B;
+}
+
+.eventImage {
+    height: 200px;
+    object-fit: cover;
+}
+
+.divEvent {
+    height: 150px;
+    margin: 0px 20px;
+    border-radius: 10px;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.divDate {
+    height: 70px;
+}
+
+.DateMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.DateDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.EventsTitle {
+    font-size: 15px;
+    font-family: "RobotoBold";
+    color: black;
+}
+
+.EventsLoc {
+    font-size: 13px;
+    color: #5C5C5C;
+    font-family: "RobotoRegular";
+}
+
+.lblEvents {
+    margin: 0px 0px 0px 40px;
+}
+
+.cardHeader {
+    padding: 0px;
+}
+
+.cardContent {
+    padding: 10px 5px 10px 0px;
+    background-color: white;
+}
+
+.slideAnnounce {
+    margin-bottom: 10px;
+}
+
+.cardAnnounce {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    background: white;
+}
+
+.cardAnnounceHeader {
+    display: flex;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 15px;
+    min-height: 70px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentAnnounce {
+    color: white;
+    padding: 0px;
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: auto;
+}
+
+.lblAnnouncementTitle {
+    font-size: 15px;
+    font-family: "RobotoMedium";
+    color: white;
+    margin: 0px;
+}
+
+.lblAnnouncementDetails {
+    font-size: 13px;
+    background: white;
+    min-height: 100%;
+    color: black;
+    padding: 15px;
+    font-family: "RobotoRegular";
+}
+
+.cardProgressbar {
+    margin: 0px 20px;
+}
+
+.cardGABC {
+    margin-bottom: 30px;
+}
+
+.cardAnnounceHeader0 {
+    background-image: linear-gradient(to top right, #5433FF, #20BDFF); //Sexy Blue
+}
+
+.cardAnnounceHeader1 {
+    background-image: linear-gradient(to bottom left, #4568dc, #b06ab3); //tonight
+}
+
+.cardAnnounceHeader2 {
+    background-image: linear-gradient(to top right, #314755, #26a0da); //Mauve
+}
+
+.cardAnnounceHeader3 {
+    background-image: linear-gradient(to bottom left, #cc2b5e, #753a88); //Purple 
+}
+
+.cardAnnounceHeader4 {
+    background-image: linear-gradient(to bottom right, #108dc7, #ef8e38); //Tranquil 
+}
+
+.cardAnnounceHeader5 {
+    background-image: linear-gradient(to top right, #67B26F, #4ca2cd); //Beach
+}
+
+.cardAnnounceHeader6 {
+    background-image: linear-gradient(to left bottom, #16bffd, #19547b); //River
+}
+
+.cardAnnounceHeader7 {
+    background-image: linear-gradient(to top left, #ff512f, #dd2476); //Bloody 
+}
+
+.cardAnnounceHeader8 {
+    background-image: linear-gradient(to left bottom, #f953c6, #b91d73); //Dusk
+}
+
+.cardAnnounceHeader9 {
+    background-image: linear-gradient(to left top, #ff5f6d, #E8985A); //Orange 
+}
+
+.cardAnnounceHeader10 {
+    background-image: linear-gradient(to right bottom, #e96443, #904e95); //Peach
+}
+
+.cardAnnounceHeader11 {
+    background-image: linear-gradient(to right bottom, #00D3EB, #02C977); //Decent 
+}
+
+@media screen and (max-width: 374px) {
+    .bgTop {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        top: -130px;
+    }
+    .bgBottom {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        bottom: -30%;
+        left: -30%;
+        transform: scaleX(-1);
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .bgTop {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        top: -23%;
+    }
+    .bgBottom {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        bottom: -30%;
+        left: -30%;
+        transform: scaleX(-1);
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .bgTop {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 125%;
+        height: 100%;
+        top: -40%;
+    }
+    .bgBottom {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        bottom: -30%;
+        left: -50%;
+        transform: scaleX(-1);
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .bgTop {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 75%;
+        top: -25%;
+    }
+    .bgBottom {
+        background-image: url('../../../assets/img/coloredlogo.png') !important;
+        z-index: 0;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 70%;
+        bottom: -30%;
+        left: -50%;
+        transform: scaleX(-1);
+    }
+}
+
+// ion-header {
+//   --background: #558B2F;
+// }
+// ion-toolbar {
+//   --background: transparent;
+//   --min-height: 35px;
+//   --padding: 0px;
+//   margin-top: 30px;
+// }
+// ion-title {
+//   color: white;
+//   margin-left: 10px;
+//   font-size: 20px;
+//   text-shadow: 1px 1px 1px #0000005c;
+// }
+// ion-content {
+//   --background: #558B2F;
+// }
+// ion-card-content {
+//   padding: 0px 0px 15px 0px;
+//   -webkit-animation: fadeIn 0.3s;
+//   animation: fadeIn 0.3s;
+//   animation-fill-mode: both;
+// }
+// .cardOff {
+//   -webkit-animation: fadeOut 0.3s;
+//   animation: fadeOut 0.3s;
+//   animation-fill-mode: both;
+// }
+// .cardOffAnnounce {
+//   -webkit-animation: fadeOut 0.3s;
+//   animation: fadeOut 0.3s;
+//   animation-fill-mode: both;
+//   padding-bottom: 0px;
+// }
+// .bgTop {
+//   background-image: url('../../../assets/img/coloredlogo.png') !important;
+//   z-index: 0;
+//   background-size: cover;
+//   position: absolute;
+//   width: 100%;
+//   height: 70%;
+//   top: -130px;
+// }
+// .bgBottom {
+//   background-image: url('../../../assets/img/coloredlogo.png') !important;
+//   z-index: 0;
+//   background-size: cover;
+//   position: absolute;
+//   width: 100%;
+//   height: 70%;
+//   bottom: -100px;
+//   left: -100px;
+//   transform: scaleX(-1);
+// }
+// @media screen and (min-width: 375px) {
+//   .bgTop {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     background-size: cover;
+//     position: absolute;
+//     width: 100%;
+//     height: 70%;
+//     top: -160px;
+//   }
+// }
+// @media screen and (min-width: 400px) {
+//   .bgTop {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     background-size: cover;
+//     position: absolute;
+//     width: 100%;
+//     height: 70%;
+//     top: -180px;
+//   }
+//   .bgBottom {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     background-size: cover;
+//     background-position: left;
+//     position: absolute;
+//     width: 100%;
+//     height: 70%;
+//     bottom: -100px;
+//     left: -100px;
+//     transform: scaleX(-1);
+//   }
+// }
+// @media screen and (min-width: 600px) {
+//   .bgTop {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     position: absolute;
+//     width: 125%;
+//     height: 90%;
+//     top: -170px;
+//     margin-top: -160px;
+//   }
+//   .bgBottom {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     background-size: cover;
+//     background-position: left;
+//     position: absolute;
+//     width: 100%;
+//     height: 70%;
+//     bottom: -100px;
+//     left: -150px;
+//     transform: scaleX(-1);
+//   }
+// }
+// @media screen and (min-width: 800px) {
+//   .bgTop {
+//     background-image: url('../../../assets/img/coloredlogo.png') !important;
+//     z-index: 0;
+//     position: absolute;
+//     width: 125%;
+//     height: 70%;
+//     top: -170px;
+//     margin-top: -160px;
+//   }
+// }
+// .btnMenu {
+//   --padding: 0px;
+// }
+// .divHello {
+//   --background: rgba(255, 255, 255, 0);
+// }
+// .lblHello {
+//   display: block;
+//   margin: 0;
+//   color: white;
+//   text-shadow: 1px 2px darkslategrey;
+// }
+// .lblWelcome {
+//   font-size: 24px;
+// }
+// .lblName {
+//   font-size: 26px;
+// }
+// .lblToday {
+//   font-size: 18px;
+// }
+// .menuClockedInToggle {
+//   float: right;
+//   height: 18px;
+//   width: 18px;
+//   padding-top: 3px;
+//   font-weight: bold;
+//   color: #514B4B;
+// }
+// .cardClockedInSmall {
+//   margin: 10px 15px;
+//   font-size: 12px;
+//   font-weight: bold;
+//   --background: #A5A5A5;
+// }
+// .divClockedInHeader {
+//   color: #514B4B;
+//   padding: 15px 15px 10px 15px;
+//   --background: #A5A5A5;
+// }
+// .icnClockedIn {
+//   height: 20px;
+//   width: 20px;
+// }
+// .lblClockedInStatus {
+//   vertical-align: super;
+// }
+// .lblClockedIn {
+//   vertical-align: super;
+//   font-weight: bold;
+// }
+// .menuSubordinateToggle {
+//   float: right;
+//   height: 18px;
+//   width: 18px;
+//   padding-top: 3px;
+//   font-weight: bold;
+//   color: #514B4B;
+// }
+// .cardSubordinateSmall {
+//   margin: 10px 15px;
+//   font-size: 12px;
+//   font-weight: bold;
+//   --background: rgba(255, 255, 255, 1);
+// }
+// .cardSubordinate {
+//   color: #514B4B;
+//   font-size: 13px;
+//   --border-color: #5f5f5f8f;
+//   --background: rgba(255, 255, 255, 1);
+// }
+// .cardSubordinateContent {
+//   padding: 0px !important;
+// }
+// .divSubordinateHeader {
+//   color: #514B4B;
+//   padding: 15px 15px 10px 15px;
+//   --background: #5f5f5f8f;
+// }
+// .icnSubordinate {
+//   height: 20px;
+//   width: 20px;
+// }
+// .lblSubordinate {
+//   vertical-align: super;
+// }
+// .divPhoto {
+//   margin-right: 5px;
+//   margin-left: 5px;
+// }
+// .menuAlertsToggle {
+//   float: right;
+//   height: 18px;
+//   width: 18px;
+//   padding-top: 3px;
+//   font-weight: bold;
+//   color: #514B4B;
+// }
+// .cardAlerts {
+//   font-size: 12px;
+//   color: #514B4B;
+//   --border-color: #5f5f5f8f;
+//   --background: rgba(255, 255, 255, 1);
+// }
+// .cardAlertsContent {
+//   padding: 0px !important;
+// }
+// .cardAlertsSmall {
+//   margin: 10px 15px;
+//   font-size: 12px;
+//   font-weight: bold;
+//   --background: rgba(255, 255, 255, 1);
+// }
+// .divAlertsHeader {
+//   color: #514B4B;
+//   padding: 15px 15px 10px 15px;
+//   --background: #5f5f5f8f;
+// }
+// .divAlertsItem {
+//   position: relative;
+//   width: 28px;
+//   top: 1px;
+//   right: 1px;
+//   overflow: visible !important;
+//   margin-right: 5px;
+//   display: inline-block;
+// }
+// .itemAlert {
+//   background: rgba(255, 255, 255, 0.3);
+// }
+// .bdgAlerts {
+//   background-color: #F44336;
+//   color: white;
+//   position: absolute;
+//   top: -6px;
+//   right: -2px;
+//   font-size: 9px;
+//   border-radius: 100%;
+//   padding: 4px 6px;
+// }
+// .icnAlerts {
+//   height: 20px;
+//   width: 20px;
+// }
+// .lblAlerts {
+//   vertical-align: super;
+// }
+// .menuAnnouncementToggle {
+//   float: right;
+//   height: 18px;
+//   width: 18px;
+//   padding-top: 3px;
+//   font-weight: bold;
+//   color: #514B4B;
+// }
+// .cardAnnouncementSmall {
+//   margin: 10px 15px;
+//   font-size: 12px;
+//   font-weight: bold;
+//   --background: #A5A5A5;
+// }
+// .cardAnnouncement {
+//   margin: 10px 15px;
+//   --background: rgba(255, 255, 255, 1);
+// }
+// .divAnnouncementHeader {
+//   color: #514B4B;
+//   padding: 15px 15px 10px 15px;
+//   --background: #A5A5A5;
+// }
+// .headAnnounce {
+//   color: #2a2a2a;
+//   padding: 10px 10px 0 10px;
+// }
+// .icnAnnounce {
+//   height: 20px;
+//   width: 20px;
+// }
+// .lblAnnounce {
+//   vertical-align: super;
+// }
+// .contentAnnounce {
+//   color: #2a2a2a;
+//   padding: 15px;
+//   white-space: pre-line !important;
+// }
+// .lblTitle {
+//   font-size: 16px;
+//   font-weight: bold;
+// }
+// .lblDetails {
+//   font-size: 12px;
+// }
+// .alertMessage {
+//   white-space: pre-line !important;
+// }
+// @-webkit-keyframes fadeOut {
+//   0% {
+//     opacity: 1;
+//   }
+//   90% {
+//     opacity: 0.02;
+//     width: 100%;
+//     height: 100%;
+//   }
+//   99% {
+//     opacity: 0.01;
+//     width: 100%;
+//     height: 50%;
+//   }
+//   100% {
+//     opacity: 0;
+//     width: 0;
+//     height: 0;
+//   }
+// }
+// @keyframes fadeOut {
+//   0% {
+//     opacity: 1;
+//   }
+//   90% {
+//     opacity: 0.02;
+//     width: 100%;
+//     height: 100%;
+//   }
+//   99% {
+//     opacity: 0.01;
+//     width: 100%;
+//     height: 50%;
+//   }
+//   100% {
+//     opacity: 0;
+//     width: 0;
+//     height: 0;
+//   }
+// }
+// @-webkit-keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//     width: 100%;
+//     height: 100%;
+//   }
+// }

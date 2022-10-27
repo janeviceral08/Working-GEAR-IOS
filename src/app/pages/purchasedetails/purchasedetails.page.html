@@ -1,0 +1,97 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">Purchase Details</ion-title>
+        <ion-button class=btnFilter slot="end" color="light" (click)="openModal()">
+            <ion-icon slot="start" name="search" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <div *ngIf="noError; else error">
+        <ion-item class="classMainDetails" lines="full" *ngIf="fromPage=='Online'">
+            <img class="imgEmployee " src="assets/icon/ic_purchase_online.png" alt=" ">
+            <ion-label class="EmpDetails " text-wrap>
+                <div class="EmpName ">
+                    Online Purchases
+                </div>
+                <ion-grid class="EmpInfo ">
+                    <ion-row class="rowEmpDetails">
+                        <ion-col>
+                            TOTAL AMOUNT:
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="rowEmpAmount">
+                        <ion-col *ngIf="results[['Table2']].length > 0">
+                            {{results['Table2'][0].TotalAmount}}
+                        </ion-col>
+                        <ion-col *ngIf="results['Table2'].length == 0">
+                            0
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-label>
+        </ion-item>
+        <ion-item class="classMainDetails" lines="full" *ngIf="fromPage=='Canteen'">
+            <img class="imgEmployee " src="assets/icon/ic_purchase_canteen.png" alt=" ">
+            <ion-label class="EmpDetails " text-wrap>
+                <div class="EmpName ">
+                    Canteen Credits
+                </div>
+                <ion-grid class="EmpInfo ">
+                    <ion-row class="rowEmpDetails">
+                        <ion-col>
+                            GRAND TOTAL:
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="rowEmpAmount">
+                        <ion-col *ngIf="results['Table2'][0].Column1 != null">
+                            {{results['Table2'][0].Column1}}
+                        </ion-col>
+                        <ion-col *ngIf="results['Table2'][0].Column1 == null">
+                            0
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-label>
+        </ion-item>
+        <ion-card *ngIf="fromPage=='Online'">
+            <ion-item *ngFor="let item of (results['Table1']);">
+                <img class="imgPhp " src="assets/icon/ic_currency_php.png" alt=" ">
+                <ion-label text-wrap>
+                    <span class="lblOrderDate">{{ item.OrderDate }}</span>
+                    <div class="lblAmount">{{ item.ItemTotal }}</div>
+                    <div class="lblItemName">{{ item.ItemName }}</div>
+                    <div class="lblQuantity">Quantity: {{ item.ItemQty }}</div>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+        <ion-card *ngIf="fromPage=='Canteen'">
+            <ion-item *ngFor="let item of (results['Table1']);">
+                <img class="imgPhp " src="assets/icon/ic_currency_php.png" alt=" ">
+                <ion-label text-wrap>
+                    <span class="lblMealDate">{{ item.Date }}</span>
+                    <div class="lblAmount">{{ item.Total }}</div>
+                    <span class="lblPrice">Price: {{ item.Price }}</span>
+                    <div class="lblItemName">{{ item.MealName }}</div>
+                    <div class="lblQuantity">Quantity: {{ item.Qty }}</div>
+                </ion-label>
+            </ion-item>
+        </ion-card>
+    </div>
+</ion-content>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+                <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+                <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+                    <ion-icon color="light" name="home"></ion-icon>
+                </ion-button>
+            </span>
+        </div>
+    </ion-item>
+</ng-template>

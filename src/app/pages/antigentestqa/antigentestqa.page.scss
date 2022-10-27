@@ -1,0 +1,91 @@
+ion-header {
+    background-color: #558B2F;
+    padding-bottom: 15px;
+}
+
+ion-title {
+    color: white;
+    font-size: 20px;
+    padding-top: 30px;
+    padding-left: 0px;
+}
+
+ion-datetime {
+    height: 40px !important;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+#rounded {
+
+    border: 1px solid #d1d1d1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+ion-back-button {
+    color: white;
+    padding-top: 30px;
+    margin-left: -10px;
+}
+
+.submit-button {
+    padding-top: 30px;
+    margin-right: 10px;
+}
+
+.btnSubmit {
+    color: white;
+    padding-right: 5px;
+    margin-top: 30px;
+
+}
+
+ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+.card-subtitle {
+    font-size: 1.3em;
+    position: absolute;
+    top: 52%;
+    color: #fff;
+    margin-left: 5%;
+
+}
+
+.roundedItems {
+    border: 1px solid #d1d1d1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+ion-textarea {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: left;
+    color: #000;
+    margin-bottom: 5%;
+
+}
+
+.radio-item {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+.margin-bot{
+    margin-bottom: 5%;
+}
+

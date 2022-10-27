@@ -1,0 +1,156 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class="btnMenu" icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="dark" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-grid>
+            <ion-row>
+                <ion-col class="lblMonth" size="auto">
+                    {{lblMonth}}
+                </ion-col>
+                <ion-col class="lblYear" size="auto" align-self-center>
+                    {{lblYear}}
+                </ion-col>
+                <ion-col class="classToday" align-self-center>
+                    <ion-button class="btnToday" fill="outline" size="small" (click)="today()" *ngIf="btnToday == true">Today
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-buttons slot="end">
+            <ion-button class="btnFilter" slot="end" color="dark" (click)="openModal()">
+                <ion-icon slot="start" name="funnel" mode="md"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <calendar [calendarMode]="calendar.mode" [eventSource]="eventSourceList" [markDisabled]="markDisabled" [currentDate]="calendar.currentDate" [showEventDetail]="false" (onCurrentDateChanged)="onCurrentDateChanged($event)" (onRangeChanged)="reloadSource(startTime, endTime)"
+        (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
+    </calendar>
+    <ion-progress-bar type="indeterminate" *ngIf="labelSync != ''"></ion-progress-bar>
+    <ion-item class="itmSync" lines="none" *ngIf="labelSync != ''">
+        <!-- <ion-spinner name="lines-small"></ion-spinner> -->
+        <ion-label class="lblSync">{{labelSync}}</ion-label>
+    </ion-item>
+    <div *ngIf="noError; else error">
+        <ion-card class="cardClass" mode="ios">
+            <ion-list lines="full">
+                <div *ngFor="let item of calendarEventList;">
+                    <ion-item button detail="false" *ngIf="item.Type == 0" class="itmTypeHoliday">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveNameHoliday">{{item.HolidayName}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 1" class="itmTypeLeave" (click)="setLeaveDetails(item.Item,'userleave')">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.LEAVESTATUSDESC}}</span>
+                                <span class="leaveStatus" [ngClass]="leaveStatus">
+                  {{item.LEAVEDAY}} DAY(S)</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 6" class="itmTypeAdvisory" [routerLink]=" ['/', 'advisorydetails', item.ID, 'useradvisory', item.STATUS,'', 'calendar']">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.STATUS}}</span>
+                                <span class="leaveStatus">
+                  {{item.REQUESTTIME}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 2" class="itmTypeLeaveForApproval" (click)="setLeaveDetails(item.Item,'forapproval')">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.EMPL_NAME}}</span>
+                                <span class="leaveStatus">{{item.STATUS}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 3" class="itmTypeLeaveSub" (click)="setLeaveDetails(item.Item,'subleave')">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.EMPL_NAME}}</span>
+                                <span class="leaveStatus">{{item.STATUS}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 4" class="itmTypeAdvisorySub" [routerLink]=" ['/', 'advisorydetails', item.ID, 'subadvisory', item.STATUS, item.EMPNO, 'calendar']">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.EMPL_NAME}}</span>
+                                <span class="leaveStatus">{{item.STATUS}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 5" class="itmTypeLeaveForApproval" [routerLink]=" ['/', 'advisorydetails', item.ID, 'forapproval', item.STATUS, '', 'calendar']">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.EMPL_NAME}}</span>
+                                <span class="leaveStatus">{{item.STATUS}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 7" class="itmTypeWfh" (click) = "openWfhDetails(item)">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.STATUS}}</span>
+                                <span class="leaveStatus">
+                  {{item.REQUESTTIME}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+                    <ion-item button detail *ngIf="item.Type == 8" class="itmTypeWfh" (click) = "openWfhSubDetails(item)">
+                        <img class="leaveimg" src={{item.Icon}} alt="">
+                        <ion-label text-wrap>
+                            <div class="leaveDetails">
+                                <span class="leaveName">{{item.STATUS}}</span>
+                                <span class="leaveStatus">
+                  {{item.REQUESTTIME}}</span>
+                            </div>
+                        </ion-label>
+                    </ion-item>
+
+
+
+                </div>
+            </ion-list>
+        </ion-card>
+    </div>
+</ion-content>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+        </div>
+    </ion-item>
+</ng-template>

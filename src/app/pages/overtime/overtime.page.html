@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+        <ion-icon color="light" name="menu"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class=btnSearch slot="end" [routerLink]="['/','overtimesearch']">
+        <ion-icon color="light" slot="icon-only" name="search" icon-sm></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Overtime</ion-title>
+</ion-header>
+<ion-content class="classContent" hide-header header="header">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh()">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card class=divCardSegment mode="md">
+    <div *ngIf="noError; else error || OTTypeList.length <= 0; else error">
+      <ion-segment class="sgmtOTType" mode="md" scrollable [(ngModel)]="OTType">
+        <div *ngFor="let ot of OTTypeList">
+          <div *ngIf="ot == 'FOR APPROVAL'; else otherOT">
+            <ion-segment-button mode="md" value={{ot}} checked>
+              {{ot}}
+            </ion-segment-button>
+          </div>
+          <ng-template #otherOT>
+            <ion-segment-button mode="md" value={{ot}}>
+              {{ot}}
+            </ion-segment-button>
+          </ng-template>
+        </div>
+      </ion-segment>
+      <div [ngSwitch]="OTType">
+        <div *ngIf="loadingDone; else shimmer">
+          <div *ngFor="let ot of OTTypeList">
+            <ion-list mode="md" *ngSwitchCase="ot">
+              <div *ngFor="let item of (results)">
+                <div *ngIf="ot == item.STATUSDESC">
+                  <ion-item button lines="full" detail="false" (click)="setOTDetails(item,'userot')">
+                    <ion-avatar class="divOTFrom">
+                      <div class="DateMonth">
+                        {{getDateMonth(item.STARTDATE,1)}}
+                      </div>
+                      <div class="DateDate">
+                        {{getDateDate(item.STARTDATE)}}
+                      </div>
+                    </ion-avatar>
+                    <ion-label text-wrap>
+                      <div class="divOTDesc">
+                        <div class="divDateCreated">{{ getLongDate(item.CREATEDDATE) }}</div>
+                        <div class="divOTTime">{{ item.STARTTIME }} - {{item.ENDTIME}}</div>
+                        <div class="divRemarks" *ngIf="item.REMARKS != ''">{{ item.REMARKS }}</div>
+                        <div class="divRemarks" *ngIf="item.REMARKS == ''">-</div>
+                        <div *ngIf="item.PAIDHOURS != null">
+                          <div class="divOTHours" *ngIf="item.PAIDHOURS > 1 ">{{ item.PAIDHOURS }} hours</div>
+                          <div class="divOTHours" *ngIf="item.PAIDHOURS <= 1 ">{{ item.PAIDHOURS }} hour</div>
+                        </div>
+                        <div *ngIf="item.PAIDHOURS == null">
+                          <div class="divOTHours" *ngIf="item.APPLIEDOTHOURS > 1 ">{{ item.APPLIEDOTHOURS }} hours</div>
+                          <div class="divOTHours" *ngIf="item.APPLIEDOTHOURS <= 1 ">{{ item.APPLIEDOTHOURS }} hour</div>
+                        </div>
+                      </div>
+                    </ion-label>
+                  </ion-item>
+                </div>
+              </div>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+    <ion-fab-button (click)="openOTAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <div id="lines7" class="shine"></div>
+  <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+    <ion-avatar class="divOTFrom">
+      <div class="DateMonth"></div>
+      <div class="DateDate"></div>
+    </ion-avatar>
+    <ion-label>
+      <div id="lines4" class="shine"></div><br>
+      <div id="lines3" class="shine"></div><br>
+      <div id="lines3" class="shine"></div>
+    </ion-label>
+  </ion-item>
+</ng-template>
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

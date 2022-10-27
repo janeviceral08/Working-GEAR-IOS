@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="backButton()">
+        <ion-icon color="light" name="ios-arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-title mode="md" slot="start">Antigen QA Approval</ion-title>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="searchInput" (ionChange)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="loadingDone; else shimmer">
+    <div *ngIf="noError; else error">
+      <div *ngFor="let antigen of antigenTestQaList">
+        <ion-card >
+          <ion-card-content>
+            <ion-item class="item" lines="full" button detail="true" [routerLink]=" ['/', 'antigentestqadetails', antigen.EmployeeID]">
+              <ion-avatar class="classLeaveFromDiv">
+                <div class="avatarLeaveFromMonth">
+                  {{getDateMonth(antigen.CreatedDate,1)}}
+                </div>
+                <div class="avatarLeaveFromDate">
+                  {{getDateDate(antigen.CreatedDate)}}
+                </div>
+              </ion-avatar>
+              <ion-label class="labelLeaveDescDiv" text-wrap>
+                <span class="labelStatusDesc">{{antigen.FirstName + " " + antigen.LastName}}</span>
+                <span class="labelRequestType">{{antigen.EmployeeID}}</span>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+          <ion-row class="cardFooter">
+            <ion-col class="colSelect">
+              <ion-select id="select{{antigen.EmployeeID}}"  class="selectItems roundedItems" interface="popover">
+                <ion-select-option *ngFor="let result of antigenQaApproval; let idx = index" value={{result}}
+                  selected="{{idx==0}}">{{result}}</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col class="colRemarks">
+              <ion-textarea id="input{{antigen.EmployeeID}}"  class="textRemarks roundedItems" rows="1" placeholder="Kit Number" maxlength="500">
+              </ion-textarea>
+            </ion-col>
+            <ion-col class="colSubmit">
+              <ion-button class="button-light btnSend" fill="clear" size="small" (click)="onSubmit(antigen)">
+                <ion-icon name="send" mode="md"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+
+</ion-content>
+
+<ng-template #shimmer>
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+  <div id="lines7" class="shine"></div>
+  <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+    <ion-avatar class="divDate">
+      <div class="DateMonth"></div>
+      <div class="DateDate"></div>
+    </ion-avatar>
+    <ion-label>
+      <div id="lines4" class="shine"></div><br>
+      <div id="lines3" class="shine"></div><br>
+      <div id="lines3" class="shine"></div>
+    </ion-label>
+  </ion-item>
+</ng-template>
+<ng-template #error>
+  <ion-item lines="none">
+    <div class="errorbox">
+      <ion-avatar class="center">
+        <img src="assets/img/logo_gabc_gray.png">
+      </ion-avatar>
+      <span class="errorMessage">{{errorMessage}}</span>
+      <span class="errorMessage">
+        <ion-button class="errorButton" (click)="retry()">REFRESH</ion-button>
+        <ion-button class="errorButton" style="margin-left:10px" [routerLink]="['/main/home']">
+          <ion-icon color="light" name="home"></ion-icon>
+        </ion-button>
+      </span>
+    </div>
+  </ion-item>
+</ng-template>

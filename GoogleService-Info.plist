@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>959644643693-j6vukdait8ceusumceoqfb9vkorvds1s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.959644643693-j6vukdait8ceusumceoqfb9vkorvds1s</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>959644643693-51tir758s3dq3r9ng46hmida4q6uc8s8.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCSM9tMmykSZ-uRXK_X3WTvEl61DacZTnE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>959644643693</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gabc.itsd.hris</string>
+	<key>PROJECT_ID</key>
+	<string>hris-34afb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hris-34afb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:959644643693:ios:30701309400151c4</string>
+	<key>DATABASE_URL</key>
+	<string>https://hris-34afb.firebaseio.com</string>
+</dict>
+</plist>

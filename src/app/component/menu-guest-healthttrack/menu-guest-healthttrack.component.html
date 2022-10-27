@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-list>
+    <ion-item lines="none">
+      <img class="profilePic" src="/assets/img/image_guest.png">
+      <ion-icon class="buttonClose" slot="end" fill="clear" (click)="myDismiss()" color="medium" name="close">
+      </ion-icon>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="labelFilter" slot="start">{{guestId}}</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <h3 class="font13">{{guestName}}</h3><br>
+    </ion-item>
+    <ion-item lines="none">
+      <p class="font12">{{guestEmail}}</p>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+  <ion-item (click)="logout()" lines="none" detail="false">
+    <ion-icon class="linkIcon" slot="start" name="log-out" mode="ios"></ion-icon>
+    <ion-label class="linkName">
+      Log Out
+    </ion-label>
+  </ion-item>
+</ion-footer>

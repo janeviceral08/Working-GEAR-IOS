@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-buttons class="buttonHeaderClass" mode="md">
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">{{title}}</ion-title>
+        <ion-button class="btnSubmit" slot="end" (click)="sendOTRequest()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content class="ContentClass">
+    <ion-list lines="none">
+        <ion-grid>
+            <ion-row *ngIf="subId != ''">
+                <ion-col size="12">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">SUBORDINATE</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="subId" (ionChange)="onSubordinateChange()">
+                            <div *ngFor="let item of (subordinates)">
+                                <ion-select-option value="{{ item.EMPLOYEEID }}">{{ item.EMPNAME }}</ion-select-option>
+                            </div>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">SCHEDULE TYPE</ion-label>
+                        <ion-select id="rounded" [(ngModel)]="scheduleType">
+                            <ion-select-option *ngFor="let item of (otOneType); let i = index" selected="i=0" value="{{ item.Value }}">{{ item.Type }}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">START DATE</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="startDate" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">START TIME</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="startTime" display-format="hh:mm A" picker-format="hh mm A">
+                        </ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">END DATE</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="endDate" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">END TIME</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="endTime" display-format="hh:mm A" picker-format="hh mm A">
+                        </ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="5">
+                    <ion-item *ngIf="subId != ''">
+                        <ion-label class="EntityName" position="stacked">APPROVED HOURS</ion-label>
+                        <ion-input class="input roundedItems" id="rounded" type="num" [(ngModel)]="approvedHours">
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">REMARKS</ion-label>
+                        <ion-textarea id="rounded" rows="3" maxlength="500" [(ngModel)]="remarks"></ion-textarea>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+</ion-content>

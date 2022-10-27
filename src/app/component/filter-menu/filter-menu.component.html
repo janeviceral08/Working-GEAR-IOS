@@ -1,0 +1,116 @@
+<ion-content>
+    <ion-list>
+        <ion-item class="itemFilter" lines="full">
+            <ion-label class="labelFilter" slot="start">Filter</ion-label>
+            <ion-icon class="buttonClose" slot="end" fill="clear" color="medium" (click)="myDismiss()" name="close">
+            </ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveApproval' || module == 'AdvisoryApproval' ||module == 'Subordinates' || module == 'OvertimeApproval' || module == 'WfhApproval'">
+            <ion-label class="labelEntityName" position="stacked">Employee Name</ion-label>
+            <ion-item class="itemInput" lines="none">
+                <ion-input class="roundedItems" [(ngModel)]="employeeName"></ion-input>
+            </ion-item>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveApproval' || module == 'AdvisoryApproval' || module == 'Subordinates' || module == 'OvertimeApproval' || module == 'WfhApproval'">
+            <ion-label class="labelEntityName" position="stacked">Employee Number</ion-label>
+            <ion-item class="itemInput" lines="none">
+                <ion-input class="roundedItems" [(ngModel)]="employeeNumber"></ion-input>
+            </ion-item>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch' || module == 'LeaveApproval' || module == 'AdvisorySearch' || module == 'AdvisoryApproval' || module == 'DailyTimeRecord' || module == 'OTSearch' || module == 'OvertimeApproval'|| module == 'PurchaseDetailsOnline'|| module == 'PurchaseDetailsCanteen'|| module == 'WorkFromHome' || module == 'WfhApproval'">
+            <ion-label class="labelEntityName" position="stacked">{{dateText}}</ion-label>
+            <ion-item class="itemDatetime" lines="none">
+                <ion-datetime class="roundedItems" [(ngModel)]="leaveFrom" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                    mm/dd/yyyy</ion-datetime>&nbsp;-&nbsp;
+                <ion-datetime class="roundedItems" [(ngModel)]="leaveTo" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                    mm/dd/yyyy</ion-datetime>
+            </ion-item>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch' || module == 'LeaveApproval' || module == 'DailyTimeRecord' ">
+            <ion-label class="labelEntityName" position="stacked">{{dateText2}}</ion-label>
+            <ion-item class="itemDatetime" lines="none">
+                <ion-datetime class="roundedItems" [(ngModel)]="dateFiledFrom" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                    mm/dd/yyyy</ion-datetime>&nbsp;-&nbsp;
+                <ion-datetime class="roundedItems" [(ngModel)]="dateFiledTo" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099">
+                    mm/dd/yyyy</ion-datetime>
+            </ion-item>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch' || module == 'LeaveApproval' ">
+            <ion-label class="labelEntityName" position="stacked">Leave Type</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="leaveType" interface="popover">
+                <ion-select-option *ngFor="let leave of leaveTypeList; let i = index" value={{leave}} selected="{{i==0}}">
+                    {{leave}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'AdvisorySearch' || module == 'AdvisoryApproval' ">
+            <ion-label class="labelEntityName" position="stacked">Request Type</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="advisoryType" interface="popover">
+                <ion-select-option *ngFor="let leave of advisoryTypeList; let i = index" value={{leave}} selected="{{i==0}}">
+                    {{leave}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'OvertimeApproval'">
+            <ion-label class="labelEntityName" position="stacked">Schedule Type</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="scheduleType" interface="popover">
+                <ion-select-option *ngFor="let schedule of scheduleTypeList; let i = index" value={{schedule}} selected="{{i==0}}">
+                    {{schedule}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'OvertimeApproval'">
+            <ion-label class="labelEntityName" position="stacked">Section</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="sectionType" interface="popover">
+                <ion-select-option *ngFor="let section of sectionList; let i = index" value={{section}} selected="{{i==0}}">
+                    {{section}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'PurchaseDetailsCanteen'">
+            <ion-label class="labelEntityName" position="stacked">Status</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="canteenStatus" interface="popover">
+                <ion-select-option *ngFor="let canteen of canteenList; let i = index" value={{canteen}} selected="{{i==0}}">
+                    {{canteen}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'AdvisorySearch' || module == 'AdvisoryApproval' ">
+            <ion-label class="labelEntityName" position="stacked">Reason</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="advisoryReason" interface="popover">
+                <ion-select-option *ngFor="let reason of advisoryReasonList; let idx = index" value={{reason}} selected="{{idx==0}}">
+                    {{reason}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch'">
+            <ion-label class="labelEntityName" position="stacked">Request Type</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="requestType" interface="popover">
+                <ion-select-option *ngFor="let request of requestTypeList; let i = index" value={{request}} selected="{{i==0}}">
+                    {{request}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch' || module == 'LeaveApproval'">
+            <ion-label class="labelEntityName" position="stacked">Reason for Leave</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="reason" interface="popover">
+                <ion-select-option *ngFor="let reason of reasonList; let idx = index" value={{reason}} selected="{{idx==0}}">
+                    {{reason}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveSearch' || module == 'AdvisorySearch' || module == 'OTSearch' || module == 'WorkFromHome'">
+            <ion-label class="labelEntityName" position="stacked">Status</ion-label>
+            <ion-select class="selectItems roundedItems" [(ngModel)]="status" interface="popover">
+                <ion-select-option *ngFor="let status of statusList; let idx = index" value={{status}} selected="{{idx==0}}">
+                    {{status}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item lines="none" *ngIf="module == 'LeaveApproval' || module == 'Subordinates' || module == 'AdvisoryApproval' || module == 'OvertimeApproval' || module == 'WfhApproval'">
+            <ion-checkbox class="chkShowSub" [(ngModel)]="showDirect" *ngIf="module == 'LeaveApproval' || module == 'AdvisoryApproval' || module == 'OvertimeApproval'"></ion-checkbox>
+            <ion-checkbox class="chkShowSub" [(ngModel)]="showAll" *ngIf="module == 'Subordinates' "></ion-checkbox>
+            <ion-label class="lblShowSub" *ngIf="module == 'LeaveApproval' || module == 'AdvisoryApproval' || module == 'OvertimeApproval'"> Show Direct Subordinates</ion-label>
+            <ion-label class="lblShowSub" *ngIf="module == 'Subordinates'"> Show All Employees</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+            <ion-button class="buttonClear" (click)="clearItems()">Clear</ion-button>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+        <ion-button class="buttonFilter" (click)="filterList()">Filter</ion-button>
+    </ion-toolbar>
+</ion-footer>

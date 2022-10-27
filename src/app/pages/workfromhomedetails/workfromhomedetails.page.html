@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-buttons>
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">Work From Home Details</ion-title>
+
+        <ion-button class="button-light actionButton" title="EDIT" slot="end" *ngIf="attStatus == 'FOR APPROVAL'  && page != 'subsprofile'" (click)="openEditAdvisory()">
+            <ion-icon name="create" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="DELETE" slot="end" *ngIf="attStatus == 'FOR APPROVAL'  && page != 'subsprofile'" (click)="showDeleteDialog()">
+            <ion-icon name="trash" mode="md"></ion-icon>
+        </ion-button>
+        <ion-button class="button-light actionButton" title="CANCEL" slot="end" *ngIf="attStatus == 'APPROVED' && page != 'subsprofile'" (click)="showCancelDialog()">
+            <ion-icon name="close-circle" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content padding>
+    <ion-item class="classMainDetails" lines="full">
+        <ion-avatar class="divLeaveFrom">
+            <div class="LeaveFromMonth">
+                <!-- {{getDateMonth(requestedDate,1)}} -->
+                {{getDateDate(requestedDate)}}
+            </div>
+            <div class="LeaveFromDate">
+                {{getDateDate(requestedDate)}}
+            </div>
+        </ion-avatar>
+        <ion-label text-wrap>
+            <div class="divLeaveDesc">
+                <span class="RequestTitle" [ngClass]="{'classForApprovalLabel': attStatus == 'FOR APPROVAL', 
+                    'classApprovedLabel': attStatus == 'APPROVED',
+                    'classOnHoldLabel': attStatus == 'ON HOLD',
+                    'classPlannedLabel': attStatus == 'PLANNED',
+                    'classCancelledLabel': attStatus== 'CANCELLED',
+                    'classDisapprovedLabel': attStatus == 'DISAPPROVED',
+                    'classPostedLabel': attStatus == 'POSTED'}">
+                    <!-- {{ toTitleCase(attStatus) }} -->
+                    {{ attStatus }}
+                </span>
+            </div>
+            <span class="RequestType">{{ days }} days</span>
+            <br>
+            <span class="RequestType">Time-in: {{ timeIn }}</span>
+            <br>
+            <span class="RequestType">Time-out: {{ timeOut }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REQUEST DATE</span>
+            <span class="EntryValue" *ngIf="dateIn != null || dateIn != ''">{{ requestedDate }}</span>
+            <span class="EntryValue" *ngIf="dateIn == null || dateIn == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DATE IN</span>
+            <span class="EntryValue" *ngIf="dateIn != null || dateIn != ''">{{ dateIn }}</span>
+            <span class="EntryValue" *ngIf="dateIn == null || dateIn == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">DATE OUT</span>
+            <span class="EntryValue" *ngIf="dateOut != null || dateOut != ''">{{ dateOut }}</span>
+            <span class="EntryValue" *ngIf="dateOut == null || dateOut == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REQUEST TIME FROM</span>
+            <span class="EntryValue" *ngIf="dateOut != null || dateOut != ''">{{ timeFrom }}</span>
+            <span class="EntryValue" *ngIf="dateOut == null || dateOut == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REQUEST TIME TO</span>
+            <span class="EntryValue" *ngIf="dateOut != null || dateOut != ''">{{ timeTo }}</span>
+            <span class="EntryValue" *ngIf="dateOut == null || dateOut == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REASON</span>
+            <span class="EntryValue" *ngIf="reason != null || reason != ''">{{ reason }}</span>
+            <span class="EntryValue" *ngIf="reason == null || reason == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">ACCOMPLISHMENT</span>
+            <span class="EntryValue" *ngIf="accomplishment != null || accomplishment != ''">{{ accomplishment }}</span>
+            <span class="EntryValue" *ngIf="accomplishment == null || accomplishment == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">REMARKS</span>
+            <span class="EntryValue" *ngIf="remark != null || remark != ''">{{ remark }}</span>
+            <span class="EntryValue" *ngIf="remark == null || remark == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">CREATED BY</span>
+            <span class="EntryValue">{{ createdBy }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">CREATED DATE</span>
+            <span class="EntryValue">{{ createdDate }}</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PROCESSED BY</span>
+            <span class="EntryValue" *ngIf="procBy != null || procBy != ''">{{ procBy }}</span>
+            <span class="EntryValue" *ngIf="procBy == null || procBy == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+        <ion-label text-wrap>
+            <span class="EntryName">PROCESSED DATE</span>
+            <span class="EntryValue" *ngIf="procDate != null || procDate != ''">{{ procDate }}</span>
+            <span class="EntryValue" *ngIf="procDate == null || procDate == ''">&nbsp;</span>
+        </ion-label>
+    </ion-item>
+</ion-content>

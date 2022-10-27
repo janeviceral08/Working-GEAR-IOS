@@ -1,0 +1,82 @@
+<ion-content>
+  <ion-list>
+    <ion-item lines="full" class="itemFilter">
+      <ion-label class="labelFilter" slot="start">Filter</ion-label>
+      <ion-icon class="buttonClose" slot="end" fill="clear" color="medium" (click)="myDismiss()" name="close">
+      </ion-icon>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="isHolidayChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Holidays</ion-label>
+      <div class="legendColorHolidays"></div>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="isLeavesChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Leaves</ion-label>
+      <div class="legendColorLeaves"></div>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-checkbox [(ngModel)]="isAdvisoryChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Attendance Advisory</ion-label>
+      <div class="legendColorAttendanceAdvisories"></div>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="isWorkFromHome">
+      <ion-checkbox [(ngModel)]="isWfhChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Work From Home</ion-label>
+      <div class="legendColorWfh"></div>
+    </ion-item>
+
+
+
+    <!-- <ion-item lines="none">
+      <ion-checkbox  [(ngModel)]= "isHolidayChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Attendance Advisories</ion-label>
+      <div class="legendColorAttendanceAdvisories"></div>
+    </ion-item> -->
+    <ion-item lines="none" *ngIf="isManager">
+      <ion-checkbox [(ngModel)]="isSubLeaveChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Subordinate's Leave</ion-label>
+      <div class="legendColorSubordinateLeave"></div>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="isManager">
+      <ion-checkbox [(ngModel)]="isSubAdvisoryChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Subordinate's Advisory</ion-label>
+      <div class="legendColorSubordinateAdvisory"></div>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="isManager">
+      <ion-checkbox [(ngModel)]="isSubWfhChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Subordinate's Work From Home</ion-label>
+      <div class="legendColorWfh"></div>
+    </ion-item>
+
+
+    <ion-item lines="none" *ngIf="isManager">
+      <ion-checkbox [(ngModel)]="isForApprovalChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">For Approvals</ion-label>
+      <div class="legendColorLeavesForApproval"></div>
+    </ion-item>
+
+
+    <ion-item lines="none" *ngIf="isManager">
+      <ion-checkbox [(ngModel)]="showAll"></ion-checkbox>
+      <ion-label class="labelEntityName"> Show Direct Subordinates</ion-label>
+    </ion-item>
+
+
+    
+
+    <!-- <ion-item lines="none">
+      <ion-checkbox  [(ngModel)]= "isHolidayChecked"></ion-checkbox>
+      <ion-label class="labelEntityName">Advisory For Approval</ion-label>
+      <div class="legendColorAdvisoryForApproval"></div>
+    </ion-item> -->
+  </ion-list>
+</ion-content>
+<ion-footer no-shadow>
+  <ion-toolbar position="bottom">
+    <ion-button class="buttonFilter" (click)="filterList()">Filter</ion-button>
+  </ion-toolbar>
+</ion-footer>

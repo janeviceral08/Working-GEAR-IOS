@@ -1,0 +1,8 @@
+{
+  "name": "GEAR",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "a6de723a"
+}

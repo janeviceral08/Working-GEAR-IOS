@@ -1,0 +1,175 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class=btnMenu ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button class=btnFilter slot="end" color="light" (click)="openModal()">
+                <ion-icon slot="start" name="search" mode="md"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-title mode="md" slot="start">Work From Home</ion-title>
+</ion-header>
+<ion-content padding class="classContent" hide-header header="header">
+    <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-card class="cardWhatsNextSmall">
+        <ion-card-header class="divWhatsNextHeader">
+            <ion-icon class="icnWhatsNext" name="pin"></ion-icon>
+            <ion-label class="lblTitleCard">
+                 {{location}} </ion-label>
+            <ion-icon class="menuWhatsNextToggle" *ngIf="noError" name="refresh" (click)="getLocation()">
+            </ion-icon>
+        </ion-card-header>
+    </ion-card>
+    <ion-card class=divCardSegment mode="md">
+        <div *ngIf="loadingDone; else shimmer">
+            <div *ngIf="noError; else error">
+                <ion-list mode="md">
+                    <div *ngIf="!wfhIsEmpty; else error">
+                        <div *ngFor="let wfh of WFHList">
+
+                            <div *ngIf="wfh.IsForCheckIN == '0' || wfh.IsForCheckIN == '1'">
+                                <ion-item class="itmClass" button lines="none" detail="false">
+                                    <ion-avatar class="divDate" (click)="setDTRDetails(wfh)">
+                                        <div class="DateMonth">
+                                            {{getDateMonth(wfh.AttendanceRequestDate,1)}}
+                                        </div>
+                                        <div class="DateDate">
+                                            {{getDateDate(wfh.AttendanceRequestDate)}}
+                                        </div>
+                                    </ion-avatar>
+                                    <ion-label class="lblWFH" text-wrap>
+                                        <div class="divWFHDesc">
+                                            <div class="divWFH" *ngIf="wfh.IsForCheckIN == '1'">
+                                                <ion-button class="btnTimeInOut" slot="end" (click)="openTimeIn(wfh)">
+                                                    Time In
+                                                </ion-button>
+                                            </div>
+                                            <div class="divWFH" *ngIf="wfh.IsForCheckIN == '0'">
+                                                <ion-button class="btnTimeInOut" slot="end" (click)="openTimeOut(wfh)">
+                                                    Time Out
+                                                </ion-button>
+                                            </div>
+
+                                            <div class="divWFHStatus" (click)="setDTRDetails(wfh)">
+                                                <span class="RequestType" [ngClass]="{'classForApprovalLabel': wfh.AttendanceStatus == 'FOR APPROVAL', 
+                                                              'classApprovedLabel': wfh.AttendanceStatus == 'APPROVED',
+                                                              'classOnHoldLabel': wfh.AttendanceStatus == 'ON HOLD',
+                                                              'classPlannedLabel': wfh.AttendanceStatus == 'PLANNED',
+                                                              'classCancelledLabel': wfh.AttendanceStatus== 'CANCELLED',
+                                                              'classDisapprovedLabel': wfh.AttendanceStatus == 'DISAPPROVED',
+                                                              'classPostedLabel': wfh.AttendanceStatus == 'POSTED'}">{{ toTitleCase(wfh.AttendanceStatus) }}</span>
+                                            </div>
+                                            <div class="divWFHTimeIn" (click)="setDTRDetails(wfh)">
+                                                <span>days</span>
+                                            </div>
+                                            <div class="divWFHTimeIn" (click)="setDTRDetails(wfh)">
+                                                <span>Time In :{{wfh.DateTimeIn}}</span>
+                                            </div>
+                                            <div class="divWFHTimeOut" (click)="setDTRDetails(wfh)">
+                                                <span>Time Out :{{wfh.DateTimeOut}}</span>
+                                            </div>
+                                        </div>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item class="itmClass" button lines="full" detail="false" *ngIf="wfh.IsForCheckIN == '1'" (click)="setDTRDetails(wfh)">
+                                    <ion-label class="ionLabelWFH">
+                                        <div class="divTaskLabel">
+                                            <span>TASKS</span>
+                                        </div>
+                                        <div class="divTask">
+                                            <span>{{wfh.AttendanceRemarks}}</span>
+                                        </div>
+                                    </ion-label>
+                                </ion-item>
+                                <ion-item class="itmClass" button lines="full" detail="false" *ngIf="wfh.IsForCheckIN == '0'">
+                                    <ion-label class="EntityName" position="stacked">ACCOMPLISHMENTS</ion-label>
+                                    <ion-textarea id="rounded" class="txtArea" rows="1" maxlength="500" [(ngModel)]="accomplishment">
+                                    </ion-textarea>
+                                </ion-item>
+
+                            </div>
+
+                            <div *ngIf="wfh.IsForCheckIN != '0' && wfh.IsForCheckIN != '1'">
+                                <ion-item class="itmClass" button lines="full" detail="false" (click)="setDTRDetails(wfh)">
+                                    <ion-avatar class="divDate">
+                                        <div class="DateMonth">
+                                            {{getDateMonth(wfh.AttendanceRequestDate,1)}}
+                                        </div>
+                                        <div class="DateDate">
+                                            {{getDateDate(wfh.AttendanceRequestDate)}}
+                                        </div>
+                                    </ion-avatar>
+                                    <ion-label class="lblWFH" text-wrap>
+                                        <div class="divWFHDesc">
+                                            <div class="divWFHStatus">
+                                                <span class="RequestType" [ngClass]="{'classForApprovalLabel': wfh.AttendanceStatus == 'FOR APPROVAL', 
+                                              'classApprovedLabel': wfh.AttendanceStatus == 'APPROVED',
+                                              'classOnHoldLabel': wfh.AttendanceStatus == 'ON HOLD',
+                                              'classPlannedLabel': wfh.AttendanceStatus == 'PLANNED',
+                                              'classCancelledLabel': wfh.AttendanceStatus== 'CANCELLED',
+                                              'classDisapprovedLabel': wfh.AttendanceStatus == 'DISAPPROVED',
+                                              'classPostedLabel': wfh.AttendanceStatus == 'POSTED'}">{{ toTitleCase(wfh.AttendanceStatus) }}</span>
+                                            </div>
+                                            <div class="divWFHTimeIn" (click)="setDTRDetails(wfh)">
+                                                <span> {{ wfh.NOOFDAYS }} days</span>
+                                            </div>
+                                            <div class="divWFHTimeIn">
+                                                <span>Time In :{{wfh.DateTimeIn}}</span>
+                                            </div>
+                                            <div class="divWFHTimeOut">
+                                                <span>Time Out :{{wfh.DateTimeOut}}</span>
+                                            </div>
+                                        </div>
+                                    </ion-label>
+                                </ion-item>
+                            </div>
+
+                        </div>
+                    </div>
+                </ion-list>
+            </div>
+        </div>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openWFHAdd()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<ng-template #shimmer>
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    <div id="lines7" class="shine"></div>
+    <ion-item class="shimmeritem" *ngFor="let number of [0,1,2]">
+        <ion-avatar class="divDate">
+            <div class="DateMonth"></div>
+            <div class="DateDate"></div>
+        </ion-avatar>
+        <ion-label>
+            <div id="lines4" class="shine"></div><br>
+            <div id="lines3" class="shine"></div><br>
+            <div id="lines3" class="shine"></div>
+        </ion-label>
+    </ion-item>
+</ng-template>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+              <ion-button class="errorButton" (click)="refresh()">RETRY</ion-button>
+              <ion-button class="errorButton" style="margin-left:10px" [routerLink]="['/main/home']">
+                  <ion-icon color="light" name="home"></ion-icon>
+              </ion-button>
+          </span>
+        </div>
+    </ion-item>
+</ng-template>

@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button *ngIf="fromPage == 'subordinate'" class="button-light" slot="start" mode="md">
+            </ion-back-button>
+            <ion-button *ngIf="fromPage != 'subordinate'" class="btnMenu" ion-button icon-only menuToggle slot="start" (click)="toggleMenu()">
+                <ion-icon color="light" name="menu"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <div class="divPhoto">
+        <img class="imgPhoto" src="assets/icon/ic_pi_dp.png" alt="">
+    </div>
+    <!-- <div class="divTitle">Personal Information</div> -->
+    <ion-label text-wrap>
+        <div class="lblName">
+            <span class="lblFullName">{{name}}</span>
+            <span class="lblPosition">{{idShow}}</span>
+            <span class="lblPosition">{{position}}</span>
+        </div>
+    </ion-label>
+</ion-header>
+<ion-content class="classContent" hide-header header="header">
+    <ion-card class="crdContent" *ngIf="noError; else error">
+        <ion-list lines="full" class="list" (click)="pageInfo('Personal')">
+            <ion-item button detail>
+                <img class="imgLeave" src="assets/icon/ic_pi_pb.png" alt="">
+                <ion-label text-wrap>
+                    <div class="divDetails">
+                        <span class="className">Personal Background</span>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-list lines="full" class="list" (click)="pageInfo('Family')">
+            <ion-item button detail>
+                <img class="imgLeave" src="assets/icon/ic_pi_fm.png" alt="">
+                <ion-label text-wrap>
+                    <div class="divDetails">
+                        <span class="className">Family</span>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-list lines="full" class="list" (click)="pageInfo('Education')">
+            <ion-item button detail>
+                <img class="imgLeave" src="assets/icon/ic_pi_ed.png" alt="">
+                <ion-label text-wrap>
+                    <div class="divDetails">
+                        <span class="className">Education</span>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-list lines="full" class="list" (click)="pageInfo('IDBank')">
+            <ion-item button detail>
+                <img class="imgLeave" src="assets/icon/ic_pi_id.png" alt="">
+                <ion-label text-wrap>
+                    <div class="divDetails">
+                        <span class="className">ID / Bank Info</span>
+                    </div>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>
+<ng-template #error>
+    <ion-item lines="none">
+        <div class="errorbox">
+            <ion-avatar class="center">
+                <img src="assets/img/logo_gabc_gray.png"></ion-avatar>
+            <span class="errorMessage">{{errorMessage}}</span>
+            <span class="errorMessage">
+                <ion-button class="errorButton" (click)="refresh()">REFRESH</ion-button>
+                <ion-button class="errorButton" style="margin-left:10px" [routerLink]=" ['/main/home']">
+                    <ion-icon color="light" name="home"></ion-icon>
+                </ion-button>
+            </span>
+        </div>
+    </ion-item>
+</ng-template>

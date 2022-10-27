@@ -1,0 +1,59 @@
+<ion-app>
+    <ion-header>
+    </ion-header>
+    <ion-content>
+        <div *ngIf="!IsGuest" class="bgSizeCoverTop"></div>
+        <div *ngIf="!IsGuest" class="bgSizeCoverBottom"></div>
+        <ion-grid>
+            <ion-row class="rowGear">
+                <ion-col size="12" class="colGEARIcon">
+                    <img class="imgGEARicon" *ngIf="IsGuest" src="/assets/img/ic_big_icon_health.png" alt="">
+                    <img class="imgGEARicon" *ngIf="!IsGuest" src="/assets/img/icon.png" alt="">
+
+                        <!-- <img class="imgGEARtext" src="/assets/img/gear_name.png" alt=""> -->
+                </ion-col>
+            </ion-row>
+            <ion-row class="rowLogin">
+                <ion-col size="12">
+                    <div class="divLogin">
+                        <div class="divimgGEARtext">
+                            <img class="imgGEARtext" src="/assets/img/gear_name.png" alt="">
+                        </div>
+                        <div class="divUsernamePassword">
+                            <ion-item lines="inset">
+                                <!-- <ion-icon class="linkIcon" slot="start" name="person" mode="md"></ion-icon> -->
+                                <ion-label class="EntityName" position="stacked">USERNAME</ion-label>
+                                <ion-input class="inputUsername" type="number" [(ngModel)]="user_name"></ion-input>
+                            </ion-item>
+                            <ion-item lines="inset">
+                                <!-- <ion-icon class="linkIcon" slot="start" name="key"></ion-icon> -->
+                                <ion-label class="EntityName" position="stacked">PASSWORD</ion-label>
+                                <ion-input class="inputPassword" type="password" [(ngModel)]="user_password" (keyup.enter)="attemptlogin()"></ion-input>
+                            </ion-item>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="rowLoginButton">
+                <ion-col size="12">
+                    <ion-button block outline class="Login" size="large" (click)="attemptlogin()" expand="block">LOGIN
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <div class="forgotpass" (click)="openForgotPass()">Forgot Password?</div>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="rowVersion">
+                <ion-col size="5">
+                    <ion-icon name="settings" (click) = "showServerSettingsModal()"></ion-icon>
+                </ion-col>
+                <ion-col size="7">
+                        <div class="version" >{{ version }}</div>
+                </ion-col>
+            </ion-row>
+        </ion-grid> 
+    </ion-content>
+</ion-app>

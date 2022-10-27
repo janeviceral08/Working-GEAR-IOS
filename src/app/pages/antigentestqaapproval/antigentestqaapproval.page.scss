@@ -1,0 +1,188 @@
+ion-header {
+    background-image: url('../../../assets/img/banner_dark_green.png') !important;
+    background-size: cover;
+    background-position: bottom;
+    padding: 10px 0px;
+    // height: 100px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --padding-start: 0px;
+    // margin-top: 20px;
+}
+
+ion-title {
+    color: white;
+    margin-left: 10px;
+    //margin-top: 20px;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px #0000005c;
+}
+
+.item {
+    margin-top: 14px;
+}
+
+.btnMenu {
+    padding: 0 0 0 5px;
+}
+
+
+ion-icon {
+    font-size: 20px;
+}
+
+
+ion-card {
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+ion-card-header {
+    padding: 0px;
+}
+
+ion-card-content {
+    padding: 0px;
+}
+
+ion-icon {
+    font-size: 24px !important;
+}
+
+ion-item:last-child {
+    --border-width: 0px 0px 1px 0 !important;
+}
+
+.btnMenu {
+    padding: 0px 0 0 5px;
+}
+
+.btnFilter {
+    margin-right: -5px;
+}
+
+.labelNameHeader {
+    padding-top: 0px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelName {
+    font-size: 14px;
+    color: black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.labelDateFiled {
+    font-size: 12px;
+    float: right;
+    color: #808080;
+}
+
+.classLeaveFromDiv {
+    margin-top: -30px;
+}
+
+.labelLeaveDescDiv {
+    margin: 15px 0 15px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelStatusDesc {
+    font-size: 14px;
+    padding-left: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.labelRequestType {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-top: -3px;
+    margin-bottom: 10px;
+    display: block;
+    color: #808080;
+}
+
+.labelRequestTypeRed {
+    font-size: 11px;
+    padding-left: 30px;
+    margin-top: -3px;
+    margin-bottom: 10px;
+    display: block;
+    color: #F44336;
+}
+
+.labelLeaveDay {
+    font-size: 11px;
+    margin-left: 30px;
+    color: #808080;
+}
+
+.avatarLeaveFromMonth {
+    font-size: 13px;
+    padding-top: 3px;
+    color: white;
+    vertical-align: middle;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #E8554D;
+    width: 65px;
+    height: 20px
+}
+
+.avatarLeaveFromDate {
+    font-size: 35px;
+    color: #5C5C5C;
+    vertical-align: middle;
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: #F3F3F3;
+    width: 65px;
+    height: 45px;
+}
+
+.colSelect {
+    max-width: 120px;
+}
+
+.selectItems {
+    color: black;
+    margin-left: 5px;
+    font-size: 14px;
+    height: 39px;
+}
+
+.cardFooter {
+    margin-right: 10px;
+}
+
+.roundedItems {
+    border: 1px solid #d1d1d1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+.colSubmit {
+    max-width: 25px;
+}
+
+.btnSend {
+    --padding-start: 0px;
+    --padding-end: 0px;
+}

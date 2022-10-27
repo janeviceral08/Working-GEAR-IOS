@@ -1,0 +1,86 @@
+
+ion-item {
+    margin: 0 15px 0;
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+}
+
+ion-footer {
+    text-align: center;
+}
+
+ion-datetime {
+    font-size: 14px;
+}
+
+//Filter Area
+.itemFilter {
+    margin: 10px;
+}
+
+.labelFilter {
+    font-size: 18px;    
+    font-family: "RobotoMedium";
+}
+
+.buttonClose {
+    margin-right: 0px;
+    font-size: 30px;
+    color: #7A7A7A
+}
+
+//Filter Items
+.labelEntityName {
+    font-size: 13px;
+}
+
+.itemInput {
+    font-size: 14px;
+    margin: 0px !important;
+    width: calc(100% - 5px);
+}
+
+.itemDatetime {
+    margin: 0px !important;
+}
+
+.selectItems {
+    margin-left: 5px;
+    font-size: 14px;
+    width: calc(100% - 5px);
+}
+
+.roundedItems {
+    border: 1px solid #d1d1d1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-inline-start: 5px !important;
+}
+
+.buttonClear {
+    --background: #D6D7D7;
+    width: 100%;
+    height: 35px;
+}
+
+.buttonFilter {
+    width: 95%;
+    height: 35px;
+}
+
+.chkShowSub {
+    --background-checked: #D3A828;
+    --border-color-checked: #D3A828;
+    --border-radius: 5px;
+    --border-color: gray;
+    margin-left: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+.lblShowSub {
+    font-size: 12px;
+    margin-left: 10px;
+}

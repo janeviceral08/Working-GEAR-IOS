@@ -1,0 +1,143 @@
+ion-content {
+    --background: #F3F3F3;
+}
+
+ion-header {
+    background-color: #558B2F;
+    padding-bottom: 5px;
+}
+
+ion-toolbar {
+    --background: transparent;
+    --padding-start: 0px;
+    // margin-top: 20px;
+}
+
+ion-title {
+    color: white;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+ion-card {
+    margin: 10px;
+    background: white;
+}
+
+.imgChildrensHour {
+    position: relative;
+    display: block;
+}
+
+.imgGetUp {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 250px;
+    margin: auto;
+    padding: 20px 0px;
+}
+
+.btnMenu {
+    --padding: 0px;
+    margin-top: 10px;
+    padding: 0 0 0 5px;
+}
+
+.cardHeader {
+    padding: 0px;
+    background: white;
+}
+
+.cardContent {
+    padding: 0px;
+    background: white;
+}
+
+.cardContentThanks {
+    padding: 0 0 30px 0;
+    background: white;
+    text-align-last: center;
+}
+
+.chkPledge {
+    --background-checked: #D3A828;
+    --border-color-checked: #D3A828;
+    --border-radius: 5px;
+    --border-color: gray;
+    height: 20px;
+    width: 20px;
+}
+
+.chkAuthorize {
+    --background-checked: #D3A828;
+    --border-color-checked: #D3A828;
+    --border-radius: 5px;
+    --border-color: gray;
+    height: 20px;
+    width: 20px;
+}
+
+.lblPledge,
+.lblAuthorize {
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    color: #2a2a2a;
+    white-space: pre-line !important;
+}
+
+.lblDesc {
+    font-size: 12px;
+    overflow: visible;
+    white-space: normal;
+}
+
+.lblOthers {
+    font-size: 12px;
+}
+
+.itemOthers {
+    padding-left: 35px;
+    padding-right: 10px;
+}
+
+.txtOthers {
+    --padding-start: 5px !important;
+    font-size: 14px !important;
+}
+
+.btnAgree {
+    --background: #D3A828;
+    font-size: 14px;
+    padding: 0px 30%;
+    margin-bottom: 15px;
+}
+
+.lblThankYou {
+    color: #2a2a2a;
+    font-size: 20px;
+    overflow: visible;
+    white-space: normal;
+    text-align: center;
+    font-weight: bold;
+}
+
+.lblThanksMessage {
+    color: #2a2a2a;
+    font-size: 12px;
+    overflow: visible;
+    white-space: normal;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.rounded {
+    border: 1px solid gray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    --padding-start: 15px;
+}
