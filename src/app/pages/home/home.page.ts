@@ -311,7 +311,7 @@ export class HomePage implements OnInit {
           }
 
           var jsonData = JSON.parse(data.data);
-          console.log(jsonData)
+          console.log('getAlerts: ',jsonData);//mycomment
           if (jsonData['Status'] != Constants.POST_SUCCESS) {
             this.noError = false;
             this.errorMessage = Constants.MESSAGE_CON_ERROR;

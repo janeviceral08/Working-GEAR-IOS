@@ -101,8 +101,19 @@ const routes: Routes = [
         path: 'wfhapproval',
         loadChildren: '../wfhapproval/wfhapproval.module#WfhapprovalPageModule' 
       },
-      { path: 'healthtrack', loadChildren: '../healthtrack/healthtrack.module#HealthtrackPageModule' }
-
+      { path: 'healthtrack', loadChildren: '../healthtrack/healthtrack.module#HealthtrackPageModule' },
+      { 
+        path: 'downloads',
+        loadChildren: '../downloads/downloads.module#DownloadsPageModule' 
+      },
+      { 
+        path: 'corporate',
+        loadChildren: '../corporate/corporate.module#CorporatePageModule' 
+      },
+      { 
+        path: 'personalbackgroundupdate/:id',
+        loadChildren: '../personalbackgroundupdate/personalbackgroundupdate.module#PersonalbackgroundupdatePageModule' 
+      }
 
     ]
   },

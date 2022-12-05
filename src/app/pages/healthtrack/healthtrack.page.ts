@@ -282,10 +282,10 @@ export class HealthtrackPage implements OnInit {
             }
 
             var employeeAccess = jsonData['Value']['EmployeeAccess'][0];
-
+console.log('employeeAccess: ',employeeAccess)//mycomment;
             if(employeeAccess) {
               
-                this.accessAntigenQa = employeeAccess['AntigenQAProcess'];
+                this.accessAntigenQa = employeeAccess['AntigenProcess'];
                 this.accessAntigenResult = employeeAccess['AntigenProcess'];
                 this.accessVaccineResult = employeeAccess['VaccineProcess'];
                 this.accessAdmin = true;

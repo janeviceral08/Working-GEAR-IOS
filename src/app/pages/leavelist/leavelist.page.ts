@@ -200,7 +200,9 @@ export class LeavelistPage implements OnInit {
         }
       }
     });
-  
+    console.log('leaveTypeList: ',this.leaveTypeList);//mycomment
+    console.log('leaveArrange: ',this.leaveArrange);//mycomment
+    console.log('results: ',this.results);//mycomment
     if (this.leaveTypeList.length <= 0) {
       this.noError = false;
       this.errorMessage = "EMPTY";
@@ -220,9 +222,10 @@ export class LeavelistPage implements OnInit {
         AppVersion: Constants.VERSION
       };
 
-
+      console.log('postData: ',postData)//mycomment
+      
       this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
-
+        console.log('Get link find all leave: ', `${value[Constants.SERVER_URL]}/api/leaverequest/findall`);//mycomment
         this.httpApi.post(`${value[Constants.SERVER_URL]}/api/leaverequest/findall`, postData, {})
           .then(data => {
 

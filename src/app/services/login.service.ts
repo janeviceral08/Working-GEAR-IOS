@@ -138,7 +138,8 @@ export class LoginService {
 
   getConfigFiles() {
     console.log("getConfigFiles")
-
+    console.log("this.storage: ", this.storage)
+    console.log("Constants.KEY_SESSION: ", Constants.KEY_SESSION)
     this.storage.get(`${Constants.KEY_SESSION}`).then((val) => {
 
       let request = {

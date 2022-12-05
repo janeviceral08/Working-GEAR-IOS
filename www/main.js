@@ -445,11 +445,19 @@ var map = {
 		"./src/app/pages/calendar/calendar.module.ts",
 		"calendar-calendar-module"
 	],
+	"../corporate/corporate.module": [
+		"./src/app/pages/corporate/corporate.module.ts",
+		"corporate-corporate-module"
+	],
 	"../dailytimerecord/dailytimerecord.module": [
 		"./src/app/pages/dailytimerecord/dailytimerecord.module.ts",
 		"default~advisoryapproval-advisoryapproval-module~dailytimerecord-dailytimerecord-module~leaveapprova~23838a2c",
 		"common",
 		"dailytimerecord-dailytimerecord-module"
+	],
+	"../downloads/downloads.module": [
+		"./src/app/pages/downloads/downloads.module.ts",
+		"downloads-downloads-module"
 	],
 	"../epayslip/epayslip.module": [
 		"./src/app/pages/epayslip/epayslip.module.ts",
@@ -504,6 +512,10 @@ var map = {
 		"default~advisoryapproval-advisoryapproval-module~dailytimerecord-dailytimerecord-module~leaveapprova~23838a2c",
 		"common",
 		"overtimeapproval-overtimeapproval-module"
+	],
+	"../personalbackgroundupdate/personalbackgroundupdate.module": [
+		"./src/app/pages/personalbackgroundupdate/personalbackgroundupdate.module.ts",
+		"personalbackgroundupdate-personalbackgroundupdate-module"
 	],
 	"../personalinformation/personalinformation.module": [
 		"./src/app/pages/personalinformation/personalinformation.module.ts",
@@ -593,6 +605,10 @@ var map = {
 	"./pages/dailytimerecorddetails/dailytimerecorddetails.module": [
 		"./src/app/pages/dailytimerecorddetails/dailytimerecorddetails.module.ts",
 		"pages-dailytimerecorddetails-dailytimerecorddetails-module"
+	],
+	"./pages/downloads/downloads.module": [
+		"./src/app/pages/downloads/downloads.module.ts",
+		"downloads-downloads-module"
 	],
 	"./pages/epayslip/epayslip.module": [
 		"./src/app/pages/epayslip/epayslip.module.ts",
@@ -707,6 +723,10 @@ var map = {
 	"./pages/personalbackground/personalbackground.module": [
 		"./src/app/pages/personalbackground/personalbackground.module.ts",
 		"pages-personalbackground-personalbackground-module"
+	],
+	"./pages/personalbackgroundupdate/personalbackgroundupdate.module": [
+		"./src/app/pages/personalbackgroundupdate/personalbackgroundupdate.module.ts",
+		"personalbackgroundupdate-personalbackgroundupdate-module"
 	],
 	"./pages/personalinformation/personalinformation.module": [
 		"./src/app/pages/personalinformation/personalinformation.module.ts",
@@ -960,7 +980,15 @@ var routes = [
     { path: 'antigentestqaapproval', loadChildren: './pages/antigentestqaapproval/antigentestqaapproval.module#AntigentestqaapprovalPageModule' },
     { path: 'antigentestqadetails/:empid', loadChildren: './pages/antigentestqadetails/antigentestqadetails.module#AntigentestqadetailsPageModule' },
     { path: 'vaccineadd', loadChildren: './pages/vaccineadd/vaccineadd.module#VaccineaddPageModule' },
-    { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' }
+    { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' },
+    {
+        path: 'downloads',
+        loadChildren: './pages/downloads/downloads.module#DownloadsPageModule'
+    },
+    {
+        path: 'personalbackgroundupdate',
+        loadChildren: './pages/personalbackgroundupdate/personalbackgroundupdate.module#PersonalbackgroundupdatePageModule'
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1573,6 +1601,8 @@ var LoginService = /** @class */ (function () {
     LoginService.prototype.getConfigFiles = function () {
         var _this = this;
         console.log("getConfigFiles");
+        console.log("this.storage: ", this.storage);
+        console.log("Constants.KEY_SESSION: ", src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_SESSION"]);
         this.storage.get("" + src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_SESSION"]).then(function (val) {
             var request = {
                 RecordID: val[src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_RECORD_ID"]],
@@ -2179,7 +2209,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\031775\GEAR-working\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\031775\GEARWorking2\src\main.ts */"./src/main.ts");
 
 
 /***/ })

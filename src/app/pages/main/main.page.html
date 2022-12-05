@@ -34,6 +34,19 @@
             </ion-item>
           </div>
           <div class="appDivider"></div>
+          <ion-item [routerDirection]="'root'" [routerLink]="'/main//downloads'" lines="none" detail="false">
+            <ion-icon class="linkIcon" slot="start" name="paper" mode="ios"></ion-icon>
+            <ion-label class="linkName">
+              Downloads
+            </ion-label>
+          </ion-item>
+          <ion-item [routerDirection]="'root'" [routerLink]="'/main//corporate'" lines="none" detail="false">
+            <ion-icon class="linkIcon" slot="start" name="paper" mode="ios"></ion-icon>
+            <ion-label class="linkName">
+              Corporate Policies
+            </ion-label>
+          </ion-item>
+          <div class="appDivider"></div>
           <div class="appTitle" *ngIf="isManager == 1">
             <ion-label>Manager</ion-label>
           </div>

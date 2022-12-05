@@ -328,10 +328,10 @@ export class WorkfromhomeaddPage implements OnInit {
       advisory['AppPlatForm'] = Constants.APP_PLATFORM;
       advisory['AppVersion'] = Constants.VERSION;
 
-      console.log(advisory);
+      console.log('advisory: ',advisory)//mycomment;
 
       this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
-
+      console.log('url add WFH: ', `${value[Constants.SERVER_URL]}/api/WorkFromHome/AddAttendanceAdvisory`)//mycomment;
         this.httpApi.post(`${value[Constants.SERVER_URL]}/api/WorkFromHome/AddAttendanceAdvisory`, advisory, {})
           .then(data => {
             if (data.data == null || data.data == undefined || !data.data) {

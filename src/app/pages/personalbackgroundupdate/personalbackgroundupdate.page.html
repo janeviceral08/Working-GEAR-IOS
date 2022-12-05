@@ -1,0 +1,334 @@
+<ion-header>
+    <ion-buttons class="buttonHeaderClass" mode="md">
+        <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
+        <ion-title mode="md">Personal Background Update</ion-title>
+        <ion-button class="btnSubmit" slot="end" (click)="UpdatePersonalBackground()">
+            <ion-icon name="send" mode="md"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-header>
+<ion-content class="ContentClass">
+    <ion-list lines="none">
+        <ion-grid>
+            <ion-card>
+                <ion-card-header (click)="togglePersonalSection()">
+                    <ion-icon class="icnAbout" name="person" mode="md"></ion-icon>
+                    <ion-label class="lblName">PERSONAL BACKGROUND</ion-label>
+                  
+                    <ion-icon class="menuToggle" name="{{clickedPersonal ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedPersonal">
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">LAST NAME </ion-label>
+                        <ion-input id="rounded" type="text"  [(ngModel)]="LastNAME" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">FIRST NAME</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="FNAME" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">MIDDLE INITIAL</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="MIDDLENAME" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">MIDDLE INITIAL BEFORE MARRIAGE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="MAIDENNAME" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">SUFFIX</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="SUFFIX" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">TITLE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="TITLE" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">NICKNAME</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="NICKNAME" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item>
+                        <ion-label class="EntityName" position="stacked">BIRTHDAY</ion-label>
+                        <ion-datetime id="rounded" [(ngModel)]="BIRTHDAY2" display-format="MM/DD/YYYY" picker-format="MMMM DD YYYY" placeholder="mm/dd/yyyy" min="2016" max="2099" (ionChange)="getAddLeaveEndDate()">
+                            mm/dd/yyyy</ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item class="duration" [disabled]="isDurationDisabled">
+                        <ion-label class="EntityName" position="stacked">AGE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="AGE" (ionBlur)="onDurationChanged()">
+                        </ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">PLACE OF BIRTH</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="PLACEOFBIRTH" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">COUNTRY OF BIRTH</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="COUNTRYOFBIRTH" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">GENDER</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="SEX" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">CIVIL STATUS</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="CIVILSTATUS" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">SINCE WHEN</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="DATEOFMARRIAGE" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">NATIONALITY</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="NATIONALITY" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">RELIGION</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="RELIGION" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">OTHERS</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="RELIGIONOTHERS" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+
+
+    <ion-card>
+        <ion-card-header (click)="toggleContactSection()">
+            <ion-icon class="icnAbout" name="call"></ion-icon>
+            <ion-label class="lblName">CONTACT DETAILS</ion-label>
+            <ion-icon class="menuToggle" name="{{clickedContact ? 'arrow-dropup': 'arrow-dropdown'}}">
+            </ion-icon>
+        </ion-card-header>
+        <ion-card-content *ngIf="clickedContact">
+
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">LANDLINE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">MOBILE NUMBER</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="PhoneNUMBER" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">COMPANY EMAIL ADDRESS</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="EMAILADD" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+
+        </ion-card-content>
+    </ion-card>
+
+
+             <ion-card>
+                <ion-card-header (click)="toggleAddressSection()">
+                    <ion-icon class="icnAbout" name="home"></ion-icon>
+                    <ion-label class="lblName">PERMANENT ADDRESS</ion-label>
+                    <ion-icon class="menuToggle" name="{{clickedAddress ? 'arrow-dropup': 'arrow-dropdown'}}">
+                    </ion-icon>
+                </ion-card-header>
+                <ion-card-content *ngIf="clickedAddress">
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">NO. (INCLUDE BLDG./APT. NUMBER)</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">STREET</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">BARANGAY</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">MUNICIPALITY</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">CITY</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">ZIP CODE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">PROVINCE</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+           
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">COUNTRY</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+            <ion-row>
+                <ion-col size="12" *ngIf="subId != ''">
+                    <ion-item id="subId">
+                        <ion-label class="EntityName" position="stacked">TELEPHONE NUMBER(S)</ion-label>
+                        <ion-input id="rounded" type="text" [(ngModel)]="duration" (ionBlur)="onDurationChanged()"></ion-input>
+                    </ion-item>
+                </ion-col>
+               
+            </ion-row>
+           
+        </ion-card-content>
+    </ion-card>
+
+            <ion-row>
+                <ion-col size="5">
+                    <ion-item>
+                        <ion-button class="AttachButton" shape="round" (click)="attachFile()">
+                            Attach File
+                            <ion-icon slot="start" name="attach"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+                </ion-col>
+                <ion-col size="7">
+                    <ion-item class="FileName">
+                        <ion-label>{{ fileName }}
+                        </ion-label>
+                        <ion-icon class="FileNameClose" slot="end" name="close-circle" *ngIf="hasAttachment" (click)="removeAttachment()"></ion-icon>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </ion-list>
+</ion-content>

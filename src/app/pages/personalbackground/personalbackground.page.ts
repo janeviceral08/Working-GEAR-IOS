@@ -5,6 +5,7 @@ import * as Constants from 'src/app/utils/constants.service';
 import { LoginService } from 'src/app/services/login.service';
 import { HTTP } from '@ionic-native/http/ngx';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personalbackground',
@@ -42,7 +43,8 @@ export class PersonalbackgroundPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private loginService: LoginService,
     private menuCtrl: MenuController,
-    private httpApi: HTTP) { }
+    private httpApi: HTTP,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -73,7 +75,7 @@ export class PersonalbackgroundPage implements OnInit {
       };
 
       this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
-
+console.log('httpApi: ', `${value[Constants.SERVER_URL]}/api/BasicInfo/GetPersonalInformation`, postData, {})
         this.httpApi.post(`${value[Constants.SERVER_URL]}/api/BasicInfo/GetPersonalInformation`, postData, {})
           .then(data => {
 
@@ -617,6 +619,11 @@ export class PersonalbackgroundPage implements OnInit {
         return item;
       }
     }
+  }
+
+  openpersonalbackgroundupdate() {
+   
+    this.router.navigate(['/main/personalbackgroundupdate',this.subId]);
   }
 
   goBack() { this.navCtrl.back(); }
