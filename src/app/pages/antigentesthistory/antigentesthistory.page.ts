@@ -73,9 +73,9 @@ export class AntigentesthistoryPage implements OnInit {
       }
 
 
-      console.log(request);
+      console.log('request: ',request);
       this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
-
+        console.log('Get link find all leave: ', `${value[Constants.SERVER_URL]}/api/health/covid/antigen`);//mycomment
         this.httpApi.post(`${value[Constants.SERVER_URL]}/api/health/covid/antigen`, request, {})
           .then(data => {
 
@@ -90,7 +90,11 @@ export class AntigentesthistoryPage implements OnInit {
             }
 
             var jsonData = JSON.parse(data.data);
-            console.log(jsonData);
+            console.log('jsonData',jsonData);
+            console.log('Constants.POST_SUCCESS',Constants.POST_SUCCESS);//mycomment
+            console.log('Constants.MESSAGE_CON_ERROR',Constants.MESSAGE_CON_ERROR);//mycomment
+            console.log('Constants.OUTDATED_ERROR',Constants.OUTDATED_ERROR);//mycomment
+            console.log('Constants.POST_YES',Constants.POST_YES);//mycomment
 
             if (jsonData['Status'] != Constants.POST_SUCCESS) {
               this.noError = false;

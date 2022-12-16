@@ -469,7 +469,7 @@ var map = {
 	],
 	"../healthtrack/healthtrack.module": [
 		"./src/app/pages/healthtrack/healthtrack.module.ts",
-		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module",
+		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module~pages-workfromhome~90d7e3d6",
 		"common",
 		"healthtrack-healthtrack-module"
 	],
@@ -504,6 +504,10 @@ var map = {
 		"default~advisoryapproval-advisoryapproval-module~dailytimerecord-dailytimerecord-module~leaveapprova~23838a2c",
 		"common",
 		"overtimeapproval-overtimeapproval-module"
+	],
+	"../personalbackgroundupdate/personalbackgroundupdate.module": [
+		"./src/app/pages/personalbackgroundupdate/personalbackgroundupdate.module.ts",
+		"personalbackgroundupdate-personalbackgroundupdate-module"
 	],
 	"../personalinformation/personalinformation.module": [
 		"./src/app/pages/personalinformation/personalinformation.module.ts",
@@ -628,7 +632,7 @@ var map = {
 	],
 	"./pages/healthtrack/healthtrack.module": [
 		"./src/app/pages/healthtrack/healthtrack.module.ts",
-		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module",
+		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module~pages-workfromhome~90d7e3d6",
 		"common",
 		"healthtrack-healthtrack-module"
 	],
@@ -708,6 +712,10 @@ var map = {
 		"./src/app/pages/personalbackground/personalbackground.module.ts",
 		"pages-personalbackground-personalbackground-module"
 	],
+	"./pages/personalbackgroundupdate/personalbackgroundupdate.module": [
+		"./src/app/pages/personalbackgroundupdate/personalbackgroundupdate.module.ts",
+		"personalbackgroundupdate-personalbackgroundupdate-module"
+	],
 	"./pages/personalinformation/personalinformation.module": [
 		"./src/app/pages/personalinformation/personalinformation.module.ts",
 		"personalinformation-personalinformation-module"
@@ -732,7 +740,7 @@ var map = {
 	],
 	"./pages/vaccinehistory/vaccinehistory.module": [
 		"./src/app/pages/vaccinehistory/vaccinehistory.module.ts",
-		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module",
+		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module~pages-workfromhome~90d7e3d6",
 		"common",
 		"pages-vaccinehistory-vaccinehistory-module"
 	],
@@ -750,6 +758,7 @@ var map = {
 	],
 	"./pages/workfromhomeadd/workfromhomeadd.module": [
 		"./src/app/pages/workfromhomeadd/workfromhomeadd.module.ts",
+		"default~healthtrack-healthtrack-module~pages-vaccinehistory-vaccinehistory-module~pages-workfromhome~90d7e3d6",
 		"common",
 		"pages-workfromhomeadd-workfromhomeadd-module"
 	],
@@ -960,7 +969,11 @@ var routes = [
     { path: 'antigentestqaapproval', loadChildren: './pages/antigentestqaapproval/antigentestqaapproval.module#AntigentestqaapprovalPageModule' },
     { path: 'antigentestqadetails/:empid', loadChildren: './pages/antigentestqadetails/antigentestqadetails.module#AntigentestqadetailsPageModule' },
     { path: 'vaccineadd', loadChildren: './pages/vaccineadd/vaccineadd.module#VaccineaddPageModule' },
-    { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' }
+    { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' },
+    {
+        path: 'personalbackgroundupdate',
+        loadChildren: './pages/personalbackgroundupdate/personalbackgroundupdate.module#PersonalbackgroundupdatePageModule'
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1573,6 +1586,8 @@ var LoginService = /** @class */ (function () {
     LoginService.prototype.getConfigFiles = function () {
         var _this = this;
         console.log("getConfigFiles");
+        console.log("this.storage: ", this.storage);
+        console.log("Constants.KEY_SESSION: ", src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_SESSION"]);
         this.storage.get("" + src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_SESSION"]).then(function (val) {
             var request = {
                 RecordID: val[src_app_utils_constants_service__WEBPACK_IMPORTED_MODULE_6__["KEY_RECORD_ID"]],
@@ -2179,7 +2194,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\031775\GEAR-working\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\031775\GEAR-working - (4)\src\main.ts */"./src/main.ts");
 
 
 /***/ })

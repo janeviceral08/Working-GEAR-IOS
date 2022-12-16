@@ -165,7 +165,12 @@ const routes: Routes = [
   { path: 'antigentestqaapproval', loadChildren: './pages/antigentestqaapproval/antigentestqaapproval.module#AntigentestqaapprovalPageModule' },
   { path: 'antigentestqadetails/:empid', loadChildren: './pages/antigentestqadetails/antigentestqadetails.module#AntigentestqadetailsPageModule' },
   { path: 'vaccineadd', loadChildren: './pages/vaccineadd/vaccineadd.module#VaccineaddPageModule' },
-  { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' }
+  { path: 'guesthealthtrack', loadChildren: './pages/guesthealthtrack/guesthealthtrack.module#GuesthealthtrackPageModule' },
+  { 
+    path: 'personalbackgroundupdate',
+    loadChildren: './pages/personalbackgroundupdate/personalbackgroundupdate.module#PersonalbackgroundupdatePageModule' 
+  }
+
 ];
 
 @NgModule({

@@ -12,6 +12,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FTP } from '@ionic-native/ftp/ngx';
 import { LeaveTime, Reason } from 'src/app/services/leave.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-workfromhomeadd',
@@ -64,7 +65,7 @@ export class WorkfromhomeaddPage implements OnInit {
   loadingGetWFHBalPerWk: any;
   wfhBalPerWk: string;
   useCredits: any = 0;
-
+  getWIOList: any;
   activityResult: boolean = false;
   constructor(
     private storage: Storage,
@@ -130,8 +131,11 @@ export class WorkfromhomeaddPage implements OnInit {
     }
   }
 
+
   sendAdvisory() {
 
+   
+    
     if (this.selectedDate == null || this.selectedDate == undefined || this.selectedDate == '') {
       alert("Request Date is empty");
       return;
@@ -157,15 +161,28 @@ export class WorkfromhomeaddPage implements OnInit {
     var WFHWeeklyBalance = parseInt(this.wfhBalPerWk);
     var WFHCredits = parseInt(this.wfhCredits);
     var wfhDuration = parseInt(this.duration);
+    console.log('sendAdvisory')
+    console.log('WIO: ',WIO)
+    console.log('WFHWeeklyBalance: ',WFHWeeklyBalance)
+    console.log('wfhDuration: ',wfhDuration)
+    console.log('WFHCredits: ',WFHCredits)
     var date1 = new Date(this.datepipe.transform(this.selectedDate, 'MM/dd/yyyy'));
     var date2 = new Date(this.datepipe.transform(this.dateTo, 'MM/dd/yyyy'));
-
+    const isAvailable = this.getWIOList.filter(item => {
+      const itemData = moment(item.Date).unix();
+      const selectedDate = moment(this.selectedDate).unix();
+      const dateTo = moment(this.dateTo).unix();
+      return itemData >= selectedDate && itemData <= dateTo  
+    });
     if (date1 == null || date2 == null) {
       this.showDialog("ERROR!", "Dates cannot be empty!", true, "Okay");
       this.loading.dismiss();
       return;
     }
-
+ if(isAvailable.length >0){
+  this.showDialog("ERROR!", "One of your requested WFH dates fall on a mandated WIO. Please review the request.", true, "Okay");
+  return;
+ }
     // 0 - Sunday, 1 - Monday, ..., 6 - Saturday
     var day1 = date1.getDay();
     var day2 = date2.getDay();
@@ -177,6 +194,10 @@ export class WorkfromhomeaddPage implements OnInit {
         this.showDialog("ERROR!", "One of your requested WFH dates fall on a mandated WIO. Please review the request.", true, "Okay");
         return;
       }
+      /* if (wfhDuration > WFHWeeklyBalance) {
+        // user has credits, confirm WFH Credits usage
+        this.showConfrimWFHCase2();
+      } */
       // case 3: filed for more than 1 WFH and exceeded the 3 max WFH per week
       if (wfhDuration > WFHWeeklyBalance) {
         this.showDialog("ERROR!", "You have exceeded the number of allowable WFH for the week.", true, "Okay");
@@ -271,7 +292,7 @@ export class WorkfromhomeaddPage implements OnInit {
     console.log("***** postRequest() *****");
     console.log("date: " + advisory['REQUESTDATE']);
     console.log("willUseWFHCredits: " + advisory['willUseWFHCredits']);
-    
+    console.log("advisory: " , advisory);
     if (this.subId != '') {
       advisory['EMPNO'] = Number(this.subId);
       advisory['USER'] = this.empId;
@@ -328,10 +349,10 @@ export class WorkfromhomeaddPage implements OnInit {
       advisory['AppPlatForm'] = Constants.APP_PLATFORM;
       advisory['AppVersion'] = Constants.VERSION;
 
-      console.log(advisory);
+      console.log('advisory: ',advisory)//mycomment;
 
       this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
-
+      console.log('url add WFH: ', `${value[Constants.SERVER_URL]}/api/WorkFromHome/AddAttendanceAdvisory`)//mycomment;
         this.httpApi.post(`${value[Constants.SERVER_URL]}/api/WorkFromHome/AddAttendanceAdvisory`, advisory, {})
           .then(data => {
             if (data.data == null || data.data == undefined || !data.data) {
@@ -800,6 +821,7 @@ export class WorkfromhomeaddPage implements OnInit {
         REQUESTDATE: datestring
 
       }
+    
 
       this.loadingCtrl.create({
         message: "Loading..."
@@ -808,6 +830,17 @@ export class WorkfromhomeaddPage implements OnInit {
         this.loadingGetWFHCredits = overlay;
 
         this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
+          console.log('value: ',value)
+          console.log('value[Constants.SERVER_URL]: ',value[Constants.SERVER_URL])
+          this.httpApi.post(`${value[Constants.SERVER_URL]}/api/WorkFromHome/GetWIOSchedule`, request, {})
+          .then(data => {
+            this.getWIOList=JSON.parse(data.data).Value
+            
+
+          }).catch(error => {
+            console.log('GetWIO Error: ',error.error)
+            
+          });
           this.httpApi.post(`${value[Constants.SERVER_URL]}/api/WorkFromHome/GetAttendanceAdvisoryCredits`, request, {})
             .then(data => {
 
@@ -819,7 +852,7 @@ export class WorkfromhomeaddPage implements OnInit {
               }
 
               var jsonData = JSON.parse(data.data);
-              console.log(jsonData)
+              console.log('Employee WFH summary logs',jsonData)
               this.loadingGetWFHCredits.dismiss();
 
               if (jsonData['Status'] != Constants.POST_SUCCESS) {

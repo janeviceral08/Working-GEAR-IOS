@@ -3,10 +3,16 @@
         <ion-buttons slot="start">
             <ion-back-button class="button-light" slot="start" mode="md"></ion-back-button>
         </ion-buttons>
+        
     </ion-toolbar>
     <ion-title mode="md" slot="start"></ion-title>
 </ion-header>
 <ion-content>
+    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
+        <ion-fab-button (click)="openpersonalbackgroundupdate()">
+            <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
     <div *ngIf="showPage == 'Personal'">
         <div *ngIf="noError ; else error">
             <!--Personal Background-->
@@ -15,6 +21,7 @@
                 <ion-card-header (click)="togglePersonalSection()">
                     <ion-icon class="icnAbout" name="person" mode="md"></ion-icon>
                     <ion-label class="lblName">PERSONAL BACKGROUND</ion-label>
+                  
                     <ion-icon class="menuToggle" name="{{clickedPersonal ? 'arrow-dropup': 'arrow-dropdown'}}">
                     </ion-icon>
                 </ion-card-header>

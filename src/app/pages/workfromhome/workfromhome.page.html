@@ -12,7 +12,60 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-title mode="md" slot="start">Work From Home</ion-title>
+    <ion-fab bottom horizontal="end" edge>
+        <ion-fab-button (click)="openWFHAdd()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-header>
+<ion-card class=divCardHeader>
+    <ion-item lines="full">
+        <ion-thumbnail class="imgType" slot="start">
+            <img src="{{ idSrc }}" alt="">
+        </ion-thumbnail>
+        <ion-label text-wrap>
+            <ion-grid class="leaveCreditsInfo">
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Balance :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{wfhBalance}}
+                    </ion-col>
+                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                        For Approval :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{wfhApproval}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Credit :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{wfhCredits}}
+                    </ion-col>
+                    <ion-col class="leaveCreditsInfoNameSecondRow">
+                        Approved :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{wfhApproved}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="leaveCreditsInfoNameFirstRow">
+                        Posted :
+                    </ion-col>
+                    <ion-col size="2">
+                        {{wfhPosted}}
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-label>
+    </ion-item>
+</ion-card>
+    
 <ion-content padding class="classContent" hide-header header="header">
     <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing...">
@@ -137,11 +190,7 @@
             </div>
         </div>
     </ion-card>
-    <ion-fab vertical="bottom" horizontal="end" edge slot="fixed">
-        <ion-fab-button (click)="openWFHAdd()">
-            <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-    </ion-fab>
+
 </ion-content>
 <ng-template #shimmer>
     <ion-progress-bar type="indeterminate"></ion-progress-bar>

@@ -46,6 +46,19 @@ export class WorkfromhomePage implements OnInit {
   apiResponse: any;
   locationCoords: any;
 
+
+
+  loadingGetWFHCredits: any;
+  wfhCredits: string;
+  wfhBalance: string;
+  wfhPosted: string;
+  wfhApproved: string;
+  wfhApproval: string;
+  loadingGetWFHBalPerWk: any;
+  wfhBalPerWk: string;
+  useCredits: any = 0;
+  idSrc: string;
+
   constructor(
     private storage: Storage,
     private router: Router,
@@ -65,6 +78,12 @@ export class WorkfromhomePage implements OnInit {
 
 
   ngOnInit() {
+    this.idSrc = "assets/icon/ic_wfh.png"
+    this.storage.get(`${Constants.KEY_EMPID}`).then((val) => {
+      this.empId = val;
+    });
+
+    this.getWFHCredits();
 
   }
   ionViewWillEnter() {
@@ -78,6 +97,107 @@ export class WorkfromhomePage implements OnInit {
     });
   }
 
+   // Get WFH credits available
+   getWFHCredits() {
+
+    console.log("***** getWFHCredits() *****");
+    
+
+    this.storage.get(`${Constants.KEY_SESSION}`).then((val) => {
+
+      var d = new Date();
+      var datestring = d.getFullYear()
+      + "-" + ("0" + (d.getMonth()+1)).slice(-2)
+      + "-" + ("0" + d.getDate()).slice(-2) ;
+
+      let request = {
+
+        USER: this.empId,
+        EMPNO: this.empId,
+        SessionID: val[Constants.KEY_RECORD_ID],
+        SecurityStamp: val[Constants.KEY_SECURITY_STAMP],
+        Token: val[Constants.KEY_TOKEN],
+        AppPlatform: Constants.APP_PLATFORM,
+        AppVersion: Constants.VERSION,
+        REQUESTTYPECODE: Constants.ATD_TYPE_CODE_WFH,
+        REQUESTDATE: datestring
+
+      }
+    console.log('request: ',request)
+
+      this.loadingCtrl.create({
+        message: "Loading..."
+      }).then((overlay) => {
+
+        this.loadingGetWFHCredits = overlay;
+
+        this.storage.get(Constants.KEY_SERVER_SETTINGS).then((value) => {
+   
+          this.httpApi.post(`${value[Constants.SERVER_URL]}/api/WorkFromHome/GetAttendanceAdvisoryCredits`, request, {})
+            .then(data => {
+
+              console.log(data.data)
+              if (data.data == null || data.data == undefined || !data.data) {
+                this.showDialog("ERROR! [1]", Constants.CONNECTION_ERROR, true, "Okay");
+                this.loadingGetWFHCredits.dismiss();
+                return;
+              }
+
+              var jsonData = JSON.parse(data.data);
+              console.log('Employee WFH summary logs',jsonData)
+              this.loadingGetWFHCredits.dismiss();
+
+              if (jsonData['Status'] != Constants.POST_SUCCESS) {
+                this.showDialog("ERROR! [2]", Constants.CONNECTION_ERROR, true, "Okay");
+                this.loadingGetWFHCredits.dismiss();
+                return;
+              }
+
+              if (jsonData['Success'] != Constants.POST_YES) {
+                this.loadingGetWFHCredits.dismiss();
+
+                switch (jsonData['Message']) {
+                  case Constants.OUTDATED_ERROR:
+                    this.loginService.showSessionError(Constants.ERROR_OUTDATED_HEADER, Constants.OUTDATED_MESSAGE);
+                    return;
+                  case Constants.ERROR_OTHER_DEVICE:
+                    this.loginService.showSessionError(Constants.ERROR_OTHER_DEVICE_HEADER, Constants.ERROR_MESSAGE_OTHER_DEVICE);
+                    return;
+                  case Constants.ERROR_EXPIRED:
+                    this.loginService.showSessionError(Constants.ERROR_EXPIRED_HEADER, Constants.ERROR_MESSAGE_EXPIRED);
+                    return;
+                  case Constants.ERROR_REQUIRED:
+                    this.loginService.showSessionError(Constants.ERROR_REQUIRED_HEADER, Constants.ERROR_MESSAGE_REQUIRED);
+                    return;
+                }
+
+                this.showDialog("ERROR! [3]", jsonData['Message'], false, "Okay");
+                return;
+              }
+
+              this.wfhCredits = jsonData['Value'][0]['CREDITS'];
+              this.wfhBalance = jsonData['Value'][0]['BALANCE'];
+              this.wfhPosted = jsonData['Value'][0]['AVAILED'];
+              this.wfhApproval = jsonData['Value'][0]['APPROVAL'];
+              this.wfhApproved = jsonData['Value'][0]['APPROVED'];
+
+              console.log("***** wfhCredits: " + this.wfhCredits);
+              console.log("***** wfhBalance: " + this.wfhBalance);
+              console.log("***** wfhPosted: " + this.wfhPosted);
+              console.log("***** wfhApproval: " + this.wfhApproval);
+              console.log("***** wfhApproved: " + this.wfhApproved);
+
+              this.loadingGetWFHCredits.dismiss();
+            })
+            .catch(error => {
+              console.log(error.error)
+              this.loadingGetWFHCredits.dismiss();
+              this.showDialog("ERROR!", Constants.CONNECTION_ERROR, true, "Okay");
+            });
+        });
+      });
+    });
+  }
 
   getWFH() {
     this.storage.get(`${Constants.KEY_SESSION}`).then((val) => {

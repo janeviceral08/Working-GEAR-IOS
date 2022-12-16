@@ -169,6 +169,7 @@ export class LeaveapprovalPage implements OnInit {
             }
 
             var jsonData = JSON.parse(data.data);
+            console.log('jsonData: ', jsonData);//mycomment
             if (jsonData['Status'] != Constants.POST_SUCCESS) {
               this.noError = false;
               this.errorMessage = Constants.MESSAGE_CON_ERROR;
